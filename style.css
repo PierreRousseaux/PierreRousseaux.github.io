@@ -1,6 +1,6 @@
 
 *{box-sizing:border-box}html,body{margin:0;padding:0;width:100%;font-family:Arial,Helvetica,sans-serif;color:#111;background:#fff}a{color:#0b5394}
-.hero{height:315px;background-image:linear-gradient(rgba(0,0,0,.38),rgba(0,0,0,.38)),url('header.jpg');background-size:cover;background-position:center 50%;position:relative}
+.hero{height:315px;background-image:linear-gradient(rgba(0,0,0,.38),rgba(0,0,0,.38)),url('header.jpg');background-size:cover;background-position:center 55%;position:relative}
 .hero-nav{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff;border-bottom:1px solid rgba(255,255,255,.22)}
 .brand{font-size:19px;color:#fff;text-decoration:none;font-weight:400}.navlinks{display:flex;align-items:center;gap:28px}.navlinks a{color:rgba(255,255,255,.82);text-decoration:none;font-size:16px}.navlinks a.active,.navlinks a:hover{color:#fff;font-weight:600}
 .menu-btn{display:none;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.65);border-radius:4px;font-size:19px;padding:4px 8px}
@@ -13,7 +13,7 @@
 
 .site-footer{display:none!important}
 @media(max-width:750px){
-  .hero{height:205px;background-position:center 70%}
+  .hero{height:205px;background-position:center 55%}
   .menu-btn{border:0;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:8px;width:39px;height:39px;display:flex;align-items:center;justify-content:center}
   .navlinks{top:58px;left:10px;right:10px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(25,25,25,.90);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.22)}
   .navlinks a{width:100%;padding:7px 4px;font-size:15px}
@@ -28,3 +28,17 @@
 .media-meta{font-size:13px;color:#666;line-height:1.5}
 .lang-badge{display:inline-block;font-size:9px;font-weight:700;color:#0b5394;background:#eaf2f8;border-radius:3px;padding:2px 5px;margin-left:5px;vertical-align:2px}
 @media(max-width:650px){.media-row{grid-template-columns:1fr;gap:4px;padding:12px 0}.media-section{margin-top:34px}}
+
+/* V5 mobile home buttons: main actions first row, contact buttons second row */
+.contact-links{display:contents}
+@media(max-width:750px){
+  .home-links{display:flex;flex-wrap:wrap}
+  .contact-links{
+    display:flex;
+    flex-basis:100%;
+    gap:7px;
+    margin-top:1px;
+  }
+}
+/* Online writing: source label only, no repetitive ONLINE WRITING kicker */
+.media-kicker.source-only{text-transform:none;letter-spacing:0;font-size:12px}
