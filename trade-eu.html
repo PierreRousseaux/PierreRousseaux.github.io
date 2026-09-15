@@ -82,18 +82,15 @@
 </div>
 
 <h2>What do these products actually look like?</h2>
-<p>A handful of concrete examples from the 2015–2019 strategic-dependency list, with their dominant supplier and import-concentration (HHI):</p>
-<div class="prod-table-wrap"><table class="method-table">
-<tr><th>Product</th><th>Dominant supplier</th><th>Share</th><th>HHI</th></tr>
-<tr><td>Alkaloids (morphine production, natural pesticides, nicotine)</td><td>United Kingdom</td><td>96%</td><td>0.92</td></tr>
-<tr><td>Quebracho extract (natural tannin, leather treatment)</td><td>Argentina</td><td>96%</td><td>0.92</td></tr>
-<tr><td>Artificial flowers and plastic foliage</td><td>China</td><td>95%</td><td>0.90</td></tr>
-<tr><td>Trichloroethylene (industrial solvent)</td><td>United States</td><td>90%</td><td>0.82</td></tr>
-<tr><td>Synthetic-fibre tents and cases/containers</td><td>China</td><td>80%</td><td>0.65</td></tr>
-<tr><td>Iodine (medical use, water purification)</td><td>Chile</td><td>73%</td><td>0.56</td></tr>
-<tr><td>Raw beryllium (satellites, nuclear, defence)</td><td>United States</td><td>62%</td><td>0.52</td></tr>
-<tr><td>Bismuth (semiconductors, ammunition, cosmetics)</td><td>China</td><td>62%</td><td>0.41</td></tr>
-</table></div>
+<p>Twenty concrete examples from the 2015–2019 strategic-dependency list (the full 5-criteria "MR" tier), ranked by import concentration (HHI), with their dominant supplier and position in the value chain (upstreamness). Search to filter.</p>
+<div id="exampleExplorer">
+  <div class="explorer-controls">
+    <input type="search" placeholder="Search by product or supplier country…">
+  </div>
+  <div class="prod-table-wrap"><table class="method-table" id="exampleTable">
+  <tr><th>Product</th><th>Dominant supplier</th><th>HHI</th><th>Upstreamness</th></tr>
+  </table></div>
+</div>
 <p class="section-note">Shortages of tents or plastic flowers and shortages of beryllium or trichloroethylene are not remotely comparable in consequence — which is exactly why statistical vulnerability needs to be crossed with normative risk arguments before it can inform policy. That is the object of the next section.</p>
 
 <h2>Explore the underlying product list</h2>
@@ -248,6 +245,47 @@
       el.innerHTML = '<div style="padding:30px;color:#a4303f;font-size:13px;text-align:center">Could not load chart data (' + err.message + '). Check the browser console, or that assets/data/ and Chart.js loaded correctly.</div>';
     });
   });
+
+  // --- 20 curated real examples (from the same 2015-2019 replication data),
+  // ranked by HHI, with a simple search box ---
+  var COUNTRY_NAME = { CN:'China', IN:'India', TR:'Turkey', US:'United States', AR:'Argentina',
+    GB:'United Kingdom', DZ:'Algeria', RU:'Russian Federation', CL:'Chile' };
+  var EXAMPLES = [
+    ['Chloramphenicol antibiotics and derivatives','CN',0.98,1.31],
+    ['Castor oil and its fractions','IN',0.96,3.19],
+    ['Feldspar','TR',0.96,3.49],
+    ['m-Xylene (cyclic hydrocarbon)','US',0.96,4.65],
+    ['Quebracho extract (natural tannin, leather treatment)','AR',0.93,3.85],
+    ['Alkaloids (morphine production, natural pesticides, nicotine)','GB',0.93,1.31],
+    ['Pig/hog bristles and hair, and waste thereof','CN',0.91,1.70],
+    ['Artificial flowers and plastic foliage','CN',0.90,1.44],
+    ['Trichloroethylene (industrial solvent)','US',0.89,3.85],
+    ['Magnesium raspings, turnings and granules','CN',0.83,3.40],
+    ['Ammonia, in aqueous solution','DZ',0.75,3.76],
+    ['Raw beryllium, wrought (satellites, nuclear, defence)','US',0.72,3.40],
+    ['Camping goods of textile materials','CN',0.72,2.10],
+    ['Nickel mattes','RU',0.71,3.42],
+    ['Tents of synthetic fibres','CN',0.65,2.10],
+    ['Cases and containers (suitcases, vanity cases)','CN',0.66,1.50],
+    ['Coir yarn','IN',0.64,2.77],
+    ['Permanent magnets and articles thereof','CN',0.62,2.64],
+    ['Hazelnuts, fresh or dried, shelled','TR',0.61,1.19],
+    ['Iodine (medical use, water purification)','CL',0.56,3.24]
+  ];
+  var exTable = document.getElementById('exampleTable');
+  function renderExamples(filter){
+    filter = (filter||'').toLowerCase();
+    var rows = '<tr><th>Product</th><th>Dominant supplier</th><th>HHI</th><th>Upstreamness</th></tr>';
+    EXAMPLES.forEach(function(e){
+      var name = COUNTRY_NAME[e[1]] || e[1];
+      if (filter && name.toLowerCase().indexOf(filter)===-1 && e[0].toLowerCase().indexOf(filter)===-1) return;
+      rows += '<tr><td>'+e[0]+'</td><td>'+name+'</td><td>'+e[2].toFixed(2)+'</td><td>'+e[3].toFixed(2)+'</td></tr>';
+    });
+    exTable.innerHTML = rows;
+  }
+  renderExamples('');
+  var exSearch = document.querySelector('#exampleExplorer input[type="search"]');
+  if (exSearch) exSearch.addEventListener('input', function(){ renderExamples(exSearch.value.trim()); });
 })();
 </script>
 </body></html>
