@@ -1,0 +1,248 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EU Trade Dependencies | Pierre Rousseaux</title><meta name="description" content="The full diagnostic of EU27 imported trade dependencies: evolution 2002-2022, sectoral and geographic composition, and four normative risk dimensions."><link rel="stylesheet" href="style.css"></head><body>
+<header class="hero"><nav class="hero-nav"><a class="brand" href="index.html">Pierre Rousseaux</a><button class="menu-btn" aria-label="Menu">☰</button><div class="navlinks"><a class="" href="index.html">Home</a><a class="" href="research.html">Research</a><a class="" href="media.html">Media</a><a class="" href="teaching.html">Teaching</a><a class="active" href="trade-dependencies.html">Trade Dependencies</a><a class="" href="oeconomicus.html">Oeconomicus</a></div></nav></header>
+
+<div class="trade-hero"><div class="trade-hero-inner">
+  <div class="trade-kicker">Trade Dependencies · EU Diagnostic</div>
+  <h1>EU Trade Dependencies</h1>
+  <p>What is the EU27 dependent on, how has that changed since 2002, and which of those dependencies actually pose a strategic risk once geopolitics, supply-chain position, critical-goods status and future technologies are taken into account.</p>
+</div></div>
+
+<nav class="subnav"><div class="subnav-inner">
+  <a href="trade-dependencies.html">Overview</a>
+  <a href="trade-methodology.html">Methodology</a>
+  <a class="active" href="trade-eu.html">EU Trade Dependencies</a>
+  <a href="trade-france.html">French Trade Dependencies</a>
+  <a href="trade-country.html">Country-Level</a>
+</div></nav>
+
+<main class="trade-wrap">
+
+<h2>How many trade vulnerabilities does the EU import?</h2>
+<p>Starting from the roughly 5,381 HS6 products imported by the consolidated EU27 over 2015–2019, the European Commission's three criteria identify 378 vulnerable products (its "bottom-up" list). Adding the domestic-absorption criterion — restricting to products for which extra-EU imports cover more than half of EU absorption — narrows this to 228 products. Finally, keeping only those with very low ex-post substitutability between suppliers leaves 49 strategic dependencies: about 0.5% of total EU27 import value, concentrated in energy, mining, basic metals and chemicals, and mostly sourced from China.</p>
+
+<div class="chart-card">
+<h4>Live replication: the funnel, from the underlying data</h4>
+<div class="chart-sub">Same logic as the methodology page, recomputed directly from the replication files behind this page (2015–2019 pool). Counts differ slightly from the published headline figures (378 / 228 / 49) because this uses a more recent data vintage — read the shape of the funnel, not the exact digits, as identical across both.</div>
+<div id="euFunnelStats" class="stat-grid" style="margin-top:4px"></div>
+</div>
+
+<h2>How has this evolved since 2002?</h2>
+<p>Reproducing the diagnostic year by year from 2002 to 2022 shows a clear before/after break around the 2008 financial crisis, followed by a durable plateau — regardless of which methodology is used. Production data (needed for the absorption and full five-criteria lists) is not yet available for 2021–2022, so those two years show the EC list only.</p>
+
+<div class="chart-card">
+<h4>Number of vulnerable products, by year and methodology</h4>
+<div class="chart-sub">EU27, extra-EU imports. "EC" = the Commission's three criteria. "+ Absorption" adds criterion 4. "Full 5-criteria" (Mejean &amp; Rousseaux) adds criterion 5.</div>
+<div class="chart-canvas-wrap"><canvas id="chartAnnual"></canvas></div>
+</div>
+
+<div class="chart-card">
+<h4>Pooled by period</h4>
+<div class="chart-sub">Years pooled within each period to focus on persistent, structural dependencies rather than one-off yearly spikes (methodology note: pooling is done on aggregated trade and production values, not by taking the union or intersection of yearly lists).</div>
+<div class="chart-canvas-wrap short"><canvas id="chartPooled"></canvas></div>
+</div>
+
+<p>Vulnerabilities persist over time more than one might expect: depending on methodology, between 29% and 41% of dependencies identified before the global financial crisis were still present in the period directly afterwards, and a further share remained a decade later. The Covid-19 period marks a renewed step-up in counts across methodologies.</p>
+
+<h2>Sector, geography, upstreamness and end use</h2>
+<p>Use the tabs below to see how each of the three lists (EC / + Absorption / full 5-criteria) breaks down along four dimensions, pooled over 2015–2019.</p>
+
+<div class="tabs" data-group="breakdown">
+  <button class="tab-btn active" data-tab="sector">Sector</button>
+  <button class="tab-btn" data-tab="geography">Country of origin</button>
+  <button class="tab-btn" data-tab="upstreamness">Position in the value chain</button>
+  <button class="tab-btn" data-tab="enduse">End use</button>
+</div>
+<div class="tab-panel active" data-group="breakdown" data-tab="sector">
+<div class="chart-card" style="margin-top:0">
+<h4>Sectoral distribution</h4>
+<div class="chart-sub">70% of the full-criteria strategic dependencies sit in textile/apparel, energy/mining/metals/chemicals, and construction. Agriculture drops sharply once domestic-absorption is applied — consistent with the EU's Common Agricultural Policy self-sufficiency objective.</div>
+<div class="chart-canvas-wrap"><canvas id="chartSector"></canvas></div>
+</div>
+</div>
+<div class="tab-panel" data-group="breakdown" data-tab="geography">
+<div class="chart-card" style="margin-top:0">
+<h4>Top countries of origin</h4>
+<div class="chart-sub">China dominates at every stage of the funnel and becomes proportionally more dominant, not less, as the criteria get stricter — of the full 5-criteria dependencies, the large majority trace back to a Chinese supplier.</div>
+<div class="chart-canvas-wrap"><canvas id="chartGeo"></canvas></div>
+</div>
+</div>
+<div class="tab-panel" data-group="breakdown" data-tab="upstreamness">
+<div class="chart-card" style="margin-top:0">
+<h4>Distance from final demand (Antràs et al., 2012)</h4>
+<div class="chart-sub">Upstreamness buckets: higher values mean the product passes through more production stages before reaching a final consumer. Around 49% of full-criteria dependencies sit more than 3 stages upstream on average across periods — a disruption there cascades through several further layers of production.</div>
+<div class="chart-canvas-wrap"><canvas id="chartUpstream"></canvas></div>
+</div>
+</div>
+<div class="tab-panel" data-group="breakdown" data-tab="enduse">
+<div class="chart-card" style="margin-top:0">
+<h4>End use (UN Broad Economic Categories)</h4>
+<div class="chart-sub">Most strategic dependencies are intermediate inputs, not final consumer goods — reinforcing the case that their disruption is transmitted to downstream industries rather than felt directly by households.</div>
+<div class="chart-canvas-wrap"><canvas id="chartEnduse"></canvas></div>
+</div>
+</div>
+
+<h2>What do these products actually look like?</h2>
+<p>A handful of concrete examples from the 2015–2019 strategic-dependency list, with their dominant supplier and import-concentration (HHI):</p>
+<div class="prod-table-wrap"><table class="method-table">
+<tr><th>Product</th><th>Dominant supplier</th><th>Share</th><th>HHI</th></tr>
+<tr><td>Alkaloids (morphine production, natural pesticides, nicotine)</td><td>United Kingdom</td><td>96%</td><td>0.92</td></tr>
+<tr><td>Quebracho extract (natural tannin, leather treatment)</td><td>Argentina</td><td>96%</td><td>0.92</td></tr>
+<tr><td>Artificial flowers and plastic foliage</td><td>China</td><td>95%</td><td>0.90</td></tr>
+<tr><td>Trichloroethylene (industrial solvent)</td><td>United States</td><td>90%</td><td>0.82</td></tr>
+<tr><td>Synthetic-fibre tents and cases/containers</td><td>China</td><td>80%</td><td>0.65</td></tr>
+<tr><td>Iodine (medical use, water purification)</td><td>Chile</td><td>73%</td><td>0.56</td></tr>
+<tr><td>Raw beryllium (satellites, nuclear, defence)</td><td>United States</td><td>62%</td><td>0.52</td></tr>
+<tr><td>Bismuth (semiconductors, ammunition, cosmetics)</td><td>China</td><td>62%</td><td>0.41</td></tr>
+</table></div>
+<p class="section-note">Shortages of tents or plastic flowers and shortages of beryllium or trichloroethylene are not remotely comparable in consequence — which is exactly why statistical vulnerability needs to be crossed with normative risk arguments before it can inform policy. That is the object of the next section.</p>
+
+<h2>Explore the underlying product list</h2>
+<p>Search, sort and filter the 2015–2019 EC-list products directly (399 products meet the EC's three criteria in this replication; filter to the full 5-criteria tier to see the 74 strategic dependencies).</p>
+<div id="productExplorer">
+  <div class="explorer-controls">
+    <input type="search" placeholder="Search by product, HS6 code, or supplier country…">
+    <span class="chip active" data-value="0">All tiers</span>
+    <span class="chip" data-value="1">EC only</span>
+    <span class="chip" data-value="2">+ Absorption</span>
+    <span class="chip" data-value="3">Full 5-criteria</span>
+  </div>
+  <div class="prod-table-wrap">
+  <table class="prod-table">
+    <thead><tr>
+      <th data-key="code">HS6</th><th data-key="desc">Product description</th><th>Tier</th>
+      <th data-key="hhi">HHI ▾</th><th data-key="upstream">Upstreamness</th><th data-key="top">Top supplier</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+  </div>
+  <div class="prod-count"></div>
+</div>
+
+<h2>Four normative risk dimensions</h2>
+<p>Not every statistically vulnerable product carries the same consequence for the European economy. Mejean and Rousseaux (2024) cross the vulnerability list with four non-exhaustive normative arguments.</p>
+
+<div class="tabs" data-group="risks">
+  <button class="tab-btn active" data-tab="geo">1 · Geopolitical risk</button>
+  <button class="tab-btn" data-tab="supply">2 · Supply chain risk</button>
+  <button class="tab-btn" data-tab="critical">3 · Critical-goods shortages</button>
+  <button class="tab-btn" data-tab="green">4 · Future key technologies</button>
+</div>
+
+<div class="tab-panel active" data-group="risks" data-tab="geo">
+<p>Between 2015 and 2019, <strong>70–80% of identified trade vulnerabilities were primarily sourced from non-NATO countries</strong>. Linking these dependencies to the Geopolitical Risk Index (Caldara and Iacoviello, 2022) — built from systematic tracking of geopolitical events (the Gulf War, 9/11, Crimea 2014) in major US newspapers, across 23 non-NATO countries — shows that between 4 and 18 strategic dependencies sourced from non-NATO countries exceed the median geopolitical-risk level.</p>
+<p>Examples: quebracho extract from Argentina (96% share, HHI 0.92), lithium carbonate from Chile (85%, HHI 0.73), iodine from Chile (73%, HHI 0.56), vulcanised-rubber gloves from Malaysia (63%, HHI 0.42), and refractory clay from Ukraine (55%). China's share of EU import vulnerabilities is rising, while the shares of the United States and the rest of the world have fallen by 3 to 10 percentage points — and China's share is especially high among products the EU cannot easily produce itself.</p>
+<div class="section-note">French customs data linked to these non-NATO-sourced vulnerabilities show that 75% of French extra-EU importers traded with at least one non-NATO country, and 8% imported a vulnerable product directly from one. See the <a href="trade-france.html">French Trade Dependencies</a> page for the full firm-level breakdown.</div>
+</div>
+
+<div class="tab-panel" data-group="risks" data-tab="supply">
+<p>Shocks can propagate downstream through supply chains (di Giovanni et al., 2020; Bonadio et al., 2021; Boehm et al., 2019), which matters most when they threaten the competitiveness of domestic firms further down the chain (Baur and Flach, 2022). Over 50% of the EU's trade vulnerabilities vis-à-vis China involve final consumption goods — but the more strategically relevant question is how far <em>upstream</em> a vulnerable product sits.</p>
+<p>Linking dependencies to the upstreamness metric of Antràs et al. (2012) identifies 22 products more than three production stages away from final consumers — concentrated in energy, mining, basic metals and chemicals, and predominantly imported from China. Examples: acyclic hydrocarbons from Russia (70% share, upstreamness 4.20), trichloroethylene from the US (90%, upstreamness 3.85), quebracho extract from Argentina (96%, upstreamness 3.85), raw beryllium from the US (62%, upstreamness 3.42), and magnesium products from China (91%, upstreamness 3.40). On average across periods, highly upstream products make up around 49% of full-criteria vulnerabilities.</p>
+</div>
+
+<div class="tab-panel" data-group="risks" data-tab="critical">
+<p>Shortages of critical goods carry consequences well beyond economic cost, including in the worst cases human costs — and the private-versus-societal tradeoff between low-probability risk and productive efficiency justifies public intervention (Baldwin and Freeman, 2021). The pharmaceutical sector is the clearest illustration: drug shortages in the US have increased tenfold since the 2000s, closely linked to the offshoring of active-ingredient manufacturing to emerging economies.</p>
+<div class="chart-card" style="margin-top:16px">
+<h4>Active pharmaceutical ingredients (APIs): from 169 imported to 2 critical</h4>
+<div class="chart-sub">Linking 170 HS6 product categories to 4,497 individual APIs and applying the same criteria sequentially.</div>
+<div class="chart-canvas-wrap short"><canvas id="chartApi"></canvas></div>
+</div>
+<p>Two APIs survive the full five-criteria framework: <strong>daprodustat</strong> (chronic kidney disease anaemia) and <strong>metharbital</strong> (epilepsy), both sourced &gt;97% from India with an HHI of 0.94. A broader group of 136 additional APIs is flagged once the absorption criterion alone is added — including pregabalin (epilepsy, anxiety), atorvastatin-type cholesterol treatments, and bimatoprost (glaucoma) — mostly sourced from Singapore and the United States at market shares often above 70%.</p>
+</div>
+
+<div class="tab-panel" data-group="risks" data-tab="green">
+<p>Trade-dependency assessments have so far been backward-looking; securing inputs for lithium-ion batteries, solar panels and hydrogen is just as important for the EU's future competitiveness in the green transition, even though none of the 2015–2019 dependencies are themselves direct green-technology inputs today.</p>
+<ul>
+<li><strong>Lithium-ion batteries:</strong> lithium carbonate exports are concentrated in Chile (57%) and Argentina (16%), HHI 0.367; cobalt ore and concentrate exports are 88% from the Democratic Republic of Congo, HHI 0.778. Batteries themselves are less concentrated (HHI 0.209; China 41%, Korea 15%), with diversification opening up via Canada and technologies such as Northvolt's NMC 811.</li>
+<li><strong>Solar panels:</strong> moderate overall concentration (HHI 0.216; China 43%, Malaysia 10%) masks heavier Chinese dominance in specific components such as mounted piezo-electric crystals, diodes and transistors.</li>
+<li><strong>Hydrogen and rare earths:</strong> the hydrogen market is comparatively competitive (Netherlands 38%, Canada 33%, HHI 0.264); rare earths are more concentrated (Vietnam 33%, China 29%, HHI 0.234), with China's dominance of global mining reserves compounding the risk — nearly half of natural graphite powder exports, for instance.</li>
+</ul>
+</div>
+
+<h2>Policy toolbox</h2>
+<p>Mejean and Rousseaux (2024) set out a toolbox combining subsidies, regulation and industrial policy:</p>
+<ul>
+<li><strong>Firm-level resilience investment</strong> — supply-chain visibility, redundancy, agility, vertical integration — is systematically under-provided because of network and information externalities, which justifies public subsidy.</li>
+<li><strong>Information externalities</strong> limit firms' visibility beyond their direct suppliers. Real-time monitoring systems — France's drug-stock tracking initiative is one example — and EU-level data infrastructure can substitute for what individual firms cannot observe on their own.</li>
+<li><strong>Coordination and standardisation</strong> (e.g. the US Sematech initiative for semiconductors) make supply interchangeable across facilities and reduce structural fragility.</li>
+<li><strong>Strategic reserves and targeted domestic-capacity investment</strong> are warranted for genuinely critical sectors — food, pharmaceuticals, defence — and should explicitly anticipate future needs in green technologies, not only current dependencies.</li>
+<li><strong>EU-level coordination</strong> matters because industrial policy is a member-state competence while resilience is a Union-wide public good: an uncoordinated response risks subsidy wars between member states rather than a coherent EU-wide diversification strategy.</li>
+</ul>
+
+<div class="source-block">
+<h4>Sources</h4>
+<ul>
+<li>Méjean, I. and Rousseaux, P. (2024). <em>Identifying European Trade Dependencies</em>. Paris Report 2, CEPR &amp; Bruegel. <a href="research/MejeanRousseaux_ITCEI.pdf" target="_blank">Paper</a></li>
+<li>Rousseaux, P. (2025). <em>A Review of EU Trade Dependencies</em>. EIB Investment Report 2024/2025, Ch. 5, Box C. <a href="research/EIBInvestmentReport_boxC_Chap5.pdf" target="_blank">Box</a> · <a href="https://www.eib.org/attachments/lucalli/20240354_investment_report_2024_en.pdf" target="_blank">Full report</a></li>
+<li>Underlying replication data: CEPII-BACI, Eurostat-Prodcom, per-year and pooled-period vulnerability classification files, 2002–2022.</li>
+</ul>
+</div>
+
+</main>
+<script src="main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="assets/js/trade.js"></script>
+<script>
+(function(){
+  var C = window.TradeSite.PALETTE;
+  var fmt = function(n){ return n.toLocaleString('en-US'); };
+
+  Promise.all([
+    fetch('assets/data/eu_timeseries.json').then(r=>r.json()),
+    fetch('assets/data/eu_breakdowns.json').then(r=>r.json()),
+    fetch('assets/data/eu_api_funnel.json').then(r=>r.json()),
+    fetch('assets/data/eu_products.json').then(r=>r.json())
+  ]).then(function(res){
+    var ts = res[0], bd = res[1], api = res[2], products = res[3];
+
+    // --- funnel stat cards (live numbers from the replication data) ---
+    var t3 = products.filter(function(p){return p.tier===3}).length;
+    var t2 = products.filter(function(p){return p.tier>=2}).length;
+    var t1 = products.length;
+    var statsHtml =
+      '<div class="stat-card"><div class="stat-num">'+fmt(t1)+'</div><div class="stat-label">Products meeting the EC\'s 3 criteria (2015–2019, this replication)</div></div>'+
+      '<div class="stat-card"><div class="stat-num">'+fmt(t2)+'</div><div class="stat-label">…of which also meet the domestic-absorption criterion</div></div>'+
+      '<div class="stat-card"><div class="stat-num">'+fmt(t3)+'</div><div class="stat-label">…of which also meet the full 5-criteria (strategic dependencies)</div></div>'+
+      '<div class="stat-card"><div class="stat-num">'+(Math.round((t3/t1)*1000)/10)+'%</div><div class="stat-label">Strategic dependencies as a share of the EC-list universe</div></div>';
+    document.getElementById('euFunnelStats').innerHTML = statsHtml;
+
+    // --- annual time series ---
+    var years = Object.keys(ts.annual.EC).map(Number).sort((a,b)=>a-b);
+    window.TradeSite.lineChart(document.getElementById('chartAnnual').getContext('2d'), years, [
+      { label:'EC (3 criteria)', data: years.map(y=>ts.annual.EC[y]), borderColor:C.ec, backgroundColor:C.ec, tension:.25, pointRadius:2 },
+      { label:'EC + Absorption', data: years.map(y=>ts.annual.EC_Absorption[y]===0?null:ts.annual.EC_Absorption[y]), borderColor:C.absorption, backgroundColor:C.absorption, tension:.25, pointRadius:2 },
+      { label:'Full 5-criteria (MR)', data: years.map(y=>ts.annual.MR[y]===0?null:ts.annual.MR[y]), borderColor:C.mr, backgroundColor:C.mr, tension:.25, pointRadius:2 }
+    ]);
+
+    // --- pooled by period ---
+    var periods = Object.keys(ts.pooled.EC);
+    window.TradeSite.barChart(document.getElementById('chartPooled').getContext('2d'), periods, [
+      { label:'EC (3 criteria)', data: periods.map(p=>ts.pooled.EC[p]), backgroundColor:C.ec },
+      { label:'EC + Absorption', data: periods.map(p=>ts.pooled.EC_Absorption[p]), backgroundColor:C.absorption },
+      { label:'Full 5-criteria (MR)', data: periods.map(p=>ts.pooled.MR[p]), backgroundColor:C.mr }
+    ]);
+
+    // --- breakdowns (sector / geography / upstreamness / enduse) ---
+    function buildBreakdown(canvasId, key){
+      var d = bd[key];
+      window.TradeSite.barChart(document.getElementById(canvasId).getContext('2d'), d.labels, [
+        { label:'EC (3 criteria)', data: d.EC, backgroundColor:C.ec },
+        { label:'+ Absorption', data: d.Absorption, backgroundColor:C.absorption },
+        { label:'Full 5-criteria (MR)', data: d.MR, backgroundColor:C.mr }
+      ]);
+    }
+    buildBreakdown('chartSector','sector');
+    buildBreakdown('chartGeo','geography');
+    buildBreakdown('chartUpstream','upstreamness');
+    buildBreakdown('chartEnduse','enduse');
+
+    // --- API funnel ---
+    window.TradeSite.barChart(document.getElementById('chartApi').getContext('2d'), api.labels, [
+      { label:'# of APIs', data: api.values, backgroundColor:[C.ec,C.ec,C.absorption,C.mr] }
+    ], { plugins:{ legend:{display:false} } });
+
+    // --- product explorer ---
+    window.TradeSite.initExplorer('productExplorer', products);
+  });
+})();
+</script>
+</body></html>

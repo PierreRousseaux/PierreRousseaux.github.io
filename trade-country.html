@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Country-Level Trade Dependencies | Pierre Rousseaux</title><meta name="description" content="How the EU-consolidated trade-dependency framework can be adapted to individual member states — methodology and open questions. Empirical results forthcoming."><link rel="stylesheet" href="style.css"></head><body>
+<header class="hero"><nav class="hero-nav"><a class="brand" href="index.html">Pierre Rousseaux</a><button class="menu-btn" aria-label="Menu">☰</button><div class="navlinks"><a class="" href="index.html">Home</a><a class="" href="research.html">Research</a><a class="" href="media.html">Media</a><a class="" href="teaching.html">Teaching</a><a class="active" href="trade-dependencies.html">Trade Dependencies</a><a class="" href="oeconomicus.html">Oeconomicus</a></div></nav></header>
+
+<div class="trade-hero"><div class="trade-hero-inner">
+  <div class="trade-kicker">Trade Dependencies · Country-Level</div>
+  <h1>Country-Level Trade Dependencies</h1>
+  <p>The EU-consolidated diagnostic treats the EU27 as a single economy. Individual member states clearly differ in what they import and from whom — but pushing the same statistical framework down to the country level is less straightforward than it looks.</p>
+</div></div>
+
+<nav class="subnav"><div class="subnav-inner">
+  <a href="trade-dependencies.html">Overview</a>
+  <a href="trade-methodology.html">Methodology</a>
+  <a href="trade-eu.html">EU Trade Dependencies</a>
+  <a href="trade-france.html">French Trade Dependencies</a>
+  <a class="active" href="trade-country.html">Country-Level</a>
+</div></nav>
+
+<main class="trade-wrap">
+
+<div class="forthcoming-banner"><strong>Results forthcoming.</strong> This page sets out the methodology for a country-level breakdown of EU trade dependencies — work in progress as part of the broader research programme described on the <a href="trade-dependencies.html">overview page</a>. It intentionally contains no empirical results yet: getting the definitions right matters more here than getting to a number quickly.</p></div>
+
+<h2>Why this is not a simple find-and-replace</h2>
+<p>The most direct way to get a "country-level" version of the EU diagnostic is to take the European Commission's criteria and re-run them with an individual member state substituted for the EU wherever "EU" appears — i.e. flag a product as vulnerable for country X whenever it is concentrated among suppliers, and X's imports of it exceed some share of X's own demand, sourced from <em>any</em> country other than X itself.</p>
+<p>This naive re-application is easy to compute and is exactly what a first-pass country breakdown typically looks like. It is also conceptually different from the EU-consolidated diagnostic in a way that matters:</p>
+
+<div class="flow-diagram">
+  <div class="flow-box">EU-consolidated criteria<br><span style="font-weight:400;font-size:12px">"extra-EU" = outside the EU27</span></div>
+  <div class="flow-sep">≠</div>
+  <div class="flow-box warn">Naive country-level re-application<br><span style="font-weight:400;font-size:12px">"extra-country" = outside that one country, including other EU members</span></div>
+</div>
+
+<p>Under the naive version, a French import of German machine tools counts as an external "dependency" in exactly the same way as a French import of Chinese rare earths — even though one flow sits entirely inside the Single Market, under EU law, with no customs barrier, and is not remotely the kind of exposure the EU-level framework was built to flag. Applied mechanically, this reapplication over-counts "vulnerability" enormously and produces country-level lists that are not comparable to the EU-consolidated list, and not obviously informative about genuine external exposure.</p>
+
+<h2>What has to be redefined at country level</h2>
+<div class="criteria-list">
+<div class="criterion-row"><div class="criterion-num">1</div><div class="criterion-body"><strong>Domestic vs. intra-EU vs. extra-EU.</strong> A country-level version needs at minimum a three-way split — production at home, sourcing from other EU members, and sourcing from outside the EU — rather than the two-way domestic/foreign split that is sufficient at EU level. Whether intra-EU sourcing should count as fully "safe" (Single Market, no tariffs, common trade defence) or only partially so (still cross-border, still subject to the exporting member state's own domestic shocks) is a modelling choice, not a fact given by the data.</div></div>
+<div class="criterion-row"><div class="criterion-num">2</div><div class="criterion-body"><strong>Absorption.</strong> The EU-level absorption criterion (production + imports − exports) needs a country-level production series precise enough to distinguish a country's own output from goods that merely transit through it — Prodcom data is coarser at the national level than one would like, which is exactly why the French extension of this work switches to confidential EAP production microdata via CASD rather than relying on Eurostat aggregates alone.</div></div>
+<div class="criterion-row"><div class="criterion-num">3</div><div class="criterion-body"><strong>Substitutability.</strong> The EU-level criterion asks whether the EU's own exports could plausibly replace extra-EU imports. At country level, the relevant fallback is not necessarily the country's own exports — it might be able to substitute toward another EU member's production instead. A country-level criterion that only checks the country's own export capacity will overstate vulnerability for small, trade-integrated economies almost by construction.</div></div>
+<div class="criterion-row"><div class="criterion-num">4</div><div class="criterion-body"><strong>Re-exports and entrepôt effects.</strong> Countries with large ports or logistics hubs (the Netherlands, Belgium) show import and re-export volumes that reflect their role as a transit point for the rest of the EU, not their own consumption or production exposure. A country-level absorption or substitutability criterion needs to net this out, or it will systematically mis-rank these economies.</div></div>
+</div>
+
+<h2>Two candidate approaches</h2>
+<div class="tabs" data-group="countryapproach">
+  <button class="tab-btn active" data-tab="naive">A — Naive re-application</button>
+  <button class="tab-btn" data-tab="consistent">B — EU-consistent country view</button>
+</div>
+<div class="tab-panel active" data-group="countryapproach" data-tab="naive">
+<p><strong>What it does:</strong> re-runs the EC's (or the full five-) criteria with "extra-country" replacing "extra-EU" throughout.</p>
+<p><strong>Advantage:</strong> mechanically simple, and directly comparable across the resulting country lists (same functional form applied everywhere).</p>
+<p><strong>Drawback:</strong> conflates intra-Single-Market trade with genuine external exposure (see above); tends to flag as "vulnerable" a large number of products for which the real fallback is simply another EU member state, not a scramble for a new external supplier.</p>
+</div>
+<div class="tab-panel" data-group="countryapproach" data-tab="consistent">
+<p><strong>What it does:</strong> keeps "extra-EU" as the external boundary (as at EU level), and instead asks a country-specific question on top of the EU-consolidated list: which of the EU's already-identified dependencies does this particular country import, in what volume, and how does its own production and import-partner mix compare with the EU average for that product?</p>
+<p><strong>Advantage:</strong> stays consistent with the EU-level definition of "vulnerable," so results are additive and comparable — a country's exposure can be read as its share of an EU-wide problem rather than a separately-defined national problem.</p>
+<p><strong>Drawback:</strong> cannot surface a dependency that is specific to one member state's sourcing pattern but washed out in the EU-wide aggregate (e.g. a product the EU as a whole sources safely on average, but that one country happens to source entirely from a single risky supplier).</p>
+</div>
+<p class="section-note">The <a href="trade-france.html">French Trade Dependencies</a> page takes approach B in spirit — it keeps the EU-consolidated vulnerability list fixed and asks a firm-level exposure question on top of it, using French customs microdata, rather than recomputing the criteria with France as the reference economy.</p>
+
+<h2>Data requirements for a rigorous country-level diagnostic</h2>
+<ul>
+<li><strong>Trade:</strong> bilateral flows at a finer geographic and product breakdown than EU-aggregate CEPII-BACI allows — national customs data (HS8) gives the precision needed to separate transit trade from genuine sourcing.</li>
+<li><strong>Production:</strong> a production series precise enough at the national level to support an absorption criterion without contamination from re-exports — Eurostat-Prodcom where available, confidential EAP-type production microdata where more precision is required (as in the French case).</li>
+<li><strong>A rule for intra-EU flows:</strong> an explicit, defensible choice about how much of a "safety cushion" intra-EU sourcing should count for, rather than treating it as either fully safe or fully foreign by default.</li>
+</ul>
+
+<div class="source-block">
+<h4>Sources</h4>
+<ul>
+<li>Méjean, I. and Rousseaux, P. (2024). <em>Identifying European Trade Dependencies</em>. Paris Report 2, CEPR &amp; Bruegel. <a href="research/MejeanRousseaux_ITCEI.pdf" target="_blank">Paper</a></li>
+<li>Rousseaux, P. (2025). i-MIP research notes on the France 2030 evaluation methodology (national and EU-level scales).</li>
+</ul>
+</div>
+
+</main>
+<script src="main.js"></script>
+<script src="assets/js/trade.js"></script>
+</body></html>

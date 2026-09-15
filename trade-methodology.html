@@ -1,0 +1,212 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Methodology | Trade Dependencies | Pierre Rousseaux</title><meta name="description" content="How the literature identifies vulnerable products: from the French Treasury and the European Commission to the five-criteria Mejean and Rousseaux (2024) framework."><link rel="stylesheet" href="style.css"></head><body>
+<header class="hero"><nav class="hero-nav"><a class="brand" href="index.html">Pierre Rousseaux</a><button class="menu-btn" aria-label="Menu">☰</button><div class="navlinks"><a class="" href="index.html">Home</a><a class="" href="research.html">Research</a><a class="" href="media.html">Media</a><a class="" href="teaching.html">Teaching</a><a class="active" href="trade-dependencies.html">Trade Dependencies</a><a class="" href="oeconomicus.html">Oeconomicus</a></div></nav></header>
+
+<div class="trade-hero"><div class="trade-hero-inner">
+  <div class="trade-kicker">Trade Dependencies · Methodology</div>
+  <h1>From concentration to strategic vulnerability</h1>
+  <p>A detailed, criterion-by-criterion account of how the recent literature identifies vulnerable products from international trade data — and what Mejean and Rousseaux (2024) add on top of the European Commission's approach.</p>
+</div></div>
+
+<nav class="subnav"><div class="subnav-inner">
+  <a href="trade-dependencies.html">Overview</a>
+  <a class="active" href="trade-methodology.html">Methodology</a>
+  <a href="trade-eu.html">EU Trade Dependencies</a>
+  <a href="trade-france.html">French Trade Dependencies</a>
+  <a href="trade-country.html">Country-Level</a>
+</div></nav>
+
+<main class="trade-wrap">
+
+<h2>Three concepts that are easy to conflate</h2>
+<p>Most of the confusion in this literature comes from treating three distinct concepts as if they were one:</p>
+<div class="criteria-list">
+  <div class="criterion-row"><div class="criterion-num">1</div><div class="criterion-body"><strong>Concentration.</strong> A product is concentrated if a small number of countries supply most of it. Concentration is common and, on its own, not a problem: many perfectly safe products are concentrated for entirely benign reasons (geology, climate, economies of scale).</div></div>
+  <div class="criterion-row"><div class="criterion-num">2</div><div class="criterion-body"><strong>Dependency.</strong> A product is a dependency if it is both concentrated <em>and</em> the importing economy relies on foreign supply for a large share of what it consumes — i.e. domestic production and diversified sourcing cannot easily absorb a disruption.</div></div>
+  <div class="criterion-row mr"><div class="criterion-num mr">3</div><div class="criterion-body"><strong>Strategic vulnerability.</strong> A dependency becomes strategically important once it is also very difficult to substitute <em>after</em> a shock — no domestic fallback capacity, no realistic supplier switching. This is the small, high-stakes subset that resilience policy should actually target.</div></div>
+</div>
+<p>The European Commission's original methodology gets you from raw trade data to <em>dependency</em>. Mejean and Rousseaux (2024) add the two criteria needed to get from <em>dependency</em> to <em>strategic vulnerability</em>.</p>
+
+<h2>How five different methodologies define a "vulnerable product"</h2>
+<p>Statistical methodologies to identify import vulnerabilities have proliferated since 2020. The table below (criteria compared as in Vicard and Wibaux, 2024) lines up the five main approaches used in France and at EU level.</p>
+
+<div class="tabs" data-group="methodcompare">
+  <button class="tab-btn active" data-tab="table">Comparison table</button>
+  <button class="tab-btn" data-tab="ec">European Commission (2021)</button>
+  <button class="tab-btn" data-tab="treasury">French Treasury (2020)</button>
+  <button class="tab-btn" data-tab="cae">CAE (2021)</button>
+  <button class="tab-btn" data-tab="cesifo">CESifo (2022)</button>
+  <button class="tab-btn" data-tab="mr">Mejean &amp; Rousseaux (2024)</button>
+</div>
+
+<div class="tab-panel active" data-group="methodcompare" data-tab="table">
+<div class="prod-table-wrap"><table class="method-table">
+<tr><th>Criterion</th><th>European Commission (2021)</th><th>Bonneau &amp; Nakaa — French Treasury (2020)</th><th>Jaravel &amp; Mejean — CAE (2021)</th><th>Baur &amp; Flach — CESifo (2022)</th><th class="hl">Mejean &amp; Rousseaux (2024)</th></tr>
+<tr><td><b>1</b></td><td>Import concentration: HHI &gt; 0.4</td><td>Origin of imports: &gt;50% from outside the EU</td><td>Origin of imports: majority extra-EU</td><td>Relevance for domestic production: top-3 inputs used in the 5 largest sectors</td><td class="hl">Import concentration: HHI &gt; 0.4</td></tr>
+<tr><td><b>2</b></td><td>Importance in demand: extra-EU / total imports &gt; 0.5</td><td>Import concentration: HHI &gt; 0.5</td><td>Import concentration: HHI &gt; 0.5</td><td>Import concentration: HHI &gt; 0.33</td><td class="hl">Importance in demand: extra-EU / total imports &gt; 0.5</td></tr>
+<tr><td><b>3</b></td><td>Substitutability by EU production: extra-EU imports / EU exports &gt; 1</td><td>Diversification potential: centrality risk &gt; 2.5</td><td>Demand granularity: a single French firm accounts for ≥90% of imports</td><td>Substitutability: imports / exports &gt; 1</td><td class="hl">Substitutability by EU production: extra-EU imports / EU exports &gt; 1</td></tr>
+<tr><td><b>4</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td class="hl">Exposure in domestic absorption: imports / (Y + M − X) &gt; 0.5</td></tr>
+<tr><td><b>5</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td class="hl">Low ex-post substitutability: stickiness (Martin et al., 2024) &gt; 3rd quartile (HS6)</td></tr>
+</table></div>
+<p class="legend-note">Source: Rousseaux (2025), building on Vicard and Wibaux (2024)'s comparison. Data: CEPII-BACI, Prodcom-Eurostat.</p>
+</div>
+
+<div class="tab-panel" data-group="methodcompare" data-tab="ec">
+<p>The European Commission's <em>bottom-up</em> approach (Commission Staff Working Document, 2021) is the reference starting point for almost the entire literature. A product is flagged if it simultaneously meets all three conditions: import concentration (HHI &gt; 0.4), a majority extra-EU sourcing share, and extra-EU imports that exceed total EU exports of the same product. All three rely purely on observed trade flows — no production data is needed, which makes the approach easy to replicate across time and countries, but also means it can only proxy for domestic substitution capacity indirectly, through EU export volumes.</p>
+</div>
+<div class="tab-panel" data-group="methodcompare" data-tab="treasury">
+<p>Bonneau and Nakaa (2020), for the French Treasury (Direction générale du Trésor), were among the first post-Covid methodologies. They combine an import-origin criterion with an import-concentration criterion (HHI &gt; 0.5) and a network-centrality measure of diversification potential, rather than the EC's export-based substitutability proxy.</p>
+</div>
+<div class="tab-panel" data-group="methodcompare" data-tab="cae">
+<p>Jaravel and Mejean (2021), for the French Council of Economic Analysis (CAE), add a firm-level granularity criterion specific to France: a product is flagged as especially fragile if a single French importing firm accounts for 90% or more of national imports of that product — a check on concentration at the level of individual firms, not just countries.</p>
+</div>
+<div class="tab-panel" data-group="methodcompare" data-tab="cesifo">
+<p>Baur and Flach (2022), at CESifo, start instead from production relevance: which imported inputs are actually used intensively in the sectors that matter most for the domestic economy. They then apply a somewhat looser concentration threshold (HHI &gt; 0.33) and the same substitutability logic as the EC.</p>
+</div>
+<div class="tab-panel" data-group="methodcompare" data-tab="mr">
+<p>Mejean and Rousseaux (2024) keep the EC's three criteria intact and add two more, aimed specifically at closing the gap between <em>dependency</em> and <em>strategic vulnerability</em>: a domestic-absorption criterion using actual production data (Prodcom-Eurostat) rather than export volumes as the substitution proxy, and an ex-post substitutability criterion built on inter-firm relationship stickiness (Martin et al., 2024). See the funnel below for what each addition removes from the list.</p>
+</div>
+
+<h2>The five Mejean &amp; Rousseaux (2024) criteria, one at a time</h2>
+<p>Applied at the HS6 product level (2017 nomenclature), using CEPII-BACI trade data and Eurostat-Prodcom production data.</p>
+
+<div class="accordion">
+<div class="accordion-item open">
+<button class="accordion-head"><span>1 — Concentration of EU imports (European Commission)</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">
+<span class="criterion-formula">HHI(product) &gt; 0.4</span>
+<p><b>Intuition:</b> if a handful of countries supply almost all of a product, a shock to any one of them cannot easily be absorbed by switching to another supplier in real time.</p>
+<p><b>Data:</b> bilateral trade values by HS6 product and exporting country (CEPII-BACI).</p>
+<p><b>What it eliminates:</b> the vast majority of the roughly 5,000+ HS6 products traded by the EU — most goods are sourced from a reasonably diversified set of countries.</p>
+</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>2 — Importance of extra-EU imports in EU demand</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">
+<span class="criterion-formula">extra-EU imports / total EU imports &gt; 0.5</span>
+<p><b>Intuition:</b> if most of what the EU imports of a product already comes from other member states, the EU has an intra-bloc supply cushion even if the product is concentrated among a few original (possibly non-EU) sources further upstream.</p>
+<p><b>Data:</b> intra-EU vs. extra-EU trade flows (CEPII-BACI).</p>
+</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>3 — Substitutability of extra-EU imports by EU exports</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">
+<span class="criterion-formula">extra-EU imports / EU exports &gt; 1</span>
+<p><b>Intuition:</b> if the EU exports at least as much of a product as it imports from outside the bloc, that is indirect evidence of a domestic production base large enough to plausibly substitute for the foreign supply.</p>
+<p><b>Limitation this motivates criterion 4:</b> export volumes are only an indirect, and sometimes misleading, proxy for production capacity — round-tripping and re-exports can inflate EU export figures without reflecting genuine local capacity.</p>
+</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>4 — Low domestic production relative to EU demand (Mejean &amp; Rousseaux, 2024)</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">
+<span class="criterion-formula">extra-EU imports / EU absorption &gt; 0.5,  absorption = production + imports − exports</span>
+<p><b>Intuition:</b> replaces the export-based proxy in criterion 3 with actual EU production data. A product only qualifies if extra-EU imports satisfy more than half of what the EU actually <em>absorbs</em> domestically (consumes plus uses as an intermediate input), directly measuring the domestic fallback capacity that criterion 3 could only approximate.</p>
+<p><b>Data:</b> Eurostat-Prodcom production statistics, matched to HS6 trade codes.</p>
+<p><b>What it eliminates:</b> products for which the EU already produces enough to cover most of its own needs even though import flows look concentrated — for example, many agricultural products protected by the Common Agricultural Policy. This single criterion cuts the EC-list roughly in half in the 2015–2019 reference period.</p>
+</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>5 — Low ex-post substitutability between suppliers (Mejean &amp; Rousseaux, 2024)</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">
+<span class="criterion-formula">relationship stickiness (Martin, Mejean &amp; Parenti, 2024) in the top quartile of the HS6 distribution</span>
+<p><b>Intuition:</b> even a highly concentrated, poorly substitutable-by-production product may not be a genuine vulnerability if buyers can quickly switch to a different foreign supplier after a shock. Stickiness measures how long buyer–supplier relationships typically last for a given product, holding match quality fixed — a long average relationship length signals contractual, technological or organisational frictions that make rapid supplier-switching costly.</p>
+<p><b>Why this matters empirically:</b> Boehm, Flaaen and Pandalai-Nayar (2019) find that Japanese firms hit by the 2011 Tōhoku earthquake cut production almost one-for-one with the drop in imports — consistent with rigid, Leontief-like input structures. But Lafrogne-Joussier, Martin and Mejean (2023) find that French firms exposed to the first China lockdown in January 2020 fared no worse if they were undiversified beforehand, because undiversified firms were also the fastest to find new foreign partners after the shock. Ex-ante diversification and ex-post substitutability do not always move together, which is exactly why criterion 5 is measured directly rather than assumed.</p>
+</div></div>
+</div>
+</div>
+
+<h2>Applying the criteria sequentially: how many products are actually vulnerable?</h2>
+<p>Click through the steps below to see what each additional criterion removes, using the EU27 pooled over 2015–2019 (the period Mejean and Rousseaux, 2024, use as their main reference window).</p>
+
+<div class="funnel">
+  <div class="funnel-step active" data-detail="<b>Starting universe.</b> The EU27 imports goods across roughly 5,381 HS6 product lines from outside the bloc during 2015–2019 (trade and production data pooled over the period to focus on persistent, not one-off, patterns).">
+    <div class="fs-n">5,381</div><div class="fs-pct">100%</div><div class="fs-label">HS6 products imported by the EU (2015–2019)</div>
+  </div>
+  <div class="funnel-arrow">→</div>
+  <div class="funnel-step" data-detail="<b>European Commission's three criteria.</b> Import concentration (HHI&gt;0.4), majority extra-EU sourcing, and extra-EU imports exceeding EU exports jointly identify 378 products — about 7% of the universe.">
+    <div class="fs-n">378</div><div class="fs-pct">~7%</div><div class="fs-label">EC's 3-criteria "dependencies"</div>
+  </div>
+  <div class="funnel-arrow">→</div>
+  <div class="funnel-step" data-detail="<b>+ Domestic absorption.</b> Restricting to products where extra-EU imports cover more than 50% of EU absorption removes products the EU can already largely supply itself (notably much of agriculture), leaving 228 products.">
+    <div class="fs-n">228</div><div class="fs-pct">~4%</div><div class="fs-label">+ low domestic production capacity</div>
+  </div>
+  <div class="funnel-arrow">→</div>
+  <div class="funnel-step" data-detail="<b>+ Ex-post substitutability.</b> Keeping only products in the least-substitutable quartile of relationship stickiness narrows the list to 49 strategic dependencies — 0.5% of total EU import value, concentrated in energy, mining, basic metals and chemicals, and disproportionately sourced from China.">
+    <div class="fs-n">49</div><div class="fs-pct">0.5%<span style="font-weight:400"> of import value</span></div><div class="fs-label">+ low ex-post substitutability = strategic dependencies</div>
+  </div>
+</div>
+<div class="funnel-detail"></div>
+<p class="section-note">These are the headline figures from Mejean and Rousseaux (2024). The <a href="trade-eu.html">EU diagnostic page</a> presents a live replication of this funnel and its full sectoral and geographic breakdown using the underlying data, together with the year-by-year evolution from 2002 to 2022.</p>
+
+<h2>Data sources</h2>
+<div class="stat-grid">
+  <div class="stat-card"><div class="stat-num">BACI</div><div class="stat-label">CEPII-BACI bilateral trade data at the HS6 (2017 nomenclature) level</div></div>
+  <div class="stat-card"><div class="stat-num">Prodcom</div><div class="stat-label">Eurostat-Prodcom EU production statistics, matched to HS6 trade codes</div></div>
+  <div class="stat-card"><div class="stat-num">GPR</div><div class="stat-label">Caldara and Iacoviello (2022) Geopolitical Risk Index, by exporting country</div></div>
+  <div class="stat-card"><div class="stat-num">CASD</div><div class="stat-label">Confidential French customs (HS8) and production (EAP) microdata, for country- and firm-level refinements</div></div>
+</div>
+<p>Product positioning within global value chains uses the upstreamness metric of Antràs, Chor, Fally and Hillberry (2012); end-use categories follow the UN Broad Economic Categories (BEC) classification; sector groupings follow the NACE classification.</p>
+
+<h2>Related literature</h2>
+<p>The five-criteria framework builds on a broader body of work on global value chains, shock transmission, and resilience. The synthesis below (Rousseaux, 2025) summarises the papers most directly relevant to why concentration, absorption and substitutability are the right things to measure.</p>
+
+<div class="accordion">
+<div class="accordion-item">
+<button class="accordion-head"><span>Antràs, Chor, Fally &amp; Hillberry (2012) — Measuring Upstreamness</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">Proposes an operational measure of a product's average distance from final demand, built as a fixed-point solution over the input-output matrix (related to the Leontief inverse). Intermediate-goods sectors — chemicals, base metals, some capital goods — have upstreamness routinely above 3; sectors selling directly to households sit near 1. This is the measure used throughout this section to flag products whose disruption would cascade through several further stages of production before reaching consumers.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Antràs &amp; Chor (2021) — Global Value Chains</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">A conceptual synthesis linking property-rights theory, incomplete contracts and vertical organisation to the structure of global value chains. Institutional and political risk shape which tasks end up where in a chain; the paper's central message for resilience policy is that any intervention has to trade off the static efficiency gains of fragmented, specialised production against the new vulnerabilities that fragmentation itself creates.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Baldwin &amp; Freeman (2021) — Risks and Global Supply Chains</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">Proposes a taxonomy of supply-chain risk (natural, economic, geoeconomic, policy-driven) and argues that global value chains did not "fail" during Covid so much as reveal specific, identifiable weak points. The policy implication carried into this framework: target diversification and buffers at specific critical links rather than pursuing indiscriminate reshoring.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Boehm, Flaaen &amp; Pandalai-Nayar (2019) — Input Linkages and Shock Transmission</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">Uses the 2011 Tōhoku earthquake and detailed US firm-import data to show that American firms more exposed to Japanese suppliers in the earthquake-affected region cut production almost one-for-one with the fall in imports, and that the effect persisted for several quarters — evidence of rigid, low-substitutability input structures exactly where inputs are specific and hard to replace quickly.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Bonadio, Huo, Levchenko &amp; Pandalai-Nayar (2021) — Global Supply Chains in the Pandemic</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">A multi-country, multi-sector general-equilibrium model calibrated to pre-pandemic input-output linkages, used to run counterfactuals against a world with shorter or more domestic supply chains. Finds that existing GVC structure somewhat amplified the fall in global GDP relative to a less fragmented counterfactual, but the effect is heterogeneous across countries — the question is not whether to use GVCs, but which GVC structure best withstands shocks.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Bui, Huo, Levchenko &amp; Pandalai-Nayar (2022) — Information Frictions and News Media</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">Shows that news coverage of shocks accelerates and amplifies how quickly firms reroute supply chains, because information frictions — not just physical constraints — slow down supplier switching. This motivates a policy role for public data and transparency on trade exposure as a complement to subsidies: better information is itself a resilience tool.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>di Giovanni, Levchenko &amp; Mejean (2018, 2020) — Granular Origins of Comovement</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">Using French customs data linking exporters to foreign buyers, shows that a substantial share of international business-cycle comovement is "granular" — driven by a small number of very large firm-to-firm trade relationships rather than diffuse aggregate exposure. The 2020 follow-up shows the same logic applies to how foreign shocks propagate into an importing economy: concentrated supplier relationships transmit shocks disproportionately. This is a direct empirical justification for looking at concentration among suppliers, not just aggregate trade shares.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Grossman, Helpman &amp; Lhuillier (2021) — Diversification or Reshoring?</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">A theoretical model of firms choosing a portfolio of domestic and foreign suppliers under fixed relationship costs and disruption risk. In most parameterisations, well-designed international diversification reduces disruption risk more efficiently than reshoring to a single domestic supplier, which merely swaps foreign concentration risk for domestic concentration risk while sacrificing specialisation gains.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Grossman, Helpman &amp; Sabal (2023) — Resilience in Vertical Supply Chains</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">Models resilience along a multi-stage vertical chain where firms can add redundant suppliers at each stage at a cost. Optimal resilience is not uniform along the chain: some links (typically the most upstream or most critical) justify heavy redundancy, others do not — supporting a targeted, not blanket, approach to identifying which links deserve policy attention.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Lafrogne-Joussier, Martin &amp; Mejean (2023) — Supply Shocks in Supply Chains</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">The Covid-era counterpart to Boehm et al. (2019): using French firm-level import and production data around the first China lockdown (January 2020), the paper finds no significant difference in outcomes between firms that were diversified beforehand and those that were not — because previously undiversified firms were also the fastest to find new foreign suppliers after the shock. This is the direct empirical motivation for measuring ex-post substitutability explicitly, rather than assuming it from ex-ante diversification, which is exactly what the stickiness-based criterion 5 does.</div></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-head"><span>Moll, Schularick &amp; Zachmann (2023) — The Power of Substitution (German Gas)</span><span class="chev">⌄</span></button>
+<div class="accordion-body"><div class="accordion-body-inner">Evaluates, after the fact, how much substitution capacity (new suppliers, demand reduction, input substitution) cushioned the German economy against the loss of Russian gas following the invasion of Ukraine. Realised GDP losses were far smaller than initial worst-case projections assuming no substitution — a clean illustration that vulnerability depends as much on substitutability as on the initial level of dependence, the central logic behind criterion 5.</div></div>
+</div>
+</div>
+
+<div class="source-block">
+<h4>Sources</h4>
+<ul>
+<li>Méjean, I. and Rousseaux, P. (2024). <em>Identifying European Trade Dependencies</em>. Paris Report 2, CEPR &amp; Bruegel. <a href="research/MejeanRousseaux_ITCEI.pdf" target="_blank">Paper</a></li>
+<li>Rousseaux, P. (2025). <em>Synthèse de la littérature sur les vulnérabilités commerciales, les chaînes de valeur et les frictions globales</em>, and <em>Revue de littérature — définir et mesurer la souveraineté des chaînes de valeur</em> (i-MIP, France 2030 evaluation).</li>
+<li>Vicard, V. and Wibaux, Q. (2024). Comparison of vulnerable-product methodologies.</li>
+<li>Martin, J., Mejean, I. and Parenti, M. (2024). Relationship stickiness measure used for criterion 5.</li>
+</ul>
+</div>
+
+</main>
+<script src="main.js"></script>
+<script src="assets/js/trade.js"></script>
+</body></html>
