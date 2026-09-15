@@ -1,7 +1,2 @@
-
-document.querySelector('.menu')?.addEventListener('click',()=>document.querySelector('.navlinks')?.classList.toggle('open'));
-document.querySelectorAll('.abstract-details').forEach(d=>{
-  d.addEventListener('toggle',()=>{
-    if(d.open) document.querySelectorAll('.abstract-details').forEach(o=>{if(o!==d)o.open=false;});
-  });
-});
+document.querySelector('.mobile-menu')?.addEventListener('click',()=>document.querySelector('.site-links')?.classList.toggle('open'));
+document.querySelectorAll('.abstract-details').forEach(function(detail){detail.addEventListener('toggle',function(){if(detail.open){document.querySelectorAll('.abstract-details').forEach(function(other){if(other!==detail)other.open=false;});}});});
