@@ -69,7 +69,7 @@
 
 </main>
 <script src="main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="assets/js/trade.js"></script>
 <script>
 (function(){
@@ -82,6 +82,11 @@
     window.TradeSite.barChart(document.getElementById('chartExposureNato').getContext('2d'), b.labels, [
       { label:'# of French firms', data:b.values, backgroundColor:[C.ec,C.ec,C.ec,C.absorption,C.mr] }
     ], { indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'#eef1f4'}},y:{grid:{display:false}}} });
+  }).catch(function(err){
+    console.error('Trade Dependencies: failed to load chart data', err);
+    document.querySelectorAll('.chart-canvas-wrap').forEach(function(el){
+      el.innerHTML = '<div style="padding:30px;color:#a4303f;font-size:13px;text-align:center">Could not load chart data (' + err.message + ').</div>';
+    });
   });
 })();
 </script>
