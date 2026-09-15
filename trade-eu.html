@@ -179,7 +179,7 @@
 
 </main>
 <script src="main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="assets/js/trade.js"></script>
 <script>
 (function(){
@@ -242,6 +242,11 @@
 
     // --- product explorer ---
     window.TradeSite.initExplorer('productExplorer', products);
+  }).catch(function(err){
+    console.error('Trade Dependencies: failed to load chart data', err);
+    document.querySelectorAll('.chart-canvas-wrap').forEach(function(el){
+      el.innerHTML = '<div style="padding:30px;color:#a4303f;font-size:13px;text-align:center">Could not load chart data (' + err.message + '). Check the browser console, or that assets/data/ and Chart.js loaded correctly.</div>';
+    });
   });
 })();
 </script>
