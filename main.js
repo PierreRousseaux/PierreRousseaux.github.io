@@ -1,2 +1,0 @@
-document.querySelector('.mobile-menu')?.addEventListener('click',()=>document.querySelector('.site-links')?.classList.toggle('open'));
-document.querySelectorAll('.abstract-details').forEach(function(detail){detail.addEventListener('toggle',function(){if(detail.open){document.querySelectorAll('.abstract-details').forEach(function(other){if(other!==detail)other.open=false;});}});});
