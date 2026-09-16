@@ -27,7 +27,7 @@
 <div class="chart-sub">Out of all French firms recorded as importing anything, how many import a product on each successive vulnerability list.</div>
 <div class="chart-canvas-wrap short"><canvas id="chartExposure"></canvas></div>
 </div>
-<p>Of roughly <strong>241,000 French importing firms</strong>, about <strong>70,700 (10.3% of import value)</strong> import at least one product on the EC's 3-criteria list, <strong>66,800 (9.0%)</strong> import one that also fails the domestic-absorption test, and <strong>17,873 firms (0.5%)</strong> import a full 5-criteria strategic dependency. That last group — under 1 in 200 French importers — is precisely the population a targeted resilience policy needs to be able to identify.</p>
+<p>Of roughly <strong>241,000 French importing firms</strong>, about <strong>70,700 (10.3% of import value)</strong> import at least one product on the EC's 3-criteria list, <strong>66,800 (9.0%)</strong> import one that also fails the domestic-absorption test, and <strong>17,873 firms (0.5%)</strong> import a full 5-criteria strategic dependency. The 17,873 firms represent about 7% of the 241,221 French firms in the customs sample. The 0.5% figure refers instead to the value of French extra-EU imports accounted for by the relevant vulnerable products. Keeping firm incidence and import-value exposure separate is important: the two statistics answer different questions.</p>
 
 <h2>How much of that exposure runs through non-NATO countries?</h2>
 <p>Geopolitical risk is concentrated on the non-NATO side of French trade. Repeating the same firm-count exercise restricted to imports sourced from non-NATO countries:</p>
@@ -37,9 +37,9 @@
 <div class="chart-sub">Same population of ~241,000 French importers, restricted to non-NATO sourcing at each stage.</div>
 <div class="chart-canvas-wrap short"><canvas id="chartExposureNato"></canvas></div>
 </div>
-<p><strong>64.5% of French importing firms source at least something from a non-NATO country</strong> — unsurprising, given how much of world manufacturing sits outside the alliance. What is more striking is how little that share shrinks moving down the vulnerability funnel: <strong>14,834 French firms (0.4% of all importers)</strong> import a full 5-criteria strategic dependency specifically from a non-NATO supplier — 83% of the 17,873 firms exposed to strategic dependencies overall. Non-NATO sourcing is not a marginal feature of French exposure to strategic dependencies; it is close to the whole story.</p>
+<p>The paper reports that <strong>75% of French extra-EU importers traded with at least one non-NATO country</strong> over 2015–2019. Moreover, 24% of French importers imported a product classified as vulnerable under the EC methodology from these countries, compared with 6% under the extended five-criteria classification. These are firm-incidence statistics and should be kept distinct from import-value shares.</p>
 
-<div class="section-note">These firm counts describe <em>direct</em> importers only. Mejean and Rousseaux (2024) also document indirect exposure through the domestic supply chain: among EU firms that import from French firms, 83% import from a French firm that itself sources from a non-NATO country, and 53% of those import a full 5-criteria vulnerable product sourced from a non-NATO country through that French intermediary. Vulnerability propagates through the Single Market, not just across its external border.</div>
+<div class="section-note">These counts describe <em>direct</em> exposure. Mejean and Rousseaux (2024) also use French firm-to-firm intra-EU export data to illustrate indirect exposure. Of 1,453,721 non-French European firms importing from French firms, 1,011,794 (71%) buy from a French firm directly exposed to a product on the EC list, and 652,027 (50%) buy from a French firm exposed to a product on the full five-criteria list. The exercise illustrates how a disruption can propagate beyond the firms that directly import the vulnerable product.</div>
 
 <h2>Why look at France specifically?</h2>
 <p>Three reasons this firm-level French lens adds something the EU-consolidated diagnostic cannot provide on its own:</p>
@@ -69,7 +69,7 @@
 
 </main>
 <script src="main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <script src="assets/js/trade.js"></script>
 <script>
 (function(){
@@ -82,11 +82,6 @@
     window.TradeSite.barChart(document.getElementById('chartExposureNato').getContext('2d'), b.labels, [
       { label:'# of French firms', data:b.values, backgroundColor:[C.ec,C.ec,C.ec,C.absorption,C.mr] }
     ], { indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'#eef1f4'}},y:{grid:{display:false}}} });
-  }).catch(function(err){
-    console.error('Trade Dependencies: failed to load chart data', err);
-    document.querySelectorAll('.chart-canvas-wrap').forEach(function(el){
-      el.innerHTML = '<div style="padding:30px;color:#a4303f;font-size:13px;text-align:center">Could not load chart data (' + err.message + ').</div>';
-    });
   });
 })();
 </script>

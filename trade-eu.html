@@ -22,7 +22,7 @@
 
 <div class="chart-card">
 <h4>Live replication: the funnel, from the underlying data</h4>
-<div class="chart-sub">Same logic as the methodology page, recomputed directly from the replication files behind this page (2015–2019 pool). Counts differ slightly from the published headline figures (378 / 228 / 49) because this uses a more recent data vintage — read the shape of the funnel, not the exact digits, as identical across both.</div>
+<div class="chart-sub">The interactive figure applies the same sequence of filters to the replication data included with this website. The published reference figures are 378 products under the European Commission criteria, 228 after adding the absorption criterion, and 49 after adding the stickiness criterion. Where an interactive replication differs from these published counts, the paper figures should be treated as the reference results; differences can reflect coding, concordance or sample construction in the website extract.</div>
 <div id="euFunnelStats" class="stat-grid" style="margin-top:4px"></div>
 </div>
 
@@ -41,7 +41,7 @@
 <div class="chart-canvas-wrap short"><canvas id="chartPooled"></canvas></div>
 </div>
 
-<p>Vulnerabilities persist over time more than one might expect: depending on methodology, between 29% and 41% of dependencies identified before the global financial crisis were still present in the period directly afterwards, and a further share remained a decade later. The Covid-19 period marks a renewed step-up in counts across methodologies.</p>
+<p>Vulnerabilities are persistent. Using the full five-criteria definition, 41% of the dependencies identified before the global financial crisis remain in the immediately following period, and 35% remain in the subsequent recovery period. The Covid period is associated with a further increase in the number of products identified by the European Commission criteria. Because Prodcom production data are not available over the full 2020–2022 window, the five-criteria series cannot be extended in exactly the same way through the whole Covid period.</p>
 
 <h2>Sector, geography, upstreamness and end use</h2>
 <p>Use the tabs below to see how each of the three lists (EC / + Absorption / full 5-criteria) breaks down along four dimensions, pooled over 2015–2019.</p>
@@ -76,21 +76,24 @@
 <div class="tab-panel" data-group="breakdown" data-tab="enduse">
 <div class="chart-card" style="margin-top:0">
 <h4>End use (UN Broad Economic Categories)</h4>
-<div class="chart-sub">Most strategic dependencies are intermediate inputs, not final consumer goods — reinforcing the case that their disruption is transmitted to downstream industries rather than felt directly by households.</div>
+<div class="chart-sub">End use is heterogeneous. Some identified dependencies are final-consumption goods, while others are intermediate or upstream inputs. This distinction is central to the risk assessment: concentration in a final good may primarily affect consumers, whereas a shock to an upstream input can propagate through several downstream industries.</div>
 <div class="chart-canvas-wrap"><canvas id="chartEnduse"></canvas></div>
 </div>
 </div>
 
 <h2>What do these products actually look like?</h2>
-<p>Twenty concrete examples from the 2015–2019 strategic-dependency list (the full 5-criteria "MR" tier), ranked by import concentration (HHI), with their dominant supplier and position in the value chain (upstreamness). Search to filter.</p>
-<div id="exampleExplorer">
-  <div class="explorer-controls">
-    <input type="search" placeholder="Search by product or supplier country…">
-  </div>
-  <div class="prod-table-wrap"><table class="method-table" id="exampleTable">
-  <tr><th>Product</th><th>Dominant supplier</th><th>HHI</th><th>Upstreamness</th></tr>
-  </table></div>
-</div>
+<p>A handful of concrete examples from the 2015–2019 strategic-dependency list, with their dominant supplier and import-concentration (HHI):</p>
+<div class="prod-table-wrap"><table class="method-table">
+<tr><th>Product</th><th>Dominant supplier</th><th>Share</th><th>HHI</th></tr>
+<tr><td>Alkaloids (morphine production, natural pesticides, nicotine)</td><td>United Kingdom</td><td>96%</td><td>0.92</td></tr>
+<tr><td>Quebracho extract (natural tannin, leather treatment)</td><td>Argentina</td><td>96%</td><td>0.92</td></tr>
+<tr><td>Artificial flowers and plastic foliage</td><td>China</td><td>95%</td><td>0.90</td></tr>
+<tr><td>Trichloroethylene (industrial solvent)</td><td>United States</td><td>90%</td><td>0.82</td></tr>
+<tr><td>Synthetic-fibre tents and cases/containers</td><td>China</td><td>80%</td><td>0.65</td></tr>
+<tr><td>Iodine (medical use, water purification)</td><td>Chile</td><td>73%</td><td>0.56</td></tr>
+<tr><td>Raw beryllium (satellites, nuclear, defence)</td><td>United States</td><td>62%</td><td>0.52</td></tr>
+<tr><td>Bismuth (semiconductors, ammunition, cosmetics)</td><td>China</td><td>62%</td><td>0.41</td></tr>
+</table></div>
 <p class="section-note">Shortages of tents or plastic flowers and shortages of beryllium or trichloroethylene are not remotely comparable in consequence — which is exactly why statistical vulnerability needs to be crossed with normative risk arguments before it can inform policy. That is the object of the next section.</p>
 
 <h2>Explore the underlying product list</h2>
@@ -139,15 +142,15 @@
 <div class="tab-panel" data-group="risks" data-tab="critical">
 <p>Shortages of critical goods carry consequences well beyond economic cost, including in the worst cases human costs — and the private-versus-societal tradeoff between low-probability risk and productive efficiency justifies public intervention (Baldwin and Freeman, 2021). The pharmaceutical sector is the clearest illustration: drug shortages in the US have increased tenfold since the 2000s, closely linked to the offshoring of active-ingredient manufacturing to emerging economies.</p>
 <div class="chart-card" style="margin-top:16px">
-<h4>Active pharmaceutical ingredients (APIs): from 169 imported to 2 critical</h4>
+<h4>Active pharmaceutical ingredients (APIs): 169 product categories, only 2 under the full five-criteria filter</h4>
 <div class="chart-sub">Linking 170 HS6 product categories to 4,497 individual APIs and applying the same criteria sequentially.</div>
 <div class="chart-canvas-wrap short"><canvas id="chartApi"></canvas></div>
 </div>
-<p>Two APIs survive the full five-criteria framework: <strong>daprodustat</strong> (chronic kidney disease anaemia) and <strong>metharbital</strong> (epilepsy), both sourced &gt;97% from India with an HHI of 0.94. A broader group of 136 additional APIs is flagged once the absorption criterion alone is added — including pregabalin (epilepsy, anxiety), atorvastatin-type cholesterol treatments, and bimatoprost (glaucoma) — mostly sourced from Singapore and the United States at market shares often above 70%.</p>
+<p>Two APIs survive the full five-criteria framework: <strong>daprodustat</strong> (chronic kidney disease anaemia) and <strong>metharbital</strong> (epilepsy), both sourced &gt;97% from India with an HHI of 0.94. The EC criteria identify 159 of these API product categories; 136 remain after adding the absorption criterion — including pregabalin (epilepsy, anxiety), atorvastatin-type cholesterol treatments, and bimatoprost (glaucoma) — mostly sourced from Singapore and the United States at market shares often above 70%.</p>
 </div>
 
 <div class="tab-panel" data-group="risks" data-tab="green">
-<p>Trade-dependency assessments have so far been backward-looking; securing inputs for lithium-ion batteries, solar panels and hydrogen is just as important for the EU's future competitiveness in the green transition, even though none of the 2015–2019 dependencies are themselves direct green-technology inputs today.</p>
+<p>The baseline exercise is backward-looking because it identifies vulnerabilities from observed trade and production patterns. Mejean and Rousseaux therefore complement it with a forward-looking discussion of technologies that matter for the green transition. None of the products in the 2015–2019 five-criteria list is directly identified as an input into the selected green technologies, but several of their upstream materials are traded in highly concentrated world markets. This exercise is best read as a prospective risk screen rather than as an extension of the five-criteria vulnerability list.</p>
 <ul>
 <li><strong>Lithium-ion batteries:</strong> lithium carbonate exports are concentrated in Chile (57%) and Argentina (16%), HHI 0.367; cobalt ore and concentrate exports are 88% from the Democratic Republic of Congo, HHI 0.778. Batteries themselves are less concentrated (HHI 0.209; China 41%, Korea 15%), with diversification opening up via Canada and technologies such as Northvolt's NMC 811.</li>
 <li><strong>Solar panels:</strong> moderate overall concentration (HHI 0.216; China 43%, Malaysia 10%) masks heavier Chinese dominance in specific components such as mounted piezo-electric crystals, diodes and transistors.</li>
@@ -176,7 +179,7 @@
 
 </main>
 <script src="main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <script src="assets/js/trade.js"></script>
 <script>
 (function(){
@@ -239,53 +242,7 @@
 
     // --- product explorer ---
     window.TradeSite.initExplorer('productExplorer', products);
-  }).catch(function(err){
-    console.error('Trade Dependencies: failed to load chart data', err);
-    document.querySelectorAll('.chart-canvas-wrap').forEach(function(el){
-      el.innerHTML = '<div style="padding:30px;color:#a4303f;font-size:13px;text-align:center">Could not load chart data (' + err.message + '). Check the browser console, or that assets/data/ and Chart.js loaded correctly.</div>';
-    });
   });
-
-  // --- 20 curated real examples (from the same 2015-2019 replication data),
-  // ranked by HHI, with a simple search box ---
-  var COUNTRY_NAME = { CN:'China', IN:'India', TR:'Turkey', US:'United States', AR:'Argentina',
-    GB:'United Kingdom', DZ:'Algeria', RU:'Russian Federation', CL:'Chile' };
-  var EXAMPLES = [
-    ['Chloramphenicol antibiotics and derivatives','CN',0.98,1.31],
-    ['Castor oil and its fractions','IN',0.96,3.19],
-    ['Feldspar','TR',0.96,3.49],
-    ['m-Xylene (cyclic hydrocarbon)','US',0.96,4.65],
-    ['Quebracho extract (natural tannin, leather treatment)','AR',0.93,3.85],
-    ['Alkaloids (morphine production, natural pesticides, nicotine)','GB',0.93,1.31],
-    ['Pig/hog bristles and hair, and waste thereof','CN',0.91,1.70],
-    ['Artificial flowers and plastic foliage','CN',0.90,1.44],
-    ['Trichloroethylene (industrial solvent)','US',0.89,3.85],
-    ['Magnesium raspings, turnings and granules','CN',0.83,3.40],
-    ['Ammonia, in aqueous solution','DZ',0.75,3.76],
-    ['Raw beryllium, wrought (satellites, nuclear, defence)','US',0.72,3.40],
-    ['Camping goods of textile materials','CN',0.72,2.10],
-    ['Nickel mattes','RU',0.71,3.42],
-    ['Tents of synthetic fibres','CN',0.65,2.10],
-    ['Cases and containers (suitcases, vanity cases)','CN',0.66,1.50],
-    ['Coir yarn','IN',0.64,2.77],
-    ['Permanent magnets and articles thereof','CN',0.62,2.64],
-    ['Hazelnuts, fresh or dried, shelled','TR',0.61,1.19],
-    ['Iodine (medical use, water purification)','CL',0.56,3.24]
-  ];
-  var exTable = document.getElementById('exampleTable');
-  function renderExamples(filter){
-    filter = (filter||'').toLowerCase();
-    var rows = '<tr><th>Product</th><th>Dominant supplier</th><th>HHI</th><th>Upstreamness</th></tr>';
-    EXAMPLES.forEach(function(e){
-      var name = COUNTRY_NAME[e[1]] || e[1];
-      if (filter && name.toLowerCase().indexOf(filter)===-1 && e[0].toLowerCase().indexOf(filter)===-1) return;
-      rows += '<tr><td>'+e[0]+'</td><td>'+name+'</td><td>'+e[2].toFixed(2)+'</td><td>'+e[3].toFixed(2)+'</td></tr>';
-    });
-    exTable.innerHTML = rows;
-  }
-  renderExamples('');
-  var exSearch = document.querySelector('#exampleExplorer input[type="search"]');
-  if (exSearch) exSearch.addEventListener('input', function(){ renderExamples(exSearch.value.trim()); });
 })();
 </script>
 </body></html>
