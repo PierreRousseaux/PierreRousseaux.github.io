@@ -17,8 +17,6 @@
 
 <main class="trade-wrap">
 
-<div class="caveat"><strong>A note on scope.</strong> This page is deliberately <em>not</em> a re-estimation of the European Commission / Mejean-Rousseaux criteria with France substituted for the EU as the reference economy. Recomputing import concentration, absorption and substitutability using "extra-France" instead of "extra-EU" as the boundary raises serious conceptual problems — see the <a href="trade-country.html">country-level methodology page</a> for why. Instead, this page keeps the EU-consolidated vulnerability list as given, and asks a different, well-posed question: which French importing firms are exposed to it, using confidential French customs data (CASD).</p></div>
-
 <h2>How exposed are French importing firms to the EU's strategic dependencies?</h2>
 <p>Linking firm-level French customs records to the EU's 2015–2019 vulnerability lists gives a direct headcount of exposure, at every stage of the funnel:</p>
 
@@ -40,6 +38,16 @@
 <p>The paper reports that <strong>75% of French extra-EU importers traded with at least one non-NATO country</strong> over 2015–2019. Moreover, 24% of French importers imported a product classified as vulnerable under the EC methodology from these countries, compared with 6% under the extended five-criteria classification. These are firm-incidence statistics and should be kept distinct from import-value shares.</p>
 
 <div class="section-note">These counts describe <em>direct</em> exposure. Mejean and Rousseaux (2024) also use French firm-to-firm intra-EU export data to illustrate indirect exposure. Of 1,453,721 non-French European firms importing from French firms, 1,011,794 (71%) buy from a French firm directly exposed to a product on the EC list, and 652,027 (50%) buy from a French firm exposed to a product on the full five-criteria list. The exercise illustrates how a disruption can propagate beyond the firms that directly import the vulnerable product.</div>
+
+<h2>Beyond direct exposure: who else gets caught in the ripple?</h2>
+<p>A French firm importing a vulnerable product is one thing. But that firm also sells to other European firms — and a disruption at the border doesn't stop there. Mejean and Rousseaux (2024) match French customs data on direct extra-EU imports with French firm-to-firm intra-EU export data, to trace how far exposure travels once it enters the EU Single Market through France.</p>
+
+<div class="chart-card">
+<h4>Non-French EU firms indirectly exposed, through their purchases from French firms</h4>
+<div class="chart-sub">Out of all non-French EU firms that buy from a French importer (2015–2019), how many buy from a French firm that is itself directly exposed to each successive vulnerability list.</div>
+<div class="chart-canvas-wrap short"><canvas id="chartIndirectExposure"></canvas></div>
+</div>
+<p>Of <strong>1,453,721 non-French EU firms</strong> buying from French firms, <strong>1,011,794 (71%)</strong> buy from a French firm that itself imports a product on the EC's 3-criteria list, <strong>990,490 (69%)</strong> from one exposed under the absorption criterion, and <strong>652,027 (50%)</strong> from one exposed to a full 5-criteria strategic dependency. Half of all non-French firms trading with a French importer are therefore, at least one step removed, connected to a strategic dependency they never directly import themselves — exactly the kind of exposure a firm has little visibility into on its own.</p>
 
 <h2>France's own product-level diagnostic</h2>
 <p>Beyond firm exposure to the EU list, the same five-criteria methodology can be applied directly to France's own extra-EU imports (rather than the EU27-consolidated flows used on the <a href="trade-eu.html">EU page</a>). This gives a French-specific vulnerability list, its evolution since 2015, its sectoral and geographic composition, and the concentration (HHI) of each product.</p>
@@ -69,7 +77,6 @@
   <button class="period-btn active" data-period="2015_2019">2015–2019 (pooled)</button>
   <button class="period-btn" data-period="2021_2024">2021–2024 (pooled)</button>
 </div>
-<div class="section-note" id="frPeriodBanner" style="margin-top:10px">Showing: 2015–2019 (pooled)</div>
 
 <div class="tabs" data-group="fr-breakdown">
   <button class="tab-btn active" data-tab="sector">Sector</button>
@@ -138,31 +145,8 @@
   <div class="prod-count"></div>
 </div>
 
-<h2>Why look at France specifically?</h2>
-<p>Three reasons this firm-level French lens adds something the EU-consolidated diagnostic cannot provide on its own:</p>
-<ul>
-<li><strong>Granularity.</strong> Confidential French customs data (HS8, finer than the HS6 used at EU level) and the EAP production survey allow a materially more precise reading of exposure than Eurostat-Prodcom aggregates.</li>
-<li><strong>Policy relevance.</strong> France's own resilience and industrial policy — most directly the <strong>France 2030</strong> investment plan (€54bn announced in October 2021, targeting sectors including energy, automotive, aerospace and space) — is evaluated against exactly this kind of firm-level exposure map. Do the firms and value chains France 2030 supports actually sit in structurally vulnerable segments, or are the two only loosely aligned?</li>
-<li><strong>Propagation.</strong> Firm-to-firm linkages mean a dependency entering through one country's importers can still reach firms and consumers across the rest of the EU Single Market — which is why the indirect-exposure figures above matter as much as the direct ones.</li>
-</ul>
-
 <h2>France 2030: ongoing evaluation work</h2>
-<p>This work is part of an ongoing i-MIP research project on the contribution of France 2030 to the resilience of French and European value chains, conducted by <strong>Lionel Fontagné (Paris School of Economics &amp; i-MIP)</strong> and <strong>Pierre Rousseaux (CREST, IPP &amp; i-MIP)</strong>. The objective is to assess whether France 2030 support is likely to have reduced French trade dependencies and strengthened value-chain resilience. The evaluation combines public CEPII-BACI and Eurostat-Prodcom data with confidential French customs and EAP production microdata accessed through CASD.</p><p>The empirical strategy proceeds in three steps:</p>
-<div class="criteria-list">
-<div class="criterion-row"><div class="criterion-num">i</div><div class="criterion-body"><strong>How critical is a given value chain, or a link within it?</strong> Applying the same five criteria, combining annual diagnostics over 2015–2023 with pooled estimates over 2015–2019 to distinguish cyclical vulnerabilities from structural dependencies; an additional pooled 2015–2023 exercise is used as a complementary robustness view.</div></div>
-<div class="criterion-row"><div class="criterion-num">ii</div><div class="criterion-body"><strong>How much overlap is there between France 2030 projects and beneficiaries and the products, services, technologies and actors identified as strategic?</strong> This requires matching subsidised firms to their customs and production records to measure coverage and sectoral coherence.</div></div>
-<div class="criterion-row"><div class="criterion-num">iii</div><div class="criterion-body"><strong>Are the supported actors and value chains aligned with France's and the EU's strategic, technological and economic priorities?</strong> The analysis also introduces the value-chain dimension by asking whether supported products use vulnerable inputs themselves, thereby capturing indirect exposure, and compares French priorities with EU-level resilience priorities.</div></div>
-</div>
-<p class="section-note">This evaluation work is ongoing; results will be added to this page as they are finalised.</p>
-
-<div class="source-block">
-<h4>Sources</h4>
-<ul>
-<li>Méjean, I. and Rousseaux, P. (2024). <em>Identifying European Trade Dependencies</em>. Paris Report 2, CEPR &amp; Bruegel — French customs-linked exposure statistics. <a href="research/MejeanRousseaux_ITCEI.pdf" target="_blank">Paper</a></li>
-<li>Rousseaux, P. (2025). <em>Axes 1 et 2 — Définir, mesurer la souveraineté des chaînes de valeur, et évaluer les apports de France 2030</em>, i-MIP research note.</li>
-<li>Confidential data: French customs (douanes, HS8) and EAP production survey, accessed via CASD.</li>
-</ul>
-</div>
+<p>An evaluation is under way with <strong>Lionel Fontagné, Farid Toubal and Gianluca Santoni</strong> on the France 2030 investment plan and its contribution to reducing French trade dependencies. The project looks at France's dependencies and their technological underpinnings, building — for the first time — a tracker of France's technological dependencies, designed to be applicable to any other country. The evaluation is ongoing.</p>
 
 </main>
 <script src="main.js"></script>
@@ -187,6 +171,14 @@
       ], { indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'#eef1f4'}},y:{grid:{display:false}}} });
     });
   }).catch(function(err){ console.error('[trade-france] france_stats.json failed', err); });
+
+  // Indirect exposure of non-French EU firms buying from French importers (Mejean & Rousseaux, 2024, Figure 4, 2015-2019)
+  safe('indirect exposure chart', function(){
+    window.TradeSite.barChart(document.getElementById('chartIndirectExposure').getContext('2d'),
+      [['All firms buying','from French importers'], ['...via a firm on','the EC list'], ['...via a firm on the','+Absorption list'], ['...via a firm on the','full 5-criteria list']], [
+      { label:'# of non-French EU firms', data:[1453721, 1011794, 990490, 652027], backgroundColor:[C.ec,C.ec,C.absorption,C.mr] }
+    ], { indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'#eef1f4'}},y:{grid:{display:false}}} });
+  });
 
   fetch('assets/data/fr_full.json').then(r=>r.json()).then(function(full){
     function destroy(id){ if (liveCharts[id]){ liveCharts[id].destroy(); delete liveCharts[id]; } }
@@ -271,7 +263,6 @@
     function renderPeriod(period){
       var pd = full.pooled[period];
       if (!pd) return;
-      document.getElementById('frPeriodBanner').textContent = 'Showing: ' + periodLabel[period];
       safe('FR funnel stats', function(){ statCards(pd); });
       safe('FR sector breakdown', function(){
         buildBreakdown('frChartSector','sector',pd);

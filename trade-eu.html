@@ -62,7 +62,6 @@
   <button class="period-btn active" data-period="2015_2019">2015–2019 (pooled)</button>
   <button class="period-btn" data-period="2021_2024">2021–2024 (pooled)</button>
 </div>
-<div class="section-note" id="euPeriodBanner" style="margin-top:10px">Showing: 2015–2019 (pooled)</div>
 
 <div class="tabs" data-group="breakdown">
   <button class="tab-btn active" data-tab="sector">Sector</button>
@@ -168,25 +167,6 @@
 <li><strong>Lithium-ion batteries:</strong> lithium carbonate exports are concentrated in Chile (57%) and Argentina (16%), HHI 0.367; cobalt ore and concentrate exports are 88% from the Democratic Republic of Congo, HHI 0.778. Batteries themselves are less concentrated (HHI 0.209; China 41%, Korea 15%), with diversification opening up via Canada and technologies such as Northvolt's NMC 811.</li>
 <li><strong>Solar panels:</strong> moderate overall concentration (HHI 0.216; China 43%, Malaysia 10%) masks heavier Chinese dominance in specific components such as mounted piezo-electric crystals, diodes and transistors.</li>
 <li><strong>Hydrogen and rare earths:</strong> the hydrogen market is comparatively competitive (Netherlands 38%, Canada 33%, HHI 0.264); rare earths are more concentrated (Vietnam 33%, China 29%, HHI 0.234), with China's dominance of global mining reserves compounding the risk — nearly half of natural graphite powder exports, for instance.</li>
-</ul>
-</div>
-
-<h2>Policy toolbox</h2>
-<p>Mejean and Rousseaux (2024) set out a toolbox combining subsidies, regulation and industrial policy:</p>
-<ul>
-<li><strong>Firm-level resilience investment</strong> — supply-chain visibility, redundancy, agility, vertical integration — is systematically under-provided because of network and information externalities, which justifies public subsidy.</li>
-<li><strong>Information externalities</strong> limit firms' visibility beyond their direct suppliers. Real-time monitoring systems — France's drug-stock tracking initiative is one example — and EU-level data infrastructure can substitute for what individual firms cannot observe on their own.</li>
-<li><strong>Coordination and standardisation</strong> (e.g. the US Sematech initiative for semiconductors) make supply interchangeable across facilities and reduce structural fragility.</li>
-<li><strong>Strategic reserves and targeted domestic-capacity investment</strong> are warranted for genuinely critical sectors — food, pharmaceuticals, defence — and should explicitly anticipate future needs in green technologies, not only current dependencies.</li>
-<li><strong>EU-level coordination</strong> matters because industrial policy is a member-state competence while resilience is a Union-wide public good: an uncoordinated response risks subsidy wars between member states rather than a coherent EU-wide diversification strategy.</li>
-</ul>
-
-<div class="source-block">
-<h4>Sources</h4>
-<ul>
-<li>Méjean, I. and Rousseaux, P. (2024). <em>Identifying European Trade Dependencies</em>. Paris Report 2, CEPR &amp; Bruegel. <a href="research/MejeanRousseaux_ITCEI.pdf" target="_blank">Paper</a></li>
-<li>Rousseaux, P. (2025). <em>A Review of EU Trade Dependencies</em>. EIB Investment Report 2024/2025, Ch. 5, Box C. <a href="research/EIBInvestmentReport_boxC_Chap5.pdf" target="_blank">Box</a> · <a href="https://www.eib.org/attachments/lucalli/20240354_investment_report_2024_en.pdf" target="_blank">Full report</a></li>
-<li>Underlying replication data: CEPII-BACI, Eurostat-Prodcom, per-year and pooled-period vulnerability classification files, 2002–2022.</li>
 </ul>
 </div>
 
@@ -306,7 +286,6 @@
     function renderPeriod(period){
       var pd = full.pooled[period];
       if (!pd) return;
-      document.getElementById('euPeriodBanner').textContent = 'Showing: ' + periodLabel[period];
       safe('funnel stats', function(){ renderFunnel(pd); });
       safe('sector breakdown', function(){
         buildBreakdown('chartSector','sector',pd);
