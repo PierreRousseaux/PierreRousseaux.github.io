@@ -99,6 +99,7 @@
       options: Object.assign({
         responsive: true,
         maintainAspectRatio: false,
+        layout: { padding: { top: 12, right: 16, bottom: 4, left: 4 } },
         interaction: { mode: "index", intersect: false },
         plugins: {
           legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11.5 } } },
@@ -119,6 +120,7 @@
       options: Object.assign({
         responsive: true,
         maintainAspectRatio: false,
+        layout: { padding: { top: 12, right: 16, bottom: 4, left: 4 } },
         plugins: {
           legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11.5 } } },
           tooltip: { backgroundColor: "#12233d", padding: 10 }
@@ -148,6 +150,7 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        layout: { padding: { top: 12, right: 16, bottom: 4, left: 4 } },
         interaction: { mode: "index", intersect: false },
         plugins: {
           legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11.5 } } },
@@ -172,10 +175,15 @@
     var tierColor = { 1: PALETTE.mr, 2: PALETTE.absorption, 3: PALETTE.accent2 };
     var tierLabel = { 1: "EC only (blue)", 2: "+ Absorption, not MR (red)", 3: "Full 5-criteria / MR (green)" };
     var byTier = { 1: [], 2: [], 3: [] };
+    var xVals = [];
     points.forEach(function (p) {
       if (p.x === null || p.x === undefined) return;
       byTier[p.tier].push(p);
+      xVals.push(p.x);
     });
+    var xMax = xVals.length ? Math.max.apply(null, xVals) : 5;
+    var xMin = xVals.length ? Math.min.apply(null, xVals) : 1;
+    var pad = (xMax - xMin) * 0.08 || 0.3;
     var datasets = [1, 2, 3].map(function (t) {
       return {
         label: tierLabel[t],
@@ -193,6 +201,7 @@
         responsive: true,
         maintainAspectRatio: false,
         parsing: false,
+        layout: { padding: { top: 16, right: 24, bottom: 8, left: 8 } },
         plugins: {
           legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11.5 } } },
           tooltip: {
@@ -218,7 +227,7 @@
           }
         },
         scales: {
-          x: { title: { display: true, text: "Upstreamness (distance from final demand)" }, grid: { color: "#eef1f4" }, ticks: { font: { size: 11 } } },
+          x: { min: Math.max(0, xMin - pad), max: xMax + pad, title: { display: true, text: "Upstreamness (distance from final demand)" }, grid: { color: "#eef1f4" }, ticks: { font: { size: 11 } } },
           y: { title: { display: true, text: "HHI (import concentration)" }, min: 0, max: 1, grid: { color: "#eef1f4" }, ticks: { font: { size: 11 } } }
         }
       }

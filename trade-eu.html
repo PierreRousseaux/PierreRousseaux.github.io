@@ -54,7 +54,7 @@
 
 <p>Vulnerabilities are persistent. Using the full five-criteria definition, 41% of the dependencies identified before the global financial crisis remain in the immediately following period, and 35% remain in the subsequent recovery period. The Covid period is associated with a further increase in the number of products identified by the European Commission criteria.</p>
 
-<h2>Sector, geography, concentration and end use</h2>
+<h2>Sector, geography and concentration</h2>
 <p>Everything below — the sector chart, the map of top suppliers, the upstreamness × HHI scatter, the distribution plots, and the product explorer at the bottom of the page — reacts to the same period toggle. <strong>Pick a period first</strong>, the charts redraw immediately below it.</p>
 
 <div class="period-toggle" id="euPeriodToggle">
@@ -69,7 +69,6 @@
   <button class="tab-btn" data-tab="geography">Country of origin</button>
   <button class="tab-btn" data-tab="upstreamness">Position in the value chain</button>
   <button class="tab-btn" data-tab="density">Distributions</button>
-  <button class="tab-btn" data-tab="enduse">End use</button>
 </div>
 <div class="tab-panel active" data-group="breakdown" data-tab="sector">
 <div class="chart-card" style="margin-top:0">
@@ -89,7 +88,7 @@
 <div class="chart-card" style="margin-top:0">
 <h4>Position in the value chain × import concentration</h4>
 <div class="chart-sub">Every vulnerable product for the selected period, plotted by upstreamness (x-axis, distance from final demand — Antràs et al., 2012) and HHI (y-axis, import concentration). <strong>Blue</strong> = EC only, <strong>red</strong> = + Absorption (not MR), <strong>green</strong> = full 5-criteria (MR). Hover a point for the product, its HS6 code, its top supplier, and an estimated upper bound on that supplier's market share.</div>
-<div class="chart-canvas-wrap"><canvas id="chartUpstream"></canvas></div>
+<div class="chart-canvas-wrap tall"><canvas id="chartUpstream"></canvas></div>
 </div>
 </div>
 <div class="tab-panel" data-group="breakdown" data-tab="density">
@@ -108,9 +107,6 @@
 <div class="chart-sub">Distribution of the domestic-absorption ratio (extra-EU imports over estimated domestic absorption) among products for which it is computed. Values above roughly 0.5 typically satisfy the absorption criterion; very high values mean estimated domestic production is close to zero.</div>
 <div class="chart-canvas-wrap short"><canvas id="chartDensityAbsorption"></canvas></div>
 </div>
-</div>
-<div class="tab-panel" data-group="breakdown" data-tab="enduse">
-<div class="section-note">End use (UN Broad Economic Categories) is not shown here: assigning a BEC code to each HS6 product requires a separate concordance table that is not part of the replication data published with this website. Upstreamness (previous tab) captures a closely related idea — how many production stages separate a product from final demand — and is reported directly from the replication data.</div>
 </div>
 
 <h2>Explore the underlying product list</h2>
