@@ -41,6 +41,56 @@
 
 <div class="section-note">These counts describe <em>direct</em> exposure. Mejean and Rousseaux (2024) also use French firm-to-firm intra-EU export data to illustrate indirect exposure. Of 1,453,721 non-French European firms importing from French firms, 1,011,794 (71%) buy from a French firm directly exposed to a product on the EC list, and 652,027 (50%) buy from a French firm exposed to a product on the full five-criteria list. The exercise illustrates how a disruption can propagate beyond the firms that directly import the vulnerable product.</div>
 
+<h2>France's own product-level diagnostic</h2>
+<p>Beyond firm exposure to the EU list, the same five-criteria methodology can be applied directly to France's own extra-EU imports (rather than the EU27-consolidated flows used on the <a href="trade-eu.html">EU page</a>). This gives a French-specific vulnerability list, its sectoral and geographic composition, and the concentration (HHI) of each product — toggle the period to compare 2015–2019 with 2021–2024.</p>
+
+<div class="chart-card">
+<h4>French product-level funnel</h4>
+<div class="chart-sub">Extra-EU imports of France only. Same three-stage funnel as the EU diagnostic (EC → + Absorption → Full 5-criteria).</div>
+<div id="frFunnelStats" class="stat-grid" style="margin-top:4px"></div>
+</div>
+
+<div class="period-toggle" id="frPeriodToggle">
+  <span class="period-toggle-label">Period:</span>
+  <button class="period-btn active" data-period="2015_2019">2015–2019 (pooled)</button>
+  <button class="period-btn" data-period="2021_2024">2021–2024 (pooled)</button>
+</div>
+
+<div class="tabs" data-group="fr-breakdown">
+  <button class="tab-btn active" data-tab="sector">Sector</button>
+  <button class="tab-btn" data-tab="geography">Country of origin</button>
+  <button class="tab-btn" data-tab="upstreamness">Position in the value chain</button>
+  <button class="tab-btn" data-tab="hhidist">HHI distribution</button>
+</div>
+<div class="tab-panel active" data-group="fr-breakdown" data-tab="sector">
+<div class="chart-card" style="margin-top:0">
+<h4>Sectoral distribution</h4>
+<div class="chart-sub">French extra-EU import vulnerabilities by broad product category (HS sections).</div>
+<div class="chart-canvas-wrap"><canvas id="frChartSector"></canvas></div>
+</div>
+</div>
+<div class="tab-panel" data-group="fr-breakdown" data-tab="geography">
+<div class="chart-card" style="margin-top:0">
+<h4>Top countries of origin</h4>
+<div class="chart-sub">Most frequent top supplier among France's vulnerable products.</div>
+<div class="chart-canvas-wrap"><canvas id="frChartGeo"></canvas></div>
+</div>
+</div>
+<div class="tab-panel" data-group="fr-breakdown" data-tab="upstreamness">
+<div class="chart-card" style="margin-top:0">
+<h4>Distance from final demand</h4>
+<div class="chart-sub">Antràs et al. (2012) upstreamness buckets.</div>
+<div class="chart-canvas-wrap"><canvas id="frChartUpstream"></canvas></div>
+</div>
+</div>
+<div class="tab-panel" data-group="fr-breakdown" data-tab="hhidist">
+<div class="chart-card" style="margin-top:0">
+<h4>Distribution of import concentration (HHI), by product</h4>
+<div class="chart-sub">Every French vulnerable product, plotted by upstreamness and HHI, colour-coded by list. Hover a point for the product and its top supplier.</div>
+<div class="chart-canvas-wrap"><canvas id="frChartHhiDist"></canvas></div>
+</div>
+</div>
+
 <h2>Why look at France specifically?</h2>
 <p>Three reasons this firm-level French lens adds something the EU-consolidated diagnostic cannot provide on its own:</p>
 <ul>
@@ -69,20 +119,74 @@
 
 </main>
 <script src="main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="assets/js/trade.js"></script>
 <script>
 (function(){
   var C = window.TradeSite.PALETTE;
+  var fmt = function(n){ return n.toLocaleString('en-US'); };
+  var liveCharts = {};
+  function safe(label, fn){ try { fn(); } catch(err){ console.error('[trade-france] failed: ' + label, err); } }
+
   fetch('assets/data/france_stats.json').then(r=>r.json()).then(function(fr){
-    var a = fr.firm_exposure, b = fr.firm_exposure_nonNATO;
-    window.TradeSite.barChart(document.getElementById('chartExposure').getContext('2d'), a.labels, [
-      { label:'# of French firms', data:a.values, backgroundColor:[C.ec,C.ec,C.absorption,C.mr] }
-    ], { indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'#eef1f4'}},y:{grid:{display:false}}} });
-    window.TradeSite.barChart(document.getElementById('chartExposureNato').getContext('2d'), b.labels, [
-      { label:'# of French firms', data:b.values, backgroundColor:[C.ec,C.ec,C.ec,C.absorption,C.mr] }
-    ], { indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'#eef1f4'}},y:{grid:{display:false}}} });
-  });
+    safe('firm exposure charts', function(){
+      var a = fr.firm_exposure, b = fr.firm_exposure_nonNATO;
+      window.TradeSite.barChart(document.getElementById('chartExposure').getContext('2d'), a.labels, [
+        { label:'# of French firms', data:a.values, backgroundColor:[C.ec,C.ec,C.absorption,C.mr] }
+      ], { indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'#eef1f4'}},y:{grid:{display:false}}} });
+      window.TradeSite.barChart(document.getElementById('chartExposureNato').getContext('2d'), b.labels, [
+        { label:'# of French firms', data:b.values, backgroundColor:[C.ec,C.ec,C.ec,C.absorption,C.mr] }
+      ], { indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true,grid:{color:'#eef1f4'}},y:{grid:{display:false}}} });
+    });
+  }).catch(function(err){ console.error('[trade-france] france_stats.json failed', err); });
+
+  fetch('assets/data/fr_pooled.json').then(r=>r.json()).then(function(pooled){
+    function destroy(id){ if (liveCharts[id]){ liveCharts[id].destroy(); delete liveCharts[id]; } }
+
+    function statCards(pd){
+      var f = pd.funnel;
+      var html =
+        '<div class="stat-card"><div class="stat-num">'+fmt(f.ec)+'</div><div class="stat-label">Products meeting the EC\'s 3 criteria</div></div>'+
+        '<div class="stat-card"><div class="stat-num">'+fmt(f.absorption)+'</div><div class="stat-label">…of which also meet the domestic-absorption criterion</div></div>'+
+        '<div class="stat-card"><div class="stat-num">'+fmt(f.mr)+'</div><div class="stat-label">…of which also meet the full 5-criteria</div></div>'+
+        '<div class="stat-card"><div class="stat-num">'+(f.ec ? (Math.round((f.mr/f.ec)*1000)/10) : 0)+'%</div><div class="stat-label">Strategic dependencies as a share of the EC-list universe</div></div>';
+      document.getElementById('frFunnelStats').innerHTML = html;
+    }
+
+    function buildBreakdown(canvasId, key, pd){
+      destroy(canvasId);
+      var d = pd[key];
+      var el = document.getElementById(canvasId);
+      if (!el || !d) return;
+      liveCharts[canvasId] = window.TradeSite.barChart(el.getContext('2d'), d.labels, [
+        { label:'EC (3 criteria)', data: d.EC, backgroundColor:C.ec },
+        { label:'+ Absorption', data: d.Absorption, backgroundColor:C.absorption },
+        { label:'Full 5-criteria (MR)', data: d.MR, backgroundColor:C.mr }
+      ]);
+    }
+
+    function buildHhiDist(pd){
+      destroy('frChartHhiDist');
+      var el = document.getElementById('frChartHhiDist');
+      if (!el) return;
+      liveCharts.frChartHhiDist = window.TradeSite.hhiScatterChart(el.getContext('2d'), pd.hhi_points);
+    }
+
+    function renderPeriod(period){
+      var pd = pooled[period];
+      if (!pd) return;
+      safe('FR funnel stats', function(){ statCards(pd); });
+      safe('FR sector breakdown', function(){ buildBreakdown('frChartSector','sector',pd); });
+      safe('FR geography breakdown', function(){ buildBreakdown('frChartGeo','geography',pd); });
+      safe('FR upstreamness breakdown', function(){ buildBreakdown('frChartUpstream','upstreamness',pd); });
+      safe('FR HHI distribution', function(){ buildHhiDist(pd); });
+    }
+
+    safe('FR period toggle', function(){
+      renderPeriod('2015_2019');
+      window.TradeSite.initPeriodToggle(document.getElementById('frPeriodToggle'), renderPeriod);
+    });
+  }).catch(function(err){ console.error('[trade-france] fr_pooled.json failed', err); });
 })();
 </script>
 </body></html>

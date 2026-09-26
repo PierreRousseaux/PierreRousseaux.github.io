@@ -59,6 +59,19 @@
     });
   }
 
+  /* ------------------------------------------------ period toggle ----- */
+  // Generic two/three-way pill toggle; calls cb(value) on change, marks first as active.
+  function initPeriodToggle(container, cb) {
+    var btns = container.querySelectorAll(".period-btn");
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        btns.forEach(function (x) { x.classList.remove("active"); });
+        b.classList.add("active");
+        cb(b.getAttribute("data-period"));
+      });
+    });
+  }
+
   /* ------------------------------------------------- chip toggles ----- */
   // Generic single-select chip group; calls cb(value) on change.
   function initChipGroup(container, cb) {
@@ -109,6 +122,64 @@
           y: { beginAtZero: true, grid: { color: "#eef1f4" }, ticks: { font: { size: 11 } } }
         }
       }, opts || {})
+    });
+  }
+
+  /* ------------------------------------------ HHI distribution scatter */
+  // points: [{x:upstreamness, y:hhi, tier:1|2|3, code, desc, top}]
+  function hhiScatterChart(ctx, points) {
+    var tierColor = { 1: PALETTE.ec, 2: PALETTE.absorption, 3: PALETTE.mr };
+    var tierLabel = { 1: "EC only", 2: "+ Absorption", 3: "Full 5-criteria (MR)" };
+    var byTier = { 1: [], 2: [], 3: [] };
+    points.forEach(function (p) {
+      if (p.x === null || p.x === undefined) return;
+      byTier[p.tier].push(p);
+    });
+    var datasets = [1, 2, 3].map(function (t) {
+      return {
+        label: tierLabel[t],
+        data: byTier[t],
+        backgroundColor: tierColor[t],
+        borderColor: tierColor[t],
+        pointRadius: t === 3 ? 5 : 3.5,
+        pointHoverRadius: t === 3 ? 7 : 5.5
+      };
+    });
+    return new Chart(ctx, {
+      type: "scatter",
+      data: { datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        parsing: false,
+        plugins: {
+          legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11.5 } } },
+          tooltip: {
+            backgroundColor: "#12233d",
+            padding: 10,
+            titleFont: { size: 12.5 },
+            bodyFont: { size: 12 },
+            callbacks: {
+              title: function (items) {
+                var p = items[0].raw;
+                return p.code + " — " + p.desc;
+              },
+              label: function (item) {
+                var p = item.raw;
+                return [
+                  "HHI (concentration): " + p.y.toFixed(2),
+                  "Upstreamness: " + p.x.toFixed(2),
+                  "Top supplier: " + p.top
+                ];
+              }
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: "Upstreamness (distance from final demand)" }, grid: { color: "#eef1f4" }, ticks: { font: { size: 11 } } },
+          y: { title: { display: true, text: "HHI (import concentration)" }, min: 0, max: 1, grid: { color: "#eef1f4" }, ticks: { font: { size: 11 } } }
+        }
+      }
     });
   }
 
@@ -187,6 +258,8 @@
     initChipGroup: initChipGroup,
     lineChart: lineChart,
     barChart: barChart,
+    hhiScatterChart: hhiScatterChart,
+    initPeriodToggle: initPeriodToggle,
     initExplorer: initExplorer
   };
 

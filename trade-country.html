@@ -16,10 +16,10 @@
 </div></nav>
 
 <main class="trade-wrap">
-<div class="forthcoming-banner"><strong>Atlas under construction — coming soon.</strong> The empirical country-level results are intentionally not published yet. The objective is to build a transparent, comparable atlas rather than release country rankings before the definitions and production-data coverage are sufficiently harmonised.</div>
-<h2>What the Atlas will do</h2>
-<p>The Atlas of Trade Dependencies extends the logic of Mejean and Rousseaux (2024) beyond the consolidated EU27. For each economy, it will map products for which imports are concentrated and difficult to replace, identify the dominant supplier countries, document how these exposures evolve over time, and — where the data permit — distinguish trade concentration from genuine dependence on foreign supply.</p>
-<p>A second objective is to measure <strong>reverse dependencies</strong>: products for which other economies rely disproportionately on a given country’s exports. This provides a symmetric view of international exposure. It is useful for studying economic security, but should not be interpreted mechanically as geopolitical leverage.</p>
+<div class="forthcoming-banner"><strong>Full interactive atlas — coming soon.</strong> The link will be added here once the public version is live; the method below is already running on the full dataset internally.</div>
+<h2>What the Atlas does</h2>
+<p>For every economy present in the underlying trade data, the same import-dependency logic as the EU and French pages is run independently: statistically vulnerable products are identified, then weighted by each country's GDP so that a dependency matters more for a small economy than for a large one, with extra weight given to products that sit further upstream in the value chain (a disruption there has more room to cascade). The mirror calculation is run on the export side — how much leverage a country holds over others through its own exports, again GDP-weighted. Dividing the two gives a single openness/vulnerability ratio per country (the <strong>DBS</strong>: Dependency Balance Score) — a high DBS means a country is structurally more import-dependent than it is export-powerful, a low DBS the reverse.</p>
+<div class="stat-grid" id="atlasStats" style="margin:22px 0 8px"></div>
 <h2>Why country-level measurement requires care</h2>
 <div class="criteria-list">
 <div class="criterion-row"><div class="criterion-num">1</div><div class="criterion-body"><strong>The relevant economic boundary changes.</strong> For an EU member state, imports from another member state are foreign in national accounts but remain intra-EU trade. Treating German supply to France exactly like Chinese supply to France would answer a different question from the EU-level diagnostic.</div></div>
@@ -33,4 +33,17 @@
 </main>
 <script src="main.js"></script>
 <script src="assets/js/trade.js"></script>
+<script>
+(function(){
+  var fmt = function(n){ return n.toLocaleString('en-US'); };
+  fetch('assets/data/atlas_summary.json').then(function(r){return r.json();}).then(function(d){
+    var top = d.top_vi[0];
+    var html =
+      '<div class="stat-card"><div class="stat-num">'+fmt(d.n_economies)+'</div><div class="stat-label">Economies covered in the underlying trade data</div></div>'+
+      '<div class="stat-card"><div class="stat-num">'+fmt(d.n_economies_gdp5bn)+'</div><div class="stat-label">…with GDP above €5bn, used in the ranking</div></div>'+
+      '<div class="stat-card"><div class="stat-num">'+top.name+'</div><div class="stat-label">Highest GDP-weighted import dependency (VI index) among them</div></div>';
+    document.getElementById('atlasStats').innerHTML = html;
+  }).catch(function(err){ console.error('[trade-country] atlas_summary.json failed', err); });
+})();
+</script>
 </body></html>
