@@ -43,6 +43,25 @@
 /* Online writing: source label only, no repetitive ONLINE WRITING kicker */
 .media-kicker.source-only{text-transform:none;letter-spacing:0;font-size:12px}
 
+/* Slightly reduced type scale — Research & Media pages only */
+.research-title{font-size:34px}
+.research-wrapper .paper-title{font-size:20px}
+.research-wrapper .section-title{font-size:27px}
+.research-wrapper .jmp-title{font-size:25px}
+.media-compact .page-title{font-size:34px}
+.media-compact .media-section-title{font-size:24px}
+.media-compact .media-kicker{font-size:10px}
+.media-compact .media-main-title{font-size:15px}
+.media-compact .media-meta{font-size:12px}
+.media-compact .lang-badge{font-size:8px}
+@media(max-width:750px){
+  .research-title{font-size:29px}
+  .research-wrapper .paper-title{font-size:18px}
+  .research-wrapper .section-title{font-size:23px}
+  .research-wrapper .jmp-title{font-size:21px}
+  .media-compact .page-title{font-size:29px}
+}
+
 @media(max-width:750px){
   .home-links{justify-content:center}
   .contact-links{justify-content:center;width:100%;flex-basis:100%;margin-top:4px}
