@@ -131,15 +131,15 @@
   </div>
   <div class="funnel-arrow">→</div>
   <div class="funnel-step" data-detail="<b>European Commission's three criteria.</b> Import concentration (HHI&gt;0.4), majority extra-EU sourcing, and extra-EU imports exceeding EU exports jointly identify the vulnerable products.">
-    <div class="fs-n" id="fsEc">378</div><div class="fs-pct" id="fsEcPct">~7%</div><div class="fs-label">EC's 3-criteria "dependencies"</div>
+    <div class="fs-n" id="fsEc">378</div><div class="fs-pct" id="fsEcPct">8.56%</div><div class="fs-label">EC's 3-criteria "dependencies"</div>
   </div>
   <div class="funnel-arrow">→</div>
   <div class="funnel-step" data-detail="<b>+ Domestic absorption.</b> Restricting to products where extra-EU imports cover more than 50% of EU absorption removes products the EU can already largely supply itself (notably much of agriculture).">
-    <div class="fs-n" id="fsAbs">228</div><div class="fs-pct" id="fsAbsPct">~4%</div><div class="fs-label">+ low domestic production capacity</div>
+    <div class="fs-n" id="fsAbs">228</div><div class="fs-pct" id="fsAbsPct">7.33%</div><div class="fs-label">+ low domestic production capacity</div>
   </div>
   <div class="funnel-arrow">→</div>
   <div class="funnel-step" data-detail="<b>+ Ex-post substitutability.</b> Keeping only products in the least-substitutable quartile of relationship stickiness narrows the list to the strategic dependencies, concentrated in energy, mining, basic metals and chemicals, and disproportionately sourced from China.">
-    <div class="fs-n" id="fsMr">49</div><div class="fs-pct" id="fsMrPct">0.5%<span style="font-weight:400"> of import value</span></div><div class="fs-label">+ low ex-post substitutability = strategic dependencies</div>
+    <div class="fs-n" id="fsMr">49</div><div class="fs-pct" id="fsMrPct">0.56%<span style="font-weight:400"> of import value</span></div><div class="fs-label">+ low ex-post substitutability = strategic dependencies</div>
   </div>
 </div>
 <div class="funnel-detail"></div>
@@ -158,7 +158,7 @@
 <script>
 (function(){
   fetch('assets/data/eu_full.json').then(function(r){return r.json();}).then(function(full){
-    var published2015 = { universe:'5,381', ec:'378', ecPct:'~7%', abs:'228', absPct:'~4%', mr:'49', mrPct:'0.5%' };
+    var published2015 = { universe:'5,381', ec:'378', ecPct:'8.56%', abs:'228', absPct:'7.33%', mr:'49', mrPct:'0.56%' };
     function render(period){
       if (period === '2015_2019'){
         document.getElementById('fsUniverse').textContent = published2015.universe;

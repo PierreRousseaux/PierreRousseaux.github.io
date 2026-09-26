@@ -54,8 +54,13 @@
 
 <div class="chart-card">
 <h4>French product-level funnel</h4>
-<div class="chart-sub">Extra-EU imports of France only. Same three-stage funnel as the EU diagnostic (EC → + Absorption → Full 5-criteria), for the selected period below.</div>
-<div id="frFunnelStats" class="stat-grid" style="margin-top:4px"></div>
+<div class="chart-sub">Extra-EU imports of France only. Same three-stage funnel as the EU diagnostic (EC → + Absorption → Full 5-criteria). Percentages are the share of total French import value, not of the already-filtered list.</div>
+<div class="period-toggle" id="frPeriodToggleTop">
+  <span class="period-toggle-label">Period:</span>
+  <button class="period-btn active" data-period="2015_2019">2015–2019 (pooled)</button>
+  <button class="period-btn" data-period="2021_2024">2021–2024 (pooled)</button>
+</div>
+<div id="frFunnelStats" class="stat-grid" style="margin-top:14px"></div>
 </div>
 
 <div class="chart-card">
@@ -77,6 +82,7 @@
   <button class="period-btn active" data-period="2015_2019">2015–2019 (pooled)</button>
   <button class="period-btn" data-period="2021_2024">2021–2024 (pooled)</button>
 </div>
+<div class="section-note">These breakdowns use a slightly broader in-house product list than the headline funnel above: they don't yet implement the intermediate "matched with production data" step, so their totals can run a little higher than the article's official counts.</div>
 
 <div class="tabs" data-group="fr-breakdown">
   <button class="tab-btn active" data-tab="sector">Sector</button>
@@ -259,10 +265,13 @@
     }
 
     var explorer = null;
+    var toggleTop, toggleMain;
 
     function renderPeriod(period){
       var pd = full.pooled[period];
       if (!pd) return;
+      if (toggleTop) toggleTop.set(period);
+      if (toggleMain) toggleMain.set(period);
       safe('FR funnel stats', function(){ statCards(pd); });
       safe('FR sector breakdown', function(){
         buildBreakdown('frChartSector','sector',pd);
@@ -283,8 +292,9 @@
     }
 
     safe('FR period toggle', function(){
+      toggleTop = window.TradeSite.initPeriodToggle(document.getElementById('frPeriodToggleTop'), renderPeriod);
+      toggleMain = window.TradeSite.initPeriodToggle(document.getElementById('frPeriodToggle'), renderPeriod);
       renderPeriod('2015_2019');
-      window.TradeSite.initPeriodToggle(document.getElementById('frPeriodToggle'), renderPeriod);
     });
   }).catch(function(err){ console.error('[trade-france] fr_full.json failed', err); });
 })();

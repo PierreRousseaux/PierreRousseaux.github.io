@@ -33,8 +33,13 @@
 
 <div class="chart-card">
 <h4>Live replication: the funnel, from the underlying data</h4>
-<div class="chart-sub">The interactive figure applies the same sequence of filters to the replication data included with this website. The published reference figures are 378 products under the European Commission criteria, 228 after adding the absorption criterion, and 49 after adding the stickiness criterion. Where an interactive replication differs from these published counts, the paper figures should be treated as the reference results; differences can reflect coding, concordance or sample construction in the website extract.</div>
-<div id="euFunnelStats" class="stat-grid" style="margin-top:4px"></div>
+<div class="chart-sub">The interactive figure applies the same sequence of filters to the replication data included with this website. Percentages are the share of total EU aggregate import value, not of the already-filtered list — matching how the published figures are defined. Toggle the period to compare 2015–2019 with 2021–2024.</div>
+<div class="period-toggle" id="euPeriodToggleTop">
+  <span class="period-toggle-label">Period:</span>
+  <button class="period-btn active" data-period="2015_2019">2015–2019 (pooled)</button>
+  <button class="period-btn" data-period="2021_2024">2021–2024 (pooled)</button>
+</div>
+<div id="euFunnelStats" class="stat-grid" style="margin-top:14px"></div>
 </div>
 
 <h2>How has this evolved since 2002?</h2>
@@ -56,6 +61,7 @@
 
 <h2>Sector, geography and concentration</h2>
 <p>Everything below — the sector chart, the map of top suppliers, the upstreamness × HHI scatter, the distribution plots, and the product explorer at the bottom of the page — reacts to the same period toggle. <strong>Pick a period first</strong>, the charts redraw immediately below it.</p>
+<div class="section-note">These breakdowns use a slightly broader in-house product list than the headline funnel above: they don't yet implement the intermediate "matched with production data" step, so their totals (e.g. products flagged "+ Absorption" or "Full 5-criteria" below) can run a little higher than the article's official counts shown above.</div>
 
 <div class="period-toggle" id="euPeriodToggle">
   <span class="period-toggle-label">Period:</span>
@@ -282,10 +288,13 @@
     }
 
     var explorer = null;
+    var toggleTop, toggleMain;
 
     function renderPeriod(period){
       var pd = full.pooled[period];
       if (!pd) return;
+      if (toggleTop) toggleTop.set(period);
+      if (toggleMain) toggleMain.set(period);
       safe('funnel stats', function(){ renderFunnel(pd); });
       safe('sector breakdown', function(){
         buildBreakdown('chartSector','sector',pd);
@@ -306,8 +315,9 @@
     }
 
     safe('period toggle', function(){
+      toggleTop = window.TradeSite.initPeriodToggle(document.getElementById('euPeriodToggleTop'), renderPeriod);
+      toggleMain = window.TradeSite.initPeriodToggle(document.getElementById('euPeriodToggle'), renderPeriod);
       renderPeriod('2015_2019');
-      window.TradeSite.initPeriodToggle(document.getElementById('euPeriodToggle'), renderPeriod);
     });
 
     // --- API funnel ---
