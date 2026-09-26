@@ -60,7 +60,8 @@
   }
 
   /* ------------------------------------------------ period toggle ----- */
-  // Generic two/three-way pill toggle; calls cb(value) on change, marks first as active.
+  // Generic pill toggle; calls cb(value) on change. Returns a setter to sync other
+  // toggles on the same page (e.g. the explorer's own period chips) without looping.
   function initPeriodToggle(container, cb) {
     var btns = container.querySelectorAll(".period-btn");
     btns.forEach(function (b) {
@@ -70,6 +71,11 @@
         cb(b.getAttribute("data-period"));
       });
     });
+    return {
+      set: function (period) {
+        btns.forEach(function (x) { x.classList.toggle("active", x.getAttribute("data-period") === period); });
+      }
+    };
   }
 
   /* ------------------------------------------------- chip toggles ----- */
@@ -125,11 +131,46 @@
     });
   }
 
-  /* ------------------------------------------ HHI distribution scatter */
-  // points: [{x:upstreamness, y:hhi, tier:1|2|3, code, desc, top}]
+  /* ---------------------------------------------------- density chart - */
+  // buckets: {labels:[...], EC:[%...], Absorption:[%...], MR:[%...]} — % of each
+  // tier's own product list falling in that bucket, so shapes are comparable.
+  function densityChart(ctx, buckets, xTitle) {
+    return new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: buckets.labels,
+        datasets: [
+          { label: "EC (3 criteria)", data: buckets.EC, borderColor: PALETTE.mr, backgroundColor: PALETTE.mr + "22", fill: true, tension: .35, pointRadius: 2 },
+          { label: "+ Absorption", data: buckets.Absorption, borderColor: PALETTE.absorption, backgroundColor: PALETTE.absorption + "22", fill: true, tension: .35, pointRadius: 2 },
+          { label: "Full 5-criteria (MR)", data: buckets.MR, borderColor: PALETTE.accent2, backgroundColor: PALETTE.accent2 + "33", fill: true, tension: .35, pointRadius: 2 }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 11.5 } } },
+          tooltip: {
+            backgroundColor: "#12233d", padding: 10,
+            callbacks: { label: function (item) { return item.dataset.label + ": " + item.formattedValue + "% of that list"; } }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: xTitle }, grid: { display: false }, ticks: { font: { size: 10.5 } } },
+          y: { title: { display: true, text: "% of products in that list" }, beginAtZero: true, grid: { color: "#eef1f4" }, ticks: { font: { size: 11 } } }
+        }
+      }
+    });
+  }
+
+  /* ------------------------------------------ upstream x HHI scatter -- */
+  // points: [{x:upstreamness, y:hhi, tier:1|2|3, code, desc, top, share_est}]
+  // Colour convention (as requested): tier 1 (EC only) = blue, tier 2 (+Absorption,
+  // not MR) = red, tier 3 (full 5-criteria / MR) = green.
   function hhiScatterChart(ctx, points) {
-    var tierColor = { 1: PALETTE.ec, 2: PALETTE.absorption, 3: PALETTE.mr };
-    var tierLabel = { 1: "EC only", 2: "+ Absorption", 3: "Full 5-criteria (MR)" };
+    var tierColor = { 1: PALETTE.mr, 2: PALETTE.absorption, 3: PALETTE.accent2 };
+    var tierLabel = { 1: "EC only (blue)", 2: "+ Absorption, not MR (red)", 3: "Full 5-criteria / MR (green)" };
     var byTier = { 1: [], 2: [], 3: [] };
     points.forEach(function (p) {
       if (p.x === null || p.x === undefined) return;
@@ -169,7 +210,8 @@
                 return [
                   "HHI (concentration): " + p.y.toFixed(2),
                   "Upstreamness: " + p.x.toFixed(2),
-                  "Top supplier: " + p.top
+                  "Top supplier: " + p.top,
+                  "Top supplier share: ≤ " + p.share_est.toFixed(0) + "% (estimated upper bound from HHI, not an exact figure)"
                 ];
               }
             }
@@ -184,14 +226,19 @@
   }
 
   /* ------------------------------------------------ product explorer -- */
-  function initExplorer(rootId, data) {
+  // products: [{x:upstream, y:hhi, tier, code, desc, top, share_est}]
+  // Returns a controller with setData(newProducts) so a period toggle can refresh
+  // the table in place without rebinding search/sort/filter listeners twice.
+  function initExplorer(rootId, products, opts) {
     var root = document.getElementById(rootId);
-    if (!root) return;
+    if (!root) return null;
+    var limit = (opts && opts.limit) || 20;
     var searchInput = root.querySelector('input[type="search"]');
     var tierChips = root.querySelectorAll(".explorer-controls .chip");
     var tbody = root.querySelector("tbody");
     var countEl = root.querySelector(".prod-count");
-    var state = { q: "", tier: "0", sortKey: "hhi", sortDir: -1 };
+    var data = products;
+    var state = { q: "", tier: "0", sortKey: "y", sortDir: -1 };
 
     function tierLabel(t) {
       return t === 3 ? '<span class="tier-badge t3">MR · full 5</span>'
@@ -213,17 +260,17 @@
         if (av > bv) return 1 * state.sortDir;
         return 0;
       });
-      tbody.innerHTML = rows.slice(0, 120).map(function (d) {
+      tbody.innerHTML = rows.slice(0, limit).map(function (d) {
         return "<tr>" +
           "<td>" + d.code + "</td>" +
           '<td class="prod-desc">' + d.desc + "</td>" +
           "<td>" + tierLabel(d.tier) + "</td>" +
-          "<td>" + (d.hhi !== null ? d.hhi.toFixed(2) : "—") + "</td>" +
-          "<td>" + (d.upstream !== null ? d.upstream.toFixed(2) : "—") + "</td>" +
+          "<td>" + (d.y !== null ? d.y.toFixed(2) : "—") + "</td>" +
+          "<td>" + (d.x !== null ? d.x.toFixed(2) : "—") + "</td>" +
           "<td>" + (d.top || "—") + "</td>" +
           "</tr>";
       }).join("");
-      countEl.textContent = "Showing " + Math.min(rows.length, 120) + " of " + rows.length + " matching products (of " + data.length + " total in the EC-list universe).";
+      countEl.textContent = "Showing " + Math.min(rows.length, limit) + " of " + rows.length + " matching products (" + data.length + " total for this period). Need the full list? Email pierre.rousseaux@ensae.fr.";
     }
 
     if (searchInput) {
@@ -248,6 +295,13 @@
       });
     });
     render();
+
+    return {
+      setData: function (newProducts) {
+        data = newProducts;
+        render();
+      }
+    };
   }
 
   window.TradeSite = {
@@ -258,6 +312,7 @@
     initChipGroup: initChipGroup,
     lineChart: lineChart,
     barChart: barChart,
+    densityChart: densityChart,
     hhiScatterChart: hhiScatterChart,
     initPeriodToggle: initPeriodToggle,
     initExplorer: initExplorer

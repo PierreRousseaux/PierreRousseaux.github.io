@@ -48,77 +48,73 @@
 
 <div class="chart-card">
 <h4>Pooled by period</h4>
-<div class="chart-sub">Years pooled within each period to focus on persistent, structural dependencies rather than one-off yearly spikes (methodology note: pooling is done on aggregated trade and production values, not by taking the union or intersection of yearly lists).</div>
+<div class="chart-sub">Years pooled within each period to focus on persistent, structural dependencies rather than one-off yearly spikes. The last two bars use the same 2015–2019 / 2021–2024 windows as the period toggle below; hover a bar for the share of the EC-list's import value it represents, when available.</div>
 <div class="chart-canvas-wrap short"><canvas id="chartPooled"></canvas></div>
 </div>
 
-<p>Vulnerabilities are persistent. Using the full five-criteria definition, 41% of the dependencies identified before the global financial crisis remain in the immediately following period, and 35% remain in the subsequent recovery period. The Covid period is associated with a further increase in the number of products identified by the European Commission criteria. Because Prodcom production data are not available over the full 2020–2022 window, the five-criteria series cannot be extended in exactly the same way through the whole Covid period.</p>
+<p>Vulnerabilities are persistent. Using the full five-criteria definition, 41% of the dependencies identified before the global financial crisis remain in the immediately following period, and 35% remain in the subsequent recovery period. The Covid period is associated with a further increase in the number of products identified by the European Commission criteria.</p>
 
 <h2>Sector, geography, concentration and end use</h2>
-<p>Use the tabs below to see how the three lists (EC / + Absorption / full 5-criteria) break down along several dimensions. Toggle the period to compare the pre-Covid window (2015–2019, the paper's reference period) with the most recent one available (2021–2024).</p>
+<p>Everything below — the sector chart, the map of top suppliers, the upstreamness × HHI scatter, the distribution plots, and the product explorer at the bottom of the page — reacts to the same period toggle. <strong>Pick a period first</strong>, the charts redraw immediately below it.</p>
 
 <div class="period-toggle" id="euPeriodToggle">
   <span class="period-toggle-label">Period:</span>
   <button class="period-btn active" data-period="2015_2019">2015–2019 (pooled)</button>
   <button class="period-btn" data-period="2021_2024">2021–2024 (pooled)</button>
 </div>
+<div class="section-note" id="euPeriodBanner" style="margin-top:10px">Showing: 2015–2019 (pooled)</div>
 
 <div class="tabs" data-group="breakdown">
   <button class="tab-btn active" data-tab="sector">Sector</button>
   <button class="tab-btn" data-tab="geography">Country of origin</button>
   <button class="tab-btn" data-tab="upstreamness">Position in the value chain</button>
-  <button class="tab-btn" data-tab="hhidist">HHI distribution</button>
+  <button class="tab-btn" data-tab="density">Distributions</button>
   <button class="tab-btn" data-tab="enduse">End use</button>
 </div>
 <div class="tab-panel active" data-group="breakdown" data-tab="sector">
 <div class="chart-card" style="margin-top:0">
 <h4>Sectoral distribution</h4>
-<div class="chart-sub">70% of the full-criteria strategic dependencies sit in textile/apparel, energy/mining/metals/chemicals, and construction. Agriculture drops sharply once domestic-absorption is applied — consistent with the EU's Common Agricultural Policy self-sufficiency objective.</div>
+<div class="chart-sub" id="euSectorCaption">Broad HS-section grouping of the vulnerable products for the selected period.</div>
 <div class="chart-canvas-wrap"><canvas id="chartSector"></canvas></div>
 </div>
 </div>
 <div class="tab-panel" data-group="breakdown" data-tab="geography">
 <div class="chart-card" style="margin-top:0">
 <h4>Top countries of origin</h4>
-<div class="chart-sub">The geographical composition changes as the filters become more restrictive. China is a major source of identified dependencies, while the long-run EIB exercise shows that its share has risen as the shares of the United States and the rest of the world have declined.</div>
+<div class="chart-sub">Most frequent top supplier among the selected period's vulnerable products.</div>
 <div class="chart-canvas-wrap"><canvas id="chartGeo"></canvas></div>
 </div>
 </div>
 <div class="tab-panel" data-group="breakdown" data-tab="upstreamness">
 <div class="chart-card" style="margin-top:0">
-<h4>Distance from final demand (Antràs et al., 2012)</h4>
-<div class="chart-sub">Upstreamness buckets: higher values mean the product passes through more production stages before reaching a final consumer. Around 49% of full-criteria dependencies sit more than 3 stages upstream on average across periods — a disruption there cascades through several further layers of production.</div>
+<h4>Position in the value chain × import concentration</h4>
+<div class="chart-sub">Every vulnerable product for the selected period, plotted by upstreamness (x-axis, distance from final demand — Antràs et al., 2012) and HHI (y-axis, import concentration). <strong>Blue</strong> = EC only, <strong>red</strong> = + Absorption (not MR), <strong>green</strong> = full 5-criteria (MR). Hover a point for the product, its HS6 code, its top supplier, and an estimated upper bound on that supplier's market share.</div>
 <div class="chart-canvas-wrap"><canvas id="chartUpstream"></canvas></div>
 </div>
 </div>
-<div class="tab-panel" data-group="breakdown" data-tab="hhidist">
+<div class="tab-panel" data-group="breakdown" data-tab="density">
 <div class="chart-card" style="margin-top:0">
-<h4>Distribution of import concentration (HHI), by product</h4>
-<div class="chart-sub">Every product meeting at least the EC criterion, plotted by upstreamness (x-axis) and HHI (y-axis), colour-coded by which list it belongs to. Hover a point for the product description and its top supplier.</div>
-<div class="chart-canvas-wrap"><canvas id="chartHhiDist"></canvas></div>
+<h4>Ex-post substitutability ("stickiness")</h4>
+<div class="chart-sub">Distribution of the stickiness score (Mejean &amp; Rousseaux's criterion 5) within each list — higher values mean suppliers are harder to switch away from.</div>
+<div class="chart-canvas-wrap short"><canvas id="chartDensityStickiness"></canvas></div>
+</div>
+<div class="chart-card">
+<h4>Upstreamness</h4>
+<div class="chart-sub">Same underlying variable as the scatter above, shown here as a distribution within each list.</div>
+<div class="chart-canvas-wrap short"><canvas id="chartDensityUpstream"></canvas></div>
+</div>
+<div class="chart-card">
+<h4>Domestic absorption</h4>
+<div class="chart-sub">Distribution of the domestic-absorption ratio (extra-EU imports over estimated domestic absorption) among products for which it is computed. Values above roughly 0.5 typically satisfy the absorption criterion; very high values mean estimated domestic production is close to zero.</div>
+<div class="chart-canvas-wrap short"><canvas id="chartDensityAbsorption"></canvas></div>
 </div>
 </div>
 <div class="tab-panel" data-group="breakdown" data-tab="enduse">
 <div class="section-note">End use (UN Broad Economic Categories) is not shown here: assigning a BEC code to each HS6 product requires a separate concordance table that is not part of the replication data published with this website. Upstreamness (previous tab) captures a closely related idea — how many production stages separate a product from final demand — and is reported directly from the replication data.</div>
 </div>
 
-<h2>What do these products actually look like?</h2>
-<p>A handful of concrete examples from the 2015–2019 strategic-dependency list, with their dominant supplier and import-concentration (HHI):</p>
-<div class="prod-table-wrap"><table class="method-table">
-<tr><th>Product</th><th>Dominant supplier</th><th>Share</th><th>HHI</th></tr>
-<tr><td>Alkaloids (morphine production, natural pesticides, nicotine)</td><td>United Kingdom</td><td>96%</td><td>0.92</td></tr>
-<tr><td>Quebracho extract (natural tannin, leather treatment)</td><td>Argentina</td><td>96%</td><td>0.92</td></tr>
-<tr><td>Artificial flowers and plastic foliage</td><td>China</td><td>95%</td><td>0.90</td></tr>
-<tr><td>Trichloroethylene (industrial solvent)</td><td>United States</td><td>90%</td><td>0.82</td></tr>
-<tr><td>Synthetic-fibre tents and cases/containers</td><td>China</td><td>80%</td><td>0.65</td></tr>
-<tr><td>Iodine (medical use, water purification)</td><td>Chile</td><td>73%</td><td>0.56</td></tr>
-<tr><td>Raw beryllium (satellites, nuclear, defence)</td><td>United States</td><td>62%</td><td>0.52</td></tr>
-<tr><td>Bismuth (semiconductors, ammunition, cosmetics)</td><td>China</td><td>62%</td><td>0.41</td></tr>
-</table></div>
-<p class="section-note">Shortages of tents or plastic flowers and shortages of beryllium or trichloroethylene are not remotely comparable in consequence — which is exactly why statistical vulnerability needs to be crossed with normative risk arguments before it can inform policy. That is the object of the next section.</p>
-
 <h2>Explore the underlying product list</h2>
-<p>Search, sort and filter the website replication directly. The published reference counts for 2015–2019 are 378 products under the EC criteria, 228 after adding absorption, and 49 under the full five-criteria framework. The downloadable website extract may differ because of concordance and sample-construction choices; the published paper remains the reference.</p>
+<p>Search, sort and filter the website replication directly — still split by tier and, now, by period. <span style="font-size:12.5px;color:#888">Showing the top 20 matches only; for the full list, email <a href="mailto:pierre.rousseaux@ensae.fr">pierre.rousseaux@ensae.fr</a>.</span></p>
 <div id="productExplorer">
   <div class="explorer-controls">
     <input type="search" placeholder="Search by product, HS6 code, or supplier country…">
@@ -131,7 +127,7 @@
   <table class="prod-table">
     <thead><tr>
       <th data-key="code">HS6</th><th data-key="desc">Product description</th><th>Tier</th>
-      <th data-key="hhi">HHI ▾</th><th data-key="upstream">Upstreamness</th><th data-key="top">Top supplier</th>
+      <th data-key="y">HHI ▾</th><th data-key="x">Upstreamness</th><th data-key="top">Top supplier</th>
     </tr></thead>
     <tbody></tbody>
   </table>
@@ -217,58 +213,75 @@
   Promise.all([
     fetch('assets/data/eu_timeseries.json').then(r=>r.json()),
     fetch('assets/data/eu_api_funnel.json').then(r=>r.json()),
-    fetch('assets/data/eu_products.json').then(r=>r.json()),
-    fetch('assets/data/eu_pooled.json').then(r=>r.json()),
-    fetch('assets/data/eu_annual_ext.json').then(r=>r.json())
+    fetch('assets/data/eu_full.json').then(r=>r.json())
   ]).then(function(res){
-    var ts = res[0], api = res[1], products = res[2], pooled = res[3], annualExt = res[4];
+    var tsOld = res[0], api = res[1], full = res[2];
+    var periodLabel = { '2015_2019':'2015–2019 (pooled)', '2021_2024':'2021–2024 (pooled)' };
 
-    // --- funnel stat cards (live numbers from the replication data, 2015-2019) ---
-    safe('funnel stats', function(){
-      var t3 = products.filter(function(p){return p.tier===3}).length;
-      var t2 = products.filter(function(p){return p.tier>=2}).length;
-      var t1 = products.length;
+    // --- funnel stat cards, driven by the period toggle ---
+    function renderFunnel(pd){
+      var f = pd.funnel;
+      function pct(t){ return (t.pct_import_value === null || t.pct_import_value === undefined) ? '' : ' · '+t.pct_import_value+'% of import value'; }
       var statsHtml =
-        '<div class="stat-card"><div class="stat-num">'+fmt(t1)+'</div><div class="stat-label">Products meeting the EC\'s 3 criteria (2015–2019, this replication)</div></div>'+
-        '<div class="stat-card"><div class="stat-num">'+fmt(t2)+'</div><div class="stat-label">…of which also meet the domestic-absorption criterion</div></div>'+
-        '<div class="stat-card"><div class="stat-num">'+fmt(t3)+'</div><div class="stat-label">…of which also meet the full 5-criteria (strategic dependencies)</div></div>'+
-        '<div class="stat-card"><div class="stat-num">'+(Math.round((t3/t1)*1000)/10)+'%</div><div class="stat-label">Strategic dependencies as a share of the EC-list universe</div></div>';
+        '<div class="stat-card"><div class="stat-num">'+fmt(f.ec.n)+'</div><div class="stat-label">Products meeting the EC\'s 3 criteria'+pct(f.ec)+'</div></div>'+
+        '<div class="stat-card"><div class="stat-num">'+fmt(f.absorption.n)+'</div><div class="stat-label">…of which also meet the domestic-absorption criterion'+pct(f.absorption)+'</div></div>'+
+        '<div class="stat-card"><div class="stat-num">'+fmt(f.mr.n)+'</div><div class="stat-label">…of which also meet the full 5-criteria (strategic dependencies)'+pct(f.mr)+'</div></div>'+
+        '<div class="stat-card"><div class="stat-num">'+(f.ec.n ? Math.round((f.mr.n/f.ec.n)*1000)/10 : 0)+'%</div><div class="stat-label">Strategic dependencies as a share of the EC-list universe</div></div>';
       document.getElementById('euFunnelStats').innerHTML = statsHtml;
-    });
+    }
 
-    // --- annual time series, extended to 2023-2024 from the refreshed replication ---
+    // --- annual time series, purely 2015-2024 from the refreshed replication (no gaps) ---
     safe('annual chart', function(){
-      var years = Object.keys(ts.annual.EC).map(Number);
-      [2023, 2024].forEach(function(y){ if (years.indexOf(y) === -1) years.push(y); });
-      years.sort(function(a,b){ return a-b; });
-      function val(series, y){
-        if (ts.annual[series][y] !== undefined) return ts.annual[series][y];
-        if (annualExt[y]) return annualExt[y][series];
-        return null;
-      }
-      liveCharts.chartAnnual = window.TradeSite.lineChart(document.getElementById('chartAnnual').getContext('2d'), years, [
-        { label:'EC (3 criteria)', data: years.map(y=>val('EC',y)), borderColor:C.ec, backgroundColor:C.ec, tension:.25, pointRadius:2 },
-        { label:'EC + Absorption', data: years.map(y=>{ var v=val('EC_Absorption',y); return (!v)?null:v; }), borderColor:C.absorption, backgroundColor:C.absorption, tension:.25, pointRadius:2 },
-        { label:'Full 5-criteria (MR)', data: years.map(y=>{ var v=val('MR',y); return (!v)?null:v; }), borderColor:C.mr, backgroundColor:C.mr, tension:.25, pointRadius:2 }
+      var a = full.annual;
+      liveCharts.chartAnnual = window.TradeSite.lineChart(document.getElementById('chartAnnual').getContext('2d'), a.years, [
+        { label:'EC (3 criteria)', data: a.EC, borderColor:C.ec, backgroundColor:C.ec, tension:.25, pointRadius:2 },
+        { label:'EC + Absorption', data: a.EC_Absorption, borderColor:C.absorption, backgroundColor:C.absorption, tension:.25, pointRadius:2 },
+        { label:'Full 5-criteria (MR)', data: a.MR, borderColor:C.mr, backgroundColor:C.mr, tension:.25, pointRadius:2, spanGaps:false }
       ]);
     });
 
-    // --- pooled by period (original 4 historical windows) ---
+    // --- pooled by period: 4 historical windows + the two new pooled periods ---
     safe('pooled-by-period chart', function(){
-      var periods = Object.keys(ts.pooled.EC);
-      window.TradeSite.barChart(document.getElementById('chartPooled').getContext('2d'), periods, [
-        { label:'EC (3 criteria)', data: periods.map(p=>ts.pooled.EC[p]), backgroundColor:C.ec },
-        { label:'EC + Absorption', data: periods.map(p=>ts.pooled.EC_Absorption[p]), backgroundColor:C.absorption },
-        { label:'Full 5-criteria (MR)', data: periods.map(p=>ts.pooled.MR[p]), backgroundColor:C.mr }
-      ]);
+      var periods = Object.keys(tsOld.pooled.EC);
+      var ecVals = periods.map(p=>tsOld.pooled.EC[p]);
+      var absVals = periods.map(p=>tsOld.pooled.EC_Absorption[p]);
+      var mrVals = periods.map(p=>tsOld.pooled.MR[p]);
+      var pctInfo = periods.map(function(){ return null; });
+      ['2015_2019','2021_2024'].forEach(function(key){
+        var f = full.pooled[key].funnel;
+        periods.push(periodLabel[key]);
+        ecVals.push(f.ec.n); absVals.push(f.absorption.n); mrVals.push(f.mr.n);
+        pctInfo.push({ ec:f.ec.pct_import_value, absorption:f.absorption.pct_import_value, mr:f.mr.pct_import_value });
+      });
+      liveCharts.chartPooled = window.TradeSite.barChart(document.getElementById('chartPooled').getContext('2d'), periods, [
+        { label:'EC (3 criteria)', data: ecVals, backgroundColor:C.ec },
+        { label:'EC + Absorption', data: absVals, backgroundColor:C.absorption },
+        { label:'Full 5-criteria (MR)', data: mrVals, backgroundColor:C.mr }
+      ], {
+        plugins: {
+          legend: { position:'bottom', labels:{ boxWidth:12, font:{ size:11.5 } } },
+          tooltip: {
+            backgroundColor:'#12233d', padding:10,
+            callbacks: {
+              afterLabel: function(item){
+                var info = pctInfo[item.dataIndex];
+                if (!info) return '';
+                var key = item.datasetIndex===0?'ec':(item.datasetIndex===1?'absorption':'mr');
+                var v = info[key];
+                return (v===null||v===undefined) ? '' : v+'% of this period\'s EC-list import value';
+              }
+            }
+          }
+        }
+      });
     });
 
     // --- breakdowns driven by the period toggle (2015-2019 vs 2021-2024) ---
     function destroy(id){ if (liveCharts[id]){ liveCharts[id].destroy(); delete liveCharts[id]; } }
 
-    function buildBreakdown(canvasId, key, periodData){
+    function buildBreakdown(canvasId, key, pd){
       destroy(canvasId);
-      var d = periodData[key];
+      var d = pd[key];
       var el = document.getElementById(canvasId);
       if (!el || !d) return;
       liveCharts[canvasId] = window.TradeSite.barChart(el.getContext('2d'), d.labels, [
@@ -278,20 +291,43 @@
       ]);
     }
 
-    function buildHhiDist(periodData){
-      destroy('chartHhiDist');
-      var el = document.getElementById('chartHhiDist');
+    function buildUpstreamScatter(pd){
+      destroy('chartUpstream');
+      var el = document.getElementById('chartUpstream');
       if (!el) return;
-      liveCharts.chartHhiDist = window.TradeSite.hhiScatterChart(el.getContext('2d'), periodData.hhi_points);
+      liveCharts.chartUpstream = window.TradeSite.hhiScatterChart(el.getContext('2d'), pd.products);
     }
 
+    function buildDensity(canvasId, key, pd, xTitle){
+      destroy(canvasId);
+      var el = document.getElementById(canvasId);
+      if (!el || !pd.density[key]) return;
+      liveCharts[canvasId] = window.TradeSite.densityChart(el.getContext('2d'), pd.density[key], xTitle);
+    }
+
+    var explorer = null;
+
     function renderPeriod(period){
-      var pd = pooled[period];
+      var pd = full.pooled[period];
       if (!pd) return;
-      safe('sector breakdown', function(){ buildBreakdown('chartSector','sector',pd); });
+      document.getElementById('euPeriodBanner').textContent = 'Showing: ' + periodLabel[period];
+      safe('funnel stats', function(){ renderFunnel(pd); });
+      safe('sector breakdown', function(){
+        buildBreakdown('chartSector','sector',pd);
+        var cap = pd.sector_caption;
+        document.getElementById('euSectorCaption').textContent = cap
+          ? cap.top_sectors.join(' and ') + ' together account for ' + cap.share_pct + '% of full-criteria strategic dependencies in ' + periodLabel[period] + '.'
+          : 'Broad HS-section grouping of the vulnerable products for the selected period.';
+      });
       safe('geography breakdown', function(){ buildBreakdown('chartGeo','geography',pd); });
-      safe('upstreamness breakdown', function(){ buildBreakdown('chartUpstream','upstreamness',pd); });
-      safe('HHI distribution', function(){ buildHhiDist(pd); });
+      safe('upstreamness scatter', function(){ buildUpstreamScatter(pd); });
+      safe('density: stickiness', function(){ buildDensity('chartDensityStickiness','stickiness',pd,'Stickiness score (criterion 5)'); });
+      safe('density: upstreamness', function(){ buildDensity('chartDensityUpstream','upstreamness',pd,'Upstreamness'); });
+      safe('density: absorption', function(){ buildDensity('chartDensityAbsorption','absorption',pd,'Domestic-absorption ratio'); });
+      safe('product explorer', function(){
+        if (explorer) { explorer.setData(pd.products); }
+        else { explorer = window.TradeSite.initExplorer('productExplorer', pd.products, { limit: 20 }); }
+      });
     }
 
     safe('period toggle', function(){
@@ -304,11 +340,6 @@
       window.TradeSite.barChart(document.getElementById('chartApi').getContext('2d'), api.labels, [
         { label:'# of APIs', data: api.values, backgroundColor:[C.ec,C.ec,C.absorption,C.mr] }
       ], { plugins:{ legend:{display:false} } });
-    });
-
-    // --- product explorer ---
-    safe('product explorer', function(){
-      window.TradeSite.initExplorer('productExplorer', products);
     });
   }).catch(function(err){
     console.error('[trade-eu] data loading failed', err);
