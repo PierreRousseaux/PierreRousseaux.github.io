@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGNpcmNsZSBjeD0iMTAiIGN5PSIxNiIgcj0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDYzYjJmIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogIDxjaXJjbGUgY3g9IjIyIiBjeT0iMTYiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFhNTZkYiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KPC9zdmc+">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxNiIgcj0iOSIgZmlsbD0iI2Q2M2IyZiIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOm11bHRpcGx5Ii8+CiAgPGNpcmNsZSBjeD0iMjAiIGN5PSIxNiIgcj0iOSIgZmlsbD0iIzFhNTZkYiIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOm11bHRpcGx5Ii8+Cjwvc3ZnPg==">
   <meta property="og:title" content="Trade Dependency Atlas">
   <meta property="og:description" content="An interactive atlas of import vulnerabilities and export leverage across 232 economies. Built on the Mejean &amp; Rousseaux (2024) five-criteria methodology.">
   <meta property="og:type" content="website">
@@ -16,48 +16,47 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 :root{
-  --bg:#ffffff;--bg2:#f7f7f5;--bg3:#eeeeea;
-  --border:#e6e6e1;--border2:#d3d3cc;
-  --text:#15151a;--text2:#65656a;--text3:#9f9f9c;
-  --accent:#1a56db;--accent2:#3b6ff0;--red:#d63b2f;--red2:#e8574a;--blue:#1a56db;--green:#0e8f52;
+  --bg:#fff;--bg2:#f7f7f5;--bg3:#efefed;--border:#e4e4e0;--border2:#d0d0ca;
+  --text:#1a1a18;--text2:#6b6b65;--text3:#a8a8a0;
+  --accent:#1a56db;--red:#d63b2f;--blue:#1a56db;--green:#1a8a4a;
   --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
-  --radius:10px;--radius-sm:6px;
+  --radius:4px;--radius-sm:3px;
   --shadow-sm:0 1px 2px rgba(20,20,25,.04);
-  --shadow:0 4px 20px -4px rgba(20,20,25,.08),0 1px 3px rgba(20,20,25,.04);
-  --shadow-lg:0 12px 40px -8px rgba(20,20,25,.14);
+  --shadow:0 1px 2px rgba(20,20,25,.04);
+  --shadow-lg:0 4px 14px rgba(0,0,0,.07);
   --ease:cubic-bezier(.16,1,.3,1);
 }
-*{box-sizing:border-box;margin:0;padding:0;}html{font-size:14.5px;-webkit-font-smoothing:antialiased;}
+*{box-sizing:border-box;margin:0;padding:0;}html{font-size:14px;}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);}
 
-nav{display:flex;align-items:center;padding:0 2rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,.85);backdrop-filter:blur(10px) saturate(1.4);position:sticky;top:0;z-index:100;}
-.nav-logo{font-family:var(--mono);font-size:.82rem;font-weight:500;color:var(--text);padding:1.05rem 1.5rem 1.05rem 0;border-right:1px solid var(--border);margin-right:1rem;letter-spacing:-.01em;}
-.nav-logo span{color:var(--accent);}
+nav{display:flex;align-items:center;padding:0 2rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100;}
+.nav-logo{display:flex;align-items:center;font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--text);padding:1rem 1.5rem 1rem 0;border-right:1px solid var(--border);margin-right:1rem;letter-spacing:-.01em;}
 .nav-links{display:flex;}
-.nav-link{font-size:.79rem;color:var(--text2);text-decoration:none;padding:.9rem .95rem;border-bottom:2px solid transparent;transition:color .15s var(--ease),border-color .15s var(--ease);}
+.nav-link{font-size:.78rem;color:var(--text2);text-decoration:none;padding:.85rem .9rem;border-bottom:2px solid transparent;transition:color .12s,border-color .12s;}
 .nav-link:hover{color:var(--text);}
 .nav-link.active{color:var(--accent);border-bottom-color:var(--accent);}
 .nav-spacer{flex:1;}
 
 /* Country header */
-.chead{display:flex;align-items:center;gap:1rem;padding:.7rem 2rem;border-bottom:1px solid var(--border);flex-wrap:wrap;background:linear-gradient(180deg,var(--bg2),var(--bg));}
-.back{font-family:var(--mono);font-size:.68rem;color:var(--text3);text-decoration:none;padding:.3rem .65rem;border:1px solid var(--border2);border-radius:20px;transition:all .15s var(--ease);}
+.chead{display:flex;align-items:center;gap:1rem;padding:.65rem 2rem;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.back{font-family:var(--mono);font-size:.68rem;color:var(--text3);text-decoration:none;padding:.28rem .6rem;border:1px solid var(--border2);border-radius:3px;}
 .back:hover{color:var(--accent);border-color:var(--accent);}
-.chead-name{font-weight:700;font-size:1.15rem;letter-spacing:-.02em;}
+.chead-name{font-weight:600;font-size:1.1rem;letter-spacing:-.02em;}
 .chead-iso{font-family:var(--mono);font-size:.7rem;color:var(--text3);margin-left:.4rem;}
-.chead-gdp{font-family:var(--mono);font-size:.68rem;color:var(--text2);margin-left:auto;border:1px solid var(--border);padding:.3rem .7rem;border-radius:20px;background:var(--bg);}
+.chead-gdp{font-family:var(--mono);font-size:.68rem;color:var(--text2);margin-left:auto;border:1px solid var(--border);padding:.25rem .6rem;border-radius:3px;}
 
 /* Controls */
-.controls{display:flex;align-items:center;gap:.55rem;padding:.5rem 2rem;border-bottom:1px solid var(--border);background:var(--bg2);flex-wrap:wrap;position:sticky;top:53px;z-index:90;}
-.ctrl-label{font-family:var(--mono);font-size:.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;}
-.ctrl-group{display:flex;gap:2px;background:var(--bg3);padding:2px;border-radius:20px;}
-.ctrl-btn{font-family:var(--mono);font-size:.68rem;padding:.3rem .68rem;border:none;background:transparent;color:var(--text2);cursor:pointer;transition:all .15s var(--ease);border-radius:18px;}
-.ctrl-btn.active{background:var(--text);color:#fff;box-shadow:var(--shadow-sm);}
-.ctrl-btn:not(.active):hover{color:var(--text);}
-.ctrl-btn:disabled,.ctrl-btn-disabled{opacity:.32;cursor:not-allowed!important;}
+.controls{display:flex;align-items:center;gap:.5rem;padding:.45rem 2rem;border-bottom:1px solid var(--border);background:var(--bg2);flex-wrap:wrap;}
+.ctrl-label{font-family:var(--mono);font-size:.63rem;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;}
+.ctrl-group{display:flex;gap:1px;}
+.ctrl-btn{font-family:var(--mono);font-size:.68rem;padding:.27rem .62rem;border:1px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;transition:all .12s;}
+.ctrl-btn:first-child{border-radius:3px 0 0 3px;}
+.ctrl-btn:last-child{border-radius:0 3px 3px 0;}
+.ctrl-btn.active{background:var(--text);color:var(--bg);border-color:var(--text);}
+.ctrl-btn:disabled,.ctrl-btn-disabled{opacity:.35;cursor:not-allowed!important;}
 .ctrl-sep{width:1px;background:var(--border2);margin:0 .4rem;align-self:stretch;}
-.ctrl-group.period .ctrl-btn.active{background:var(--accent);}
-#ctrl-notice{display:none;padding:.5rem 2rem;font-family:var(--mono);font-size:.68rem;color:var(--accent);background:#eef3ff;border-bottom:1px solid var(--border);}
+.ctrl-group.period .ctrl-btn.active{background:var(--accent);border-color:var(--accent);}
+#ctrl-notice{display:none;padding:.5rem 2rem;font-family:var(--mono);font-size:.68rem;color:var(--accent);background:var(--bg2);border-bottom:1px solid var(--border);}
 
 /* KPI */
 .kpi-bar{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;}
@@ -71,7 +70,7 @@ nav{display:flex;align-items:center;padding:0 2rem;border-bottom:1px solid var(-
 /* Main grid */
 .main{display:grid;grid-template-columns:1fr 340px;border-bottom:1px solid var(--border);align-items:stretch;}
 @media(max-width:880px){.main{grid-template-columns:1fr;}}
-#map-wrap{position:relative;background:linear-gradient(180deg,#f3f5f2,#eceeec);border-right:1px solid var(--border);overflow:hidden;}
+#map-wrap{position:relative;background:#f0f2f0;border-right:1px solid var(--border);}
 #tooltip{display:none;position:absolute;background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:.65rem .9rem;font-size:.75rem;max-width:230px;pointer-events:none;z-index:100;box-shadow:var(--shadow-lg);}
 .tt-name{font-weight:600;margin-bottom:.3rem;}
 .tt-row{display:flex;justify-content:space-between;gap:.6rem;color:var(--text2);margin-bottom:2px;}
@@ -90,7 +89,7 @@ nav{display:flex;align-items:center;padding:0 2rem;border-bottom:1px solid var(-
 
 /* Charts bottom */
 .charts{padding:1.5rem 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;border-bottom:1px solid var(--border);align-items:stretch;}
-.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.05rem 1.15rem;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;display:flex;flex-direction:column;}
 .chart-title{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:.75rem;}
 .chart-card svg{flex:1;min-height:0;}
 
@@ -100,7 +99,7 @@ nav{display:flex;align-items:center;padding:0 2rem;border-bottom:1px solid var(-
 .prod-title{font-family:var(--mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);}
 .prod-count{font-family:var(--mono);font-size:.62rem;color:var(--text3);margin-left:auto;}
 .filter-bar{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;}
-.filter-input{font-family:var(--mono);font-size:.68rem;padding:.32rem .6rem;border:1px solid var(--border2);border-radius:20px;outline:none;width:180px;transition:border-color .15s var(--ease);}
+.filter-input{font-family:var(--mono);font-size:.68rem;padding:.25rem .5rem;border:1px solid var(--border2);border-radius:3px;outline:none;width:160px;}
 .filter-input:focus{border-color:var(--accent);}
 .prod-table-wrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
 table{width:100%;border-collapse:collapse;font-size:.75rem;}
@@ -119,12 +118,53 @@ tr:hover td{background:var(--bg2);}
 
 footer{padding:.65rem 2rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.6rem;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;}
 footer a{color:var(--text3);text-decoration:underline;}
+/* --- PierreRousseaux.com visual system --- */
+:root{--bg:#fff;--bg2:#f7f9fb;--bg3:#eef2f6;--border:#e6ebf1;--border2:#cdd6df;--text:#12233d;--text2:#5b6673;--text3:#8b95a1;--accent:#0b5394;--blue:#0b5394;--red:#a4303f;--green:#286b3c;--sans:Arial,Helvetica,sans-serif;--mono:Consolas,Menlo,monospace}
+html{font-size:15px} body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#12233d;line-height:1.55}
+nav{min-height:66px;padding:0 max(20px,calc((100vw - 1150px)/2));border-bottom:1px solid #e6ebf1;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(18,35,61,.02)}
+.nav-logo{font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:800;color:#12233d;padding:0 24px 0 0;border-right:0;margin-right:14px;letter-spacing:-.2px}.nav-logo span{color:#0b5394}
+.nav-link{font-size:13.5px;font-weight:600;color:#697485;padding:23px 14px 20px;border-bottom:3px solid transparent}.nav-link:hover{color:#0b5394}.nav-link.active{color:#0b5394;border-bottom-color:#0b5394}
+.nav-cta{font-family:Arial,Helvetica,sans-serif;font-size:12.5px;font-weight:700;color:#0b5394;border:1px solid #b9cce0;padding:7px 13px;border-radius:18px;background:#fff}
+.hero{max-width:none;padding:52px max(20px,calc((100vw - 1150px)/2)) 48px;grid-template-columns:minmax(0,1.55fr) minmax(280px,.75fr);gap:54px;background:linear-gradient(135deg,#0b5394 0%,#0a4172 100%);border:0;color:#fff}
+.hero-tag,.page-tag{font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.2px;color:#bcd6ef}.hero-title{font-size:46px;font-weight:800;line-height:1.04;letter-spacing:-1.3px;margin-bottom:18px}.hero-title span{color:#fff}.hero-desc{font-size:16px;color:#e3edf7;line-height:1.65;max-width:760px}.hero-desc strong{color:#fff}.hero-btns{gap:10px}.btn-primary,.btn-secondary{font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;padding:9px 15px;border-radius:6px}.btn-primary{background:#fff;color:#0b5394}.btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}.btn-secondary:hover{border-color:#fff}.hero-meta{font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#bcd6ef}.hero-meta a{color:#fff!important}
+.hero-stats{gap:12px;background:transparent;border:0;border-radius:0;overflow:visible}.hero-stat{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:9px;padding:17px}.hero-stat-v,.hero-stat-v.blue,.hero-stat-v.red{font-family:Arial,Helvetica,sans-serif;font-size:26px;font-weight:800;color:#fff}.hero-stat-l{font-size:12px;color:#d7e7f5}.hero-context{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-left:3px solid #fff;border-radius:7px;color:#e3edf7;padding:14px 16px}
+.controls{padding:12px max(20px,calc((100vw - 1150px)/2));background:#f7f9fb;border-bottom:1px solid #e6ebf1;gap:8px}.ctrl-label{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:800;color:#7c8794}.ctrl-btn{font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:650;padding:6px 11px;border-color:#d8e0e8;background:#fff}.ctrl-btn.active{background:#0b5394;color:#fff;border-color:#0b5394}.ctrl-sep{background:#dfe4ea}
+.kpi-bar{padding:0 max(20px,calc((100vw - 1150px)/2));border-bottom:1px solid #e6ebf1;background:#fff}.kpi{padding:14px 24px 14px 0;margin-right:24px;border-right:1px solid #e6ebf1}.kpi-l{font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:700;color:#8b95a1}.kpi-v,.kpi-v.blue,.kpi-v.red,.kpi-v.green{font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:800;color:#0b5394}
+#map-wrap{background:#f4f7fa}.map-legend,#tooltip{border:1px solid #dfe4ea;border-radius:8px;box-shadow:0 8px 24px rgba(18,35,61,.09)}
+.what-section{max-width:1150px;margin:38px auto;border:0;gap:16px}.what-card{border:1px solid #e2e5e8!important;border-radius:10px;padding:22px 20px;background:#fff;transition:.15s}.what-card:hover{box-shadow:0 8px 22px rgba(11,83,148,.12);transform:translateY(-2px)}.what-num{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:800;color:#0b5394}.what-title{font-size:17px;font-weight:800}.what-desc{font-size:13.5px;line-height:1.6;color:#5b6673}
+.papers-section{max-width:1150px;margin:0 auto;padding:20px 0 48px;border:0}.section-label{font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:800;color:#0b5394}.paper{border-color:#e2e5e8;border-radius:9px;padding:14px 16px}.paper:hover{border-color:#9db8d4;box-shadow:0 5px 15px rgba(11,83,148,.08)}
+footer{max-width:1150px;margin:0 auto;padding:22px 0;border-top:1px solid #e6ebf1;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;color:#8b95a1}
+/* content pages */
+.page-wrap{max-width:900px!important;padding:48px 20px 72px!important}.page-tag{color:#0b5394!important;margin-bottom:10px}.page-title,.page-wrap h1{font-size:36px!important;font-weight:800!important;letter-spacing:-.7px!important;color:#12233d}.page-lead{font-size:17px!important;line-height:1.65!important;color:#5b6673!important}.page-wrap h2{font-size:25px!important;font-weight:800!important;color:#12233d!important;border-top:0!important;padding-top:0!important;margin-top:48px!important}.page-wrap h3{font-size:18px!important;color:#173257!important}.page-wrap p,.page-wrap li{font-size:15px!important;line-height:1.72!important;color:#444!important}.criteria-grid{gap:12px!important}.criterion,.contact-box,.data-note,.note-box,.formula-block{border-radius:9px!important;border:1px solid #e6ebf1!important;background:#f7f9fb!important}.criterion{padding:18px!important}.crit-tag{color:#0b5394!important;font-weight:800!important}.crit-formula,.formula-block{font-family:Consolas,Menlo,monospace!important}.bio-link{border-radius:16px!important;padding:5px 10px!important}.contact-box{border-left:3px solid #0b5394!important}
+/* country dashboard */
+.chead{padding:26px max(20px,calc((100vw - 1150px)/2))!important;background:linear-gradient(135deg,#0b5394 0%,#0a4172 100%)!important;border:0!important;color:#fff!important}.back{color:#cfe2f3!important}.chead-name{font-size:26px!important;font-weight:800!important;color:#fff!important}.chead-iso,.chead-gdp{color:#cfe2f3!important}.main{max-width:1150px;margin:26px auto;border:1px solid #e6ebf1!important;border-radius:10px;overflow:hidden;box-shadow:0 5px 18px rgba(18,35,61,.05)}.side{background:#fff}.side-sec{padding:16px!important;border-color:#e6ebf1!important}.side-title,.chart-title,.prod-title{font-family:Arial,Helvetica,sans-serif!important;font-size:11px!important;font-weight:800!important;color:#0b5394!important}.charts{max-width:1150px;margin:0 auto;padding:0 0 26px!important;border:0!important;gap:16px!important}.chart-card{background:#fff!important;border:1px solid #e6ebf1!important;border-radius:10px!important;padding:18px!important}.prod-section{max-width:1150px;margin:0 auto;padding:0 0 48px!important}.filter-input{font-family:Arial,Helvetica,sans-serif!important;border-radius:6px!important;padding:7px 10px!important}.prod-section table{border:1px solid #e6ebf1;border-radius:8px;overflow:hidden}.prod-section th{background:#f7f9fb;font-family:Arial,Helvetica,sans-serif!important;font-weight:700!important;color:#5b6673!important;padding:9px!important}.prod-section td{padding:8px 9px!important}
+@media(max-width:800px){nav{padding:0 14px;overflow-x:auto}.nav-logo{font-size:13px;white-space:nowrap}.nav-link{padding:21px 9px;font-size:12px}.nav-cta{display:none}.hero{grid-template-columns:1fr;padding:36px 18px}.hero-title{font-size:36px}.controls,.kpi-bar{padding-left:14px;padding-right:14px}.what-section,.papers-section{margin-left:14px;margin-right:14px}.papers-section{padding-left:0;padding-right:0}.main,.charts,.prod-section{margin-left:12px;margin-right:12px}.main{grid-template-columns:1fr}.side{max-height:none}.charts{grid-template-columns:1fr}.chead{padding:22px 16px!important}footer{margin:0 14px}.page-wrap{padding-left:18px!important;padding-right:18px!important}}
+
+/* --- Modern ergonomic buttons/controls --- */
+.ctrl-group{gap:5px!important;}
+.ctrl-btn{border-radius:20px!important;border:1px solid #d8e0e8!important;transition:all .15s ease;}
+.ctrl-btn:first-child,.ctrl-btn:last-child{border-radius:20px!important;}
+.ctrl-btn.active{box-shadow:0 2px 8px rgba(11,83,148,.28);}
+.ctrl-btn:not(.active):not(:disabled):hover{border-color:#0b5394!important;color:#0b5394!important;}
+.ctrl-sep{align-self:center!important;height:20px!important;}
+.btn-primary,.btn-secondary{border-radius:24px!important;transition:transform .15s ease,box-shadow .15s ease,background .15s ease,color .15s ease;}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(11,83,148,.28);}
+.btn-secondary:hover{transform:translateY(-1px);}
+.back{border-radius:20px!important;transition:all .15s ease;}
+.back:hover{transform:translateY(-1px);}
+.nav-cta{transition:all .15s ease;}
+.nav-cta:hover{background:#0b5394!important;color:#fff!important;transform:translateY(-1px);}
+.filter-input{border-radius:20px!important;transition:border-color .15s ease;}
+.chead-gdp{border-radius:20px!important;}
+.bio-link{transition:all .15s ease;}
+.bio-link:hover{transform:translateY(-1px);}
+
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo"><svg width="28" height="22" viewBox="0 0 28 22" style="display:inline-block;vertical-align:middle;margin-right:8px"><circle cx="8" cy="11" r="7.5" fill="none" stroke="#d63b2f" stroke-width="1.5"/><circle cx="20" cy="11" r="7.5" fill="none" stroke="#1a56db" stroke-width="1.5"/></svg>Trade Dependency<span>.</span>Atlas</div>
+  <div class="nav-logo"><svg width="24" height="24" viewBox="0 0 24 24" style="display:inline-block;vertical-align:middle;margin-right:9px"><circle cx="9" cy="12" r="7" fill="#d63b2f" style="mix-blend-mode:multiply"/><circle cx="15" cy="12" r="7" fill="#1a56db" style="mix-blend-mode:multiply"/></svg>Trade Dependency Atlas</div>
   <div class="nav-links">
     <a href="index.html" class="nav-link">Atlas</a>
     <a href="methodology.html" class="nav-link">Methodology</a>
@@ -182,6 +222,9 @@ footer a{color:var(--text3);text-decoration:underline;}
     </div>
   </div>
   <div class="prod-table-wrap" id="prod-table"></div>
+  <div style="margin-top:.6rem;font-family:var(--mono);font-size:.65rem;color:var(--text3);">
+    Need the complete list for this economy? Contact <a href="mailto:pierre.rousseaux@ensae.fr?subject=Request%20-%20Trade%20Dependency%20Atlas" style="color:var(--accent)">pierre.rousseaux@ensae.fr</a>.
+  </div>
 </div>
 
 <footer>
@@ -344,6 +387,11 @@ function renderMap(){
   const W=wrap.clientWidth||700;
   const {proj,H}=computeFit(W);
   wrap.style.height=H+'px';
+  // Keep the side panel's box the same height as the map so the two columns
+  // line up instead of leaving a blank gap under the shorter one.
+  const side=document.getElementById('side');
+  if(window.innerWidth>880){ side.style.maxHeight=H+'px'; }
+  else{ side.style.maxHeight='none'; }
   const path=d3.geoPath(proj);
   svgEl=d3.select('#map-wrap').append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').style('display','block');
   svgEl.append('path').datum(d3.geoGraticule()()).attr('d',path).attr('fill','none').attr('stroke','rgba(0,0,0,.045)').attr('stroke-width',.3);
@@ -511,25 +559,44 @@ function buildAnnualChart(){
   const card=document.createElement('div');
   card.className='chart-card';
   card.style.cssText='grid-column:1/-1';
+  // Some economies (e.g. UK/ONS) already have real Prodcom data for 2024; most
+  // EU27 economies (Eurostat) don't yet. Rather than hard-coding a cutoff year,
+  // trim only a *trailing* run of exact 0/0 (Absorption/Stickiness "not yet
+  // computed") from the end of the series, so a country with real 2024 data
+  // keeps its 2024 point, and one without it stops at its last real year.
+  function trimTrailingZeros(data){
+    let end=data.length;
+    while(end>0 && (data[end-1].n_abs||0)===0 && (data[end-1].n_stick||0)===0) end--;
+    return data.slice(0,end);
+  }
+  const dataEC   = annualData;
+  const dataAbs  = trimTrailingZeros(annualData);
+  const dataStick= trimTrailingZeros(annualData);
+  const lastAbsYear = dataAbs.length ? dataAbs[dataAbs.length-1].year : null;
+  const absUpToDate = lastAbsYear===2024;
+  const labelYears = lastAbsYear ? `2015–${lastAbsYear}` : '2015–2024';
+  const footnote = !hasProdcom
+    ? `Absorption requires Prodcom production data, available only for EU27 + UK. Stickiness is computed directly on EC-level products for ${cn(ISO)}.`
+    : (!lastAbsYear
+        ? 'No Absorption/Stickiness data computed yet for this economy.'
+        : absUpToDate
+          ? 'Absorption and stickiness are up to date through 2024 for this economy.'
+          : `Absorption and stickiness require Prodcom production data — up to date through ${lastAbsYear} for this economy; 2024 Prodcom data is not yet released for it.`);
   card.innerHTML=`<div class="chart-title">Annual evolution of critical import products (2015–2024)</div>
     <svg id="ac" width="100%" height="300"></svg>
     <div style="display:flex;gap:1rem;margin-top:.5rem;flex-wrap:wrap;align-items:center;" id="ac-legend"></div>
     <div style="font-family:var(--mono);font-size:.6rem;color:var(--text3);margin-top:.35rem;">
-      ℹ Absorption and stickiness criteria require Prodcom production data, not yet available for 2024. Shaded band = period currently selected (${periodLabel(period)}).
+      ℹ ${footnote} Shaded band = period currently selected (${periodLabel(period)}).
     </div>`;
   setTimeout(()=>{
-    const W=card.offsetWidth-22,H=300,m={t:12,r:20,b:30,l:42};
+    const W=card.offsetWidth-22,H=300,m={t:12,r:28,b:30,l:42};
     const svg=d3.select(card).select('#ac');
     svg.attr('viewBox',`0 0 ${W} ${H}`);
 
-    const dataEC   = annualData;
-    const dataAbs  = annualData.filter(d=>d.year<=2023);
-    const dataStick= annualData.filter(d=>d.year<=2023);
-
     const series=[
       {key:'n_ec',   label:'EC criteria (2015–2024)',         data:dataEC,    color:'#1a1a18',dash:'none'},
-      {key:'n_abs',  label:'EC + Absorption (2015–2023)',      data:dataAbs,   color:'#1a56db',dash:'none'},
-      {key:'n_stick',label:'EC + Abs + Stickiness (2015–2023)',data:dataStick, color:'#d63b2f',dash:'4,3'},
+      {key:'n_abs',  label:`EC + Absorption (${labelYears})`,      data:dataAbs,   color:'#1a56db',dash:'none'},
+      {key:'n_stick',label:`EC + Abs + Stickiness (${labelYears})`,data:dataStick, color:'#d63b2f',dash:'4,3'},
     ].filter(s=>s.data.some(d=>(d[s.key]||0)>0));
 
     const x=d3.scaleLinear().domain([2015,2024]).range([m.l,W-m.r]);
