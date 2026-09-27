@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGNpcmNsZSBjeD0iMTAiIGN5PSIxNiIgcj0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDYzYjJmIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogIDxjaXJjbGUgY3g9IjIyIiBjeT0iMTYiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFhNTZkYiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KPC9zdmc+">
+  <meta property="og:title" content="Trade Dependency Atlas">
+  <meta property="og:description" content="An interactive atlas of import vulnerabilities and export leverage across 232 economies. Built on the Mejean &amp; Rousseaux (2024) five-criteria methodology.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pierrerousseaux.github.io/trade-dependencies-atlas/">
+  <meta property="og:image" content="https://pierrerousseaux.github.io/trade-dependencies-atlas/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Trade Dependency Atlas">
+  <meta name="twitter:description" content="Import vulnerabilities &amp; export leverage for 232 economies.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Trade Dependency Atlas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+:root{
+  --bg:#ffffff;--bg2:#f7f7f5;--bg3:#eeeeea;--border:#e6e6e1;--border2:#d3d3cc;
+  --text:#15151a;--text2:#65656a;--text3:#9f9f9c;
+  --accent:#1a56db;--red:#d63b2f;--blue:#1a56db;--green:#0e8f52;
+  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
+  --radius:10px;--radius-sm:6px;
+  --shadow-sm:0 1px 2px rgba(20,20,25,.04);--shadow:0 4px 20px -4px rgba(20,20,25,.08),0 1px 3px rgba(20,20,25,.04);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}html{font-size:14.5px;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);}
+::selection{background:var(--accent);color:#fff;}
+::-webkit-scrollbar{width:9px;height:9px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:5px;}
+::-webkit-scrollbar-thumb:hover{background:var(--text3);}
+
+nav{display:flex;align-items:center;padding:0 2rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,.85);backdrop-filter:blur(10px) saturate(1.4);position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:var(--mono);font-size:.82rem;font-weight:500;color:var(--text);padding:1.05rem 1.5rem 1.05rem 0;border-right:1px solid var(--border);margin-right:1rem;letter-spacing:-.01em;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;}
+.nav-link{font-size:.79rem;color:var(--text2);text-decoration:none;padding:.9rem .95rem;border-bottom:2px solid transparent;transition:color .15s var(--ease),border-color .15s var(--ease);}
+.nav-link:hover{color:var(--text);}
+.nav-link.active{color:var(--accent);border-bottom-color:var(--accent);}
+.nav-spacer{flex:1;}
+.nav-cta{font-family:var(--mono);font-size:.68rem;color:#fff;background:var(--text);padding:.4rem .8rem;border-radius:20px;text-decoration:none;letter-spacing:.03em;transition:background .15s var(--ease),transform .15s var(--ease);}
+.nav-cta:hover{background:var(--accent);transform:translateY(-1px);}
+
+.page-wrap{max-width:720px;margin:0 auto;padding:3.5rem 2rem;animation:fadeUp .5s var(--ease);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.page-tag{font-family:var(--mono);font-size:.66rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.85rem;display:flex;align-items:center;gap:.5rem;}
+.page-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(26,86,219,.15);}
+h1{font-size:2.15rem;font-weight:700;letter-spacing:-.03em;margin-bottom:1.6rem;}
+h2{font-size:1.02rem;font-weight:700;letter-spacing:-.01em;margin:2.75rem 0 .7rem;padding-top:2.1rem;border-top:1px solid var(--border);}
+h2:first-of-type{border-top:none;padding-top:0;}
+p{font-size:.85rem;color:var(--text2);line-height:1.78;margin-bottom:.85rem;}
+a{color:var(--accent);text-decoration-thickness:1px;}
+
+.bio-header{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:2rem;}
+.bio-text .name{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.25rem;}
+.bio-text .title{font-size:.82rem;color:var(--text2);margin-bottom:.6rem;}
+.bio-text .links{display:flex;gap:.5rem;flex-wrap:wrap;}
+.bio-link{font-family:var(--mono);font-size:.65rem;color:var(--text2);border:1px solid var(--border2);padding:.25rem .6rem;border-radius:16px;text-decoration:none;transition:all .15s var(--ease);}
+.bio-link:hover{color:#fff;background:var(--accent);border-color:var(--accent);transform:translateY(-1px);}
+
+.contact-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem 1.5rem;margin:1.5rem 0;box-shadow:var(--shadow-sm);}
+.contact-box p{margin-bottom:.4rem;}
+.contact-box .email{font-family:var(--mono);font-size:.8rem;color:var(--accent);}
+
+.data-note{background:linear-gradient(135deg,#eef3ff,var(--bg2));border-left:3px solid var(--accent);padding:.85rem 1.1rem;border-radius:0 var(--radius) var(--radius) 0;margin:1rem 0;font-size:.8rem;color:var(--text2);line-height:1.65;}
+
+footer{padding:1.3rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.62rem;color:var(--text3);flex-wrap:wrap;gap:.5rem;}
+footer a{color:var(--text3);text-decoration:underline;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo"><svg width="28" height="22" viewBox="0 0 28 22" style="display:inline-block;vertical-align:middle;margin-right:8px"><circle cx="8" cy="11" r="7.5" fill="none" stroke="#d63b2f" stroke-width="1.5"/><circle cx="20" cy="11" r="7.5" fill="none" stroke="#1a56db" stroke-width="1.5"/></svg>Trade Dependency<span>.</span>Atlas</div>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Atlas</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+    <a href="about.html" class="nav-link active">About</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <a href="mailto:pierre.rousseaux@ensae.fr" class="nav-cta">Contact</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-tag">About</div>
+  <h1>About this atlas</h1>
+
+  <div class="bio-header">
+    <div class="bio-text">
+      <div class="name">Pierre Rousseaux</div>
+      <div class="title">PhD Candidate · CREST (École Polytechnique, ENSAE) · Affiliate, IPP · Associated Researcher, i-MIP</div>
+      <div class="links">
+        <a href="https://www.pierrerousseaux.com" class="bio-link" target="_blank">pierrerousseaux.com</a>
+        <a href="https://www.pierrerousseaux.com/eu-trade-dependencies" class="bio-link" target="_blank">EU Trade Dependencies page</a>
+        <a href="mailto:pierre.rousseaux@ensae.fr" class="bio-link">pierre.rousseaux@ensae.fr</a>
+      </div>
+    </div>
+  </div>
+
+  <p>I am a PhD candidate at <a href="https://crest.science/" target="_blank">CREST</a> (École Polytechnique, ENSAE), supervised by <a href="https://rolandrathelot.com/" target="_blank">Roland Rathelot</a> and <a href="https://sites.google.com/site/arneuhlendorff/" target="_blank">Arne Uhlendorff</a>. I am also a research affiliate at the <a href="https://www.ipp.eu/" target="_blank">IPP</a> (CREST-PSE) and a research associate at <a href="https://i-mip.eu/" target="_blank">i-MIP</a> (PSE).</p>
+  <p>My research spans two fields. In <strong>labour economics</strong>, I work on job search behaviour, unemployment insurance, and information frictions in hiring, with a focus on French labour market institutions and policy evaluation. In <strong>international trade</strong>, I study the identification and measurement of trade dependencies — which products are critical imports, which countries hold export leverage over others, and how these dependencies evolve over time and interact with geopolitical risk.</p>
+  <p>The trade dependencies work builds on joint research with <a href="http://www.isabellemejean.com" target="_blank">Isabelle Mejean</a> (Sciences Po), published as Chapter 3 of the Paris Report 2 <em>Europe's Economic Security</em> (CEPR/Bruegel, 2024). I also contributed to the EIB Investment Report 2024/2025 (Chapter 5, Box C) and am currently working with <a href="https://www.lionel-fontagne.eu" target="_blank">Lionel Fontagné</a> on defining and measuring value-chain resilience as part of the evaluation of the France 2030 investment plan.</p>
+
+  <h2>About this atlas</h2>
+  <p>The Trade Dependency Atlas extends the Mejean–Rousseaux (2024) methodology to a large cross-section of <strong>232 economies</strong>, covering the EU27 member states, the United Kingdom, and economies across all continents, over two pooled periods (2015–2019 and 2021–2024). It also introduces reverse dependency indicators measuring the export leverage each economy holds over others.</p>
+  <p>The atlas is built entirely on open data (BACI CEPII, Eurostat Prodcom, World Bank, ECB) and open-source code (R, D3.js). All data and code are available upon request for academic purposes.</p>
+  <p>The goal is for this atlas to become a <strong>reference resource for researchers, policymakers, and journalists</strong> working on trade dependencies, economic security, and strategic autonomy.</p>
+
+  <h2>Data and production coverage</h2>
+  <p>The absorption criterion (criterion 4 in Mejean and Rousseaux, 2024) requires domestic production data at the product level. Currently, this is available only for:</p>
+  <ul style="padding-left:1.2rem;margin-bottom:.9rem;">
+    <li style="font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:.3rem;">EU27 member states — via Eurostat Prodcom</li>
+    <li style="font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:.3rem;">United Kingdom — via ONS UK Prodcom</li>
+  </ul>
+  <p>For all other economies, only the three EC criteria and the stickiness criterion are applied. This means that the dependency lists for non-EU/UK economies are likely <em>upper bounds</em> of the true vulnerable set.</p>
+
+  <div class="data-note">
+    <strong>Contribute production data:</strong> If you have access to domestic production data (at the HS6 or equivalent product level) for countries not currently covered — such as the United States, Japan, South Korea, Canada, Australia, or emerging economies — I would be delighted to hear from you. Such data would significantly improve the atlas coverage and allow full application of the five-criteria methodology to these economies.
+  </div>
+
+  <h2>Contact and collaboration</h2>
+  <div class="contact-box">
+    <p>For enquiries about the methodology, the underlying data, the product lists, or potential collaboration:</p>
+    <p class="email">pierre.rousseaux@ensae.fr</p>
+    <p style="margin-top:.5rem;font-size:.78rem;color:var(--text3);">Full product lists for all methodologies and all economies are available upon request for academic purposes.</p>
+  </div>
+
+  <h2>License and citation</h2>
+  <p>This atlas is released under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons CC BY 4.0</a> licence. You are free to share and adapt the material for any purpose, provided you give appropriate credit.</p>
+  <p>If you use this atlas, please cite:</p>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1rem 1.1rem;font-family:var(--mono);font-size:.72rem;line-height:1.8;margin-top:.5rem;">
+Mejean, I. and Rousseaux, P. (2024). "Identifying European Trade Dependencies." <em>Paris Report 2: Europe's Economic Security</em>, CEPR Press.<br><br>
+Rousseaux, P. (2024). "Trade Dependencies: Measurement and Evolution." <em>EIB Investment Report 2024/2025</em>, Chapter 5, Box C. European Investment Bank.
+  </div>
+</div>
+
+<footer>
+  <span>© Pierre Rousseaux — <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <a href="https://www.pierrerousseaux.com">pierrerousseaux.com</a></span>
+  <span>Trade Dependency Atlas · September 2026</span>
+</footer>
+</body>
+</html>

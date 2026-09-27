@@ -1,14 +1,488 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><script async src="https://www.googletagmanager.com/gtag/js?id=G-TB11MZQVZT"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-TB11MZQVZT');</script><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pierre Rousseaux</title><link rel="stylesheet" href="style.css"></head><body><header class="hero"><nav class="hero-nav"><a class="brand" href="index.html">Pierre Rousseaux</a><button class="menu-btn" aria-label="Menu">☰</button><div class="navlinks"><a class="active" href="index.html">Home</a><a class="" href="research.html">Research</a><a class="" href="media.html">Media</a><a class="" href="teaching.html">Teaching</a><a class="" href="trade-dependencies.html">Trade Dependencies</a><a class="" href="oeconomicus.html">Oeconomicus</a></div></nav></header><main class="home-section"><div class="home-grid"><img class="portrait" src="portrait.jpg" alt="Portrait of Pierre Rousseaux"><div class="home-wrapper">
-<div class="home-intro" style="font-size:17px;line-height:1.65;max-width:790px;margin-bottom:18px;">I am a <strong style="color:#0b5394;">PhD Candidate in Economics at CREST</strong>, supervised by Roland Rathelot and Arne Uhlendorff. My research studies how unemployment insurance shapes job-search behaviour and re-employment, the optimal design of the UI system, and how it may affect workers differently.</div>
-<div class="home-secondary" style="font-size:15px;line-height:1.6;color:#555;margin-bottom:10px;">I visited the LSE Economics Department (STICERD) from February to July 2026, invited by Prof. Camille Landais.</div>
-<div class="home-secondary" style="font-size:15px;line-height:1.6;color:#555;margin-bottom:10px;">I am affiliated with the Institute for Public Policies (IPP) and a research associate at the Institute for Macroeconomic and International Policies (i-MIP).</div>
-<div class="home-secondary" style="font-size:15px;line-height:1.6;color:#555;margin-bottom:4px;"><strong style="color:#222;">Fields:</strong> Labour Economics · Public Economics · Applied Microeconomics</div>
-<div class="home-secondary" style="font-size:15px;line-height:1.6;color:#555;margin-bottom:10px;"><strong style="color:#222;">Secondary field:</strong> International Trade</div>
-<div class="home-secondary" style="font-size:15px;line-height:1.6;color:#555;margin-bottom:24px;"><strong style="color:#222;">Incoming presentation:</strong> ELMI BIR Conference (10/2026)</div>
-<div class="home-links">
-<a class="main-button" href="research.html" style="background:#0b5394;color:#fff;text-decoration:none;padding:10px 17px;border-radius:5px;font-size:14px;font-weight:600;">My Research</a>
-<span class="main-button" title="Coming soon" style="background:#0b5394;color:#fff;border:1px solid #0b5394;padding:9px 17px;border-radius:5px;font-size:14px;font-weight:600;">Job Market Paper</span>
-<a class="main-button" href="CV_PROUSSEAUX.pdf" target="_blank" style="background:#0b5394;color:#fff;border:1px solid #0b5394;text-decoration:none;padding:9px 17px;border-radius:5px;font-size:14px;font-weight:600;">CV</a>
-<span class="contact-links"><a href="mailto:pierre.rousseaux@ensae.fr" style="background:#fff;width:36px;height:36px;border:1px solid #0b5394;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#0b5394;text-decoration:none;">✉</a>
-<a href="https://www.linkedin.com/in/pierre-rousseaux/" target="_blank" style="background:#fff;width:36px;height:36px;border:1px solid #0b5394;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#0b5394;text-decoration:none;font-size:14px;font-weight:700;">in</a></span>
-</div></div></div></main><script src="main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGNpcmNsZSBjeD0iMTAiIGN5PSIxNiIgcj0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZDYzYjJmIiBzdHJva2Utd2lkdGg9IjEuOCIvPgogIDxjaXJjbGUgY3g9IjIyIiBjeT0iMTYiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFhNTZkYiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KPC9zdmc+">
+  <meta property="og:title" content="Trade Dependency Atlas">
+  <meta property="og:description" content="An interactive atlas of import vulnerabilities and export leverage across 232 economies. Built on the Mejean &amp; Rousseaux (2024) five-criteria methodology.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pierrerousseaux.github.io/trade-dependencies-atlas/">
+  <meta property="og:image" content="https://pierrerousseaux.github.io/trade-dependencies-atlas/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Trade Dependency Atlas">
+  <meta name="twitter:description" content="Import vulnerabilities &amp; export leverage for 232 economies.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Dependency Atlas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+:root{
+  --bg:#ffffff;--bg2:#f7f7f5;--bg3:#eeeeea;
+  --border:#e6e6e1;--border2:#d3d3cc;
+  --text:#15151a;--text2:#65656a;--text3:#9f9f9c;
+  --accent:#1a56db;--accent2:#3b6ff0;--red:#d63b2f;--red2:#e8574a;--blue:#1a56db;--green:#0e8f52;
+  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
+  --radius:10px;--radius-sm:6px;
+  --shadow-sm:0 1px 2px rgba(20,20,25,.04);
+  --shadow:0 4px 20px -4px rgba(20,20,25,.08),0 1px 3px rgba(20,20,25,.04);
+  --shadow-lg:0 12px 40px -8px rgba(20,20,25,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:14.5px;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.5;animation:pageIn .45s var(--ease);}
+a{color:inherit;}
+::selection{background:var(--accent);color:#fff;}
+::-webkit-scrollbar{width:9px;height:9px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:5px;}
+::-webkit-scrollbar-thumb:hover{background:var(--text3);}
+@keyframes pageIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.reveal{animation:fadeUp .6s var(--ease) both;}
+
+/* NAV */
+nav{display:flex;align-items:center;gap:0;padding:0 2rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,.85);backdrop-filter:blur(10px) saturate(1.4);position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:var(--mono);font-size:.82rem;font-weight:500;color:var(--text);padding:1.05rem 1.5rem 1.05rem 0;border-right:1px solid var(--border);margin-right:1rem;letter-spacing:-.01em;white-space:nowrap;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:0;}
+.nav-link{font-size:.79rem;color:var(--text2);text-decoration:none;padding:.9rem .95rem;letter-spacing:.02em;border-bottom:2px solid transparent;transition:color .15s var(--ease),border-color .15s var(--ease);}
+.nav-link:hover{color:var(--text);}
+.nav-link.active{color:var(--accent);border-bottom-color:var(--accent);}
+.nav-spacer{flex:1;}
+.nav-cta{font-family:var(--mono);font-size:.68rem;color:#fff;background:var(--text);padding:.4rem .8rem;border-radius:20px;text-decoration:none;letter-spacing:.03em;transition:background .15s var(--ease),transform .15s var(--ease);}
+.nav-cta:hover{background:var(--accent);transform:translateY(-1px);}
+
+/* HERO */
+.hero{position:relative;padding:4rem 2rem 2.75rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 400px;gap:3.5rem;align-items:start;overflow:hidden;background:
+  radial-gradient(800px 400px at 85% -10%, rgba(26,86,219,.07), transparent 60%),
+  radial-gradient(600px 300px at 100% 110%, rgba(214,59,47,.06), transparent 60%);}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(circle,rgba(21,21,26,.05) 1px,transparent 1px);
+  background-size:22px 22px;
+  mask-image:radial-gradient(700px 420px at 78% 10%, black, transparent 75%);
+  -webkit-mask-image:radial-gradient(700px 420px at 78% 10%, black, transparent 75%);}
+.hero>*{position:relative;}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding:2.5rem 1.25rem 2rem;}}
+.hero-tag{font-family:var(--mono);font-size:.68rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.85rem;display:flex;align-items:center;gap:.5rem;}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(26,86,219,.15);}
+.hero-title{font-size:2.9rem;font-weight:700;line-height:1.1;letter-spacing:-.035em;margin-bottom:1.1rem;}
+.hero-title span{color:var(--accent);}
+.hero-desc{font-size:.96rem;color:var(--text2);line-height:1.7;max-width:580px;margin-bottom:1.6rem;}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
+.btn-primary{font-family:var(--mono);font-size:.75rem;background:var(--text);color:var(--bg);padding:.6rem 1.2rem;border-radius:24px;text-decoration:none;letter-spacing:.03em;transition:background .15s var(--ease),transform .15s var(--ease);display:inline-block;}
+.btn-primary:hover{background:var(--accent);transform:translateY(-1px);}
+.btn-secondary{font-family:var(--mono);font-size:.75rem;background:var(--bg);color:var(--text);padding:.6rem 1.2rem;border-radius:24px;text-decoration:none;letter-spacing:.03em;border:1px solid var(--border2);transition:border-color .15s var(--ease),transform .15s var(--ease);}
+.btn-secondary:hover{border-color:var(--text);transform:translateY(-1px);}
+.hero-meta{font-family:var(--mono);font-size:.7rem;color:var(--text3);margin-top:1.6rem;line-height:1.7;}
+
+/* HERO STATS */
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.hero-stat{background:var(--bg);padding:1.1rem 1.3rem;transition:background .15s var(--ease);}
+.hero-stat:hover{background:var(--bg2);}
+.hero-stat-v{font-family:var(--mono);font-size:1.55rem;font-weight:500;color:var(--text);margin-bottom:3px;letter-spacing:-.02em;transition:opacity .25s var(--ease);}
+.hero-stat-v.pop{animation:popIn .35s var(--ease);}
+@keyframes popIn{from{opacity:.25;transform:translateY(3px);}to{opacity:1;transform:none;}}
+.hero-stat-v.blue{color:var(--blue);}
+.hero-stat-v.red{color:var(--red);}
+.hero-stat-l{font-size:.7rem;color:var(--text3);letter-spacing:.03em;}
+.hero-context{margin-top:1.1rem;padding:1.1rem 1.2rem;background:var(--bg2);border-radius:var(--radius);font-size:.79rem;color:var(--text2);line-height:1.6;border-left:3px solid var(--accent);}
+
+/* CONTROLS */
+.controls{display:flex;align-items:center;gap:.6rem;padding:.7rem 2rem;border-bottom:1px solid var(--border);background:var(--bg2);flex-wrap:wrap;position:sticky;top:53px;z-index:90;}
+.ctrl-label{font-family:var(--mono);font-size:.64rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;}
+.ctrl-group{display:flex;gap:2px;background:var(--bg3);padding:2px;border-radius:22px;}
+.ctrl-btn{font-family:var(--mono);font-size:.7rem;padding:.34rem .75rem;border:none;background:transparent;color:var(--text2);cursor:pointer;transition:all .15s var(--ease);border-radius:20px;}
+.ctrl-btn.active{background:var(--text);color:#fff;box-shadow:var(--shadow-sm);}
+.ctrl-btn:not(.active):hover{color:var(--text);}
+.ctrl-btn:disabled,.ctrl-btn-disabled{opacity:.32;cursor:not-allowed!important;}
+.ctrl-sep{width:1px;background:var(--border2);margin:0 .55rem;align-self:stretch;}
+.ctrl-group.period .ctrl-btn.active{background:var(--accent);}
+
+/* NOTICE */
+#map-notice{display:none;padding:.55rem 2rem;font-family:var(--mono);font-size:.68rem;color:var(--accent);background:#eef3ff;border-bottom:1px solid var(--border);}
+
+/* KPI BAR */
+.kpi-bar{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;}
+.kpi{padding:.65rem 1.3rem;border-right:1px solid var(--border);flex-shrink:0;transition:background .15s var(--ease);}
+.kpi:hover{background:var(--bg2);}
+.kpi-l{font-family:var(--mono);font-size:.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.kpi-v{font-family:var(--mono);font-size:.98rem;font-weight:500;color:var(--text);}
+.kpi-v.blue{color:var(--blue);}
+
+/* MAP */
+#map-wrap{position:relative;background:linear-gradient(180deg,#f3f5f2,#eceeec);overflow:hidden;}
+#tooltip{display:none;position:absolute;background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:.75rem .95rem;font-size:.75rem;max-width:270px;pointer-events:none;z-index:100;box-shadow:var(--shadow-lg);}
+.tt-name{font-weight:600;font-size:.88rem;margin-bottom:.4rem;}
+.tt-iso{font-family:var(--mono);font-size:.65rem;color:var(--text3);margin-left:.3rem;}
+.tt-row{display:flex;justify-content:space-between;gap:.75rem;margin-bottom:2px;color:var(--text2);}
+.tt-val{font-family:var(--mono);font-size:.7rem;color:var(--text);}
+.tt-div{border-top:1px solid var(--border);margin:.4rem 0;}
+.tt-hint{font-size:.65rem;color:var(--accent);margin-top:.3rem;}
+.map-legend{position:absolute;bottom:1rem;left:1.5rem;background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.55rem .8rem;font-family:var(--mono);font-size:.62rem;color:var(--text2);backdrop-filter:blur(4px);box-shadow:var(--shadow-sm);}
+.leg-row{display:flex;align-items:center;gap:.4rem;margin-bottom:2px;}
+.grad-bar{width:90px;height:7px;border-radius:4px;}
+
+/* WHAT section */
+.what-section{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--border);}
+@media(max-width:700px){.what-section{grid-template-columns:1fr;}}
+.what-card{position:relative;padding:1.9rem 1.9rem;border-right:1px solid var(--border);transition:background .2s var(--ease);overflow:hidden;}
+.what-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);}
+.what-card:hover{background:var(--bg2);}
+.what-card:hover::before{transform:scaleX(1);}
+.what-card:last-child{border-right:none;}
+.what-num{font-family:var(--mono);font-size:.65rem;color:var(--accent);letter-spacing:.08em;margin-bottom:.55rem;}
+.what-title{font-size:.97rem;font-weight:600;margin-bottom:.5rem;letter-spacing:-.01em;}
+.what-desc{font-size:.8rem;color:var(--text2);line-height:1.62;}
+
+/* PAPERS */
+.papers-section{padding:2.25rem 2rem;border-bottom:1px solid var(--border);}
+.section-label{font-family:var(--mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:1.25rem;}
+.paper-list{display:flex;flex-direction:column;gap:.75rem;}
+.paper{padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius);display:grid;grid-template-columns:auto 1fr;gap:.75rem;align-items:start;text-decoration:none;color:inherit;transition:border-color .15s var(--ease),box-shadow .15s var(--ease),transform .15s var(--ease);}
+.paper:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-1px);}
+.paper-year{font-family:var(--mono);font-size:.65rem;color:var(--text3);padding-top:2px;}
+.paper-title{font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:3px;}
+.paper-authors{font-size:.76rem;color:var(--text2);}
+.paper-venue{font-family:var(--mono);font-size:.65rem;color:var(--accent);margin-top:3px;}
+
+/* FOOTER */
+footer{padding:1.3rem 2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.62rem;color:var(--text3);flex-wrap:wrap;gap:.5rem;}
+footer a{color:var(--text3);text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><svg width="28" height="22" viewBox="0 0 28 22" style="display:inline-block;vertical-align:middle;margin-right:8px"><circle cx="8" cy="11" r="7.5" fill="none" stroke="#d63b2f" stroke-width="1.5"/><circle cx="20" cy="11" r="7.5" fill="none" stroke="#1a56db" stroke-width="1.5"/></svg>Trade Dependency<span>.</span>Atlas</div>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link active">Atlas</a>
+    <a href="methodology.html" class="nav-link">Methodology</a>
+    <a href="about.html" class="nav-link">About</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <a href="mailto:pierre.rousseaux@ensae.fr" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-tag reveal">Academic · Open Data · Interactive</div>
+    <h1 class="hero-title reveal" style="animation-delay:.05s">The Trade<br>Dependency<br><span>Atlas</span></h1>
+    <p class="hero-desc reveal" style="animation-delay:.1s">An open, interactive atlas measuring import vulnerabilities and export leverage for 232 economies. For EU member states and the United Kingdom, the methodology incorporates the potential for domestic substitution using Eurostat and ONS Prodcom production data, as well as inter-supplier substitutability (Martin, Mejean &amp; Parenti, 2024). A novel contribution of this atlas is the computation of <strong>reverse dependencies</strong> — measuring the export leverage each economy holds over others — for the first time at this scale. Built on the five-criteria methodology of Mejean &amp; Rousseaux (2024).</p>
+    <div class="hero-btns reveal" style="animation-delay:.15s">
+      <a href="#map" class="btn-primary">Explore the Atlas →</a>
+      <a href="methodology.html" class="btn-secondary">Methodology</a>
+      <a href="about.html" class="btn-secondary">About</a>
+    </div>
+    <div class="hero-meta">
+      Data: BACI CEPII HS17 V202601 · Prices: EUR constant 2019 · Periods: 2015–2019 &amp; 2021–2024<br>
+      Last updated: September 2026 · <a href="mailto:pierre.rousseaux@ensae.fr" style="color:var(--text3)">pierre.rousseaux@ensae.fr</a>
+    </div>
+  </div>
+  <div class="reveal" style="animation-delay:.1s">
+    <div class="hero-stats" id="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-v blue" id="hs-n">—</div><div class="hero-stat-l">Economies covered</div></div>
+      <div class="hero-stat"><div class="hero-stat-v" id="hs-dbs">—</div><div class="hero-stat-l">Median DBS</div></div>
+      <div class="hero-stat"><div class="hero-stat-v red" id="hs-vi">—</div><div class="hero-stat-l">Median VI / GDP</div></div>
+      <div class="hero-stat"><div class="hero-stat-v" id="hs-ec">—</div><div class="hero-stat-l">Median EC products</div></div>
+    </div>
+    <div class="hero-context">
+      In the current context of US tariffs and rising geopolitical tensions, identifying trade dependencies has become a strategic imperative. This atlas maps both sides: which economies are <strong>vulnerable</strong> to import disruptions, and which hold <strong>leverage</strong> over others through critical exports.
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS -->
+<div class="what-section">
+  <div class="what-card reveal">
+    <div class="what-num">01 — IMPORT DEPENDENCIES</div>
+    <div class="what-title">Which products are critical imports?</div>
+    <div class="what-desc">For each economy, we identify products meeting the European Commission's three concentration criteria (HHI, extra-zone share, import/export ratio) and two additional criteria (domestic absorption, supply stickiness).</div>
+  </div>
+  <div class="what-card reveal">
+    <div class="what-num">02 — EXPORT LEVERAGE</div>
+    <div class="what-title">Which economies can exert pressure?</div>
+    <div class="what-desc">For each economy, we identify the products it exports critically to other countries — products where it is a concentrated, dominant, and irreplaceable supplier. This is the mirror image of import dependencies.</div>
+  </div>
+  <div class="what-card reveal">
+    <div class="what-num">03 — BALANCE (DBS)</div>
+    <div class="what-title">Vulnerability vs. leverage</div>
+    <div class="what-desc">The Dependency Balance Score (DBS = VI / LI) summarises whether an economy is a net importer of risk (DBS &gt; 1, red) or a net exporter of leverage (DBS &lt; 1, blue) relative to its GDP.</div>
+  </div>
+</div>
+
+<!-- CONTROLS + MAP -->
+<div id="map">
+<div class="controls">
+  <span class="ctrl-label">Period</span>
+  <div class="ctrl-group period" id="period-grp">
+    <button class="ctrl-btn active" onclick="setPeriod('pre')">2015–19</button>
+    <button class="ctrl-btn" onclick="setPeriod('post')">2021–24</button>
+  </div>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Direction</span>
+  <div class="ctrl-group" id="dir-grp">
+    <button class="ctrl-btn active" onclick="setDir('import')">↓ Import</button>
+    <button class="ctrl-btn" onclick="setDir('export')">↑ Export power</button>
+  </div>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">List</span>
+  <div class="ctrl-group" id="list-grp">
+    <button class="ctrl-btn active" onclick="setList('ec')">EC criteria</button>
+    <button class="ctrl-btn" onclick="setList('abs')">+ Absorption</button>
+    <button class="ctrl-btn" onclick="setList('stick')">+ Stickiness</button>
+  </div>
+  <span id="list-note" class="ctrl-label" style="color:var(--accent);margin-left:.3rem;"></span>
+  <div class="ctrl-sep"></div>
+  <span class="ctrl-label">Map metric</span>
+  <div class="ctrl-group" id="metric-grp">
+    <button class="ctrl-btn active" onclick="setMetric('dbs')">DBS</button>
+    <button class="ctrl-btn" onclick="setMetric('vi')">VI / GDP</button>
+    <button class="ctrl-btn" onclick="setMetric('li')">LI / GDP</button>
+    <button class="ctrl-btn" onclick="setMetric('n')">Nb products</button>
+  </div>
+</div>
+
+<div id="map-notice"></div>
+
+<div class="kpi-bar">
+  <div class="kpi"><div class="kpi-l">Economies</div><div class="kpi-v blue" id="k-n">—</div></div>
+  <div class="kpi"><div class="kpi-l">Median DBS</div><div class="kpi-v" id="k-dbs">—</div></div>
+  <div class="kpi"><div class="kpi-l">Median VI / GDP</div><div class="kpi-v" id="k-vi">—</div></div>
+  <div class="kpi"><div class="kpi-l">Median LI / GDP</div><div class="kpi-v" id="k-li">—</div></div>
+  <div class="kpi"><div class="kpi-l">Median EC products</div><div class="kpi-v" id="k-ec">—</div></div>
+  <div class="kpi"><div class="kpi-l">Median absorption</div><div class="kpi-v" id="k-abs">—</div></div>
+  <div class="kpi"><div class="kpi-l">Median stickiness</div><div class="kpi-v" id="k-st">—</div></div>
+</div>
+
+<div id="map-wrap">
+  <div id="tooltip"><div class="tt-name" id="tt-name"></div><div id="tt-body"></div></div>
+  <div class="map-legend" id="map-legend"></div>
+</div>
+</div>
+
+<!-- KEY REFERENCES -->
+<div class="papers-section">
+  <div class="section-label">Key references underlying this atlas</div>
+  <div class="paper-list">
+    <a class="paper" href="http://www.isabellemejean.com/MejeanRousseaux_ITCEI.pdf" target="_blank">
+      <div class="paper-year">2024</div>
+      <div>
+        <div class="paper-title">Identifying European Trade Dependencies</div>
+        <div class="paper-authors">Mejean, I. and Rousseaux, P.</div>
+        <div class="paper-venue">Paris Report 2: Europe's Economic Security — CEPR / Bruegel, Pisani-Ferry, Weder di Mauro, Zettelmeyer (eds.)</div>
+      </div>
+    </a>
+    <a class="paper" href="https://www.eib.org/en/publications/20240354-investment-report-2024" target="_blank">
+      <div class="paper-year">2024</div>
+      <div>
+        <div class="paper-title">Trade Dependencies: Measurement and Evolution (Chapter 5, Box C)</div>
+        <div class="paper-authors">Rousseaux, P.</div>
+        <div class="paper-venue">EIB Investment Report 2024/2025 — European Investment Bank</div>
+      </div>
+    </a>
+    <a class="paper" href="#" style="pointer-events:none;opacity:.7;">
+      <div class="paper-year">WP</div>
+      <div>
+        <div class="paper-title">Defining and measuring value-chain resilience</div>
+        <div class="paper-authors">Fontagné, L. and Rousseaux, P.</div>
+        <div class="paper-venue">Work in progress — part of the evaluation of the France 2030 investment plan</div>
+      </div>
+    </a>
+  </div>
+  <div style="margin-top:1.5rem;padding:1rem 1.1rem;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);font-family:var(--mono);font-size:.72rem;line-height:1.8;color:var(--text2);">
+    <div style="font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:.5rem;">Cite this atlas</div>
+    Rousseaux, P. (2026). <em>Trade Dependency Atlas</em>. Interactive atlas of import vulnerabilities and export leverage across 232 economies. Available at: <a href="https://pierrerousseaux.github.io/trade-dependencies-atlas/" style="color:var(--accent)">pierrerousseaux.github.io/trade-dependencies-atlas</a>
+  </div>
+</div>
+
+<footer>
+  <span>© Pierre Rousseaux — <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · <a href="https://www.pierrerousseaux.com">pierrerousseaux.com</a></span>
+  <span id="foot-period">Data: BACI CEPII HS17 V202601 · Pool 2015–2019 · EUR constant 2019</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+const COUNTRY_NAMES={"AD":"Andorra","AE":"United Arab Emirates","AF":"Afghanistan","AG":"Antigua and Barbuda","AI":"Anguilla","AL":"Albania","AM":"Armenia","AO":"Angola","AR":"Argentina","AS":"American Samoa","AT":"Austria","AU":"Australia","AW":"Aruba","AZ":"Azerbaijan","BA":"Bosnia and Herzegovina","BB":"Barbados","BD":"Bangladesh","BE":"Belgium","BF":"Burkina Faso","BG":"Bulgaria","BH":"Bahrain","BI":"Burundi","BJ":"Benin","BL":"Saint Barthélemy","BM":"Bermuda","BN":"Brunei","BO":"Bolivia","BQ":"Bonaire, Sint Eustatius and Saba","BR":"Brazil","BS":"Bahamas","BT":"Bhutan","BW":"Botswana","BY":"Belarus","BZ":"Belize","CA":"Canada","CC":"Cocos (Keeling) Islands","CD":"DR Congo","CF":"Central African Republic","CG":"Congo","CH":"Switzerland","CI":"Côte d'Ivoire","CK":"Cook Islands","CL":"Chile","CM":"Cameroon","CN":"China","CO":"Colombia","CR":"Costa Rica","CU":"Cuba","CV":"Cape Verde","CW":"Curaçao","CX":"Christmas Island","CY":"Cyprus","CZ":"Czech Republic","DE":"Germany","DJ":"Djibouti","DK":"Denmark","DM":"Dominica","DO":"Dominican Republic","DZ":"Algeria","EC":"Ecuador","EE":"Estonia","EG":"Egypt","ER":"Eritrea","ES":"Spain","ET":"Ethiopia","FI":"Finland","FJ":"Fiji","FK":"Falkland Islands (Malvinas)","FM":"Micronesia","FR":"France","GA":"Gabon","GB":"United Kingdom","GD":"Grenada","GE":"Georgia","GH":"Ghana","GI":"Gibraltar","GL":"Greenland","GM":"Gambia","GN":"Guinea","GQ":"Equatorial Guinea","GR":"Greece","GT":"Guatemala","GU":"Guam","GW":"Guinea-Bissau","GY":"Guyana","HK":"Hong Kong","HN":"Honduras","HR":"Croatia","HT":"Haiti","HU":"Hungary","ID":"Indonesia","IE":"Ireland","IL":"Israel","IN":"India","IO":"British Indian Ocean Territory","IQ":"Iraq","IR":"Iran","IS":"Iceland","IT":"Italy","JM":"Jamaica","JO":"Jordan","JP":"Japan","KE":"Kenya","KG":"Kyrgyzstan","KH":"Cambodia","KI":"Kiribati","KM":"Comoros","KN":"Saint Kitts and Nevis","KP":"North Korea","KR":"South Korea","KW":"Kuwait","KY":"Cayman Islands","KZ":"Kazakhstan","LA":"Laos","LB":"Lebanon","LC":"Saint Lucia","LK":"Sri Lanka","LR":"Liberia","LS":"Lesotho","LT":"Lithuania","LU":"Luxembourg","LV":"Latvia","LY":"Libya","MA":"Morocco","MD":"Moldova","ME":"Montenegro","MG":"Madagascar","MH":"Marshall Islands","MK":"North Macedonia","ML":"Mali","MM":"Myanmar","MN":"Mongolia","MO":"Macao","MP":"Northern Mariana Islands","MR":"Mauritania","MS":"Montserrat","MT":"Malta","MU":"Mauritius","MV":"Maldives","MW":"Malawi","MX":"Mexico","MY":"Malaysia","MZ":"Mozambique","NC":"New Caledonia","NE":"Niger","NF":"Norfolk Island","NG":"Nigeria","NI":"Nicaragua","NL":"Netherlands","NO":"Norway","NP":"Nepal","NR":"Nauru","NU":"Niue","NZ":"New Zealand","OM":"Oman","PA":"Panama","PE":"Peru","PF":"French Polynesia","PG":"Papua New Guinea","PH":"Philippines","PK":"Pakistan","PL":"Poland","PM":"Saint Pierre and Miquelon","PN":"Pitcairn","PS":"Palestine","PT":"Portugal","PW":"Palau","PY":"Paraguay","QA":"Qatar","RO":"Romania","RS":"Serbia","RU":"Russia","RW":"Rwanda","SA":"Saudi Arabia","SB":"Solomon Islands","SC":"Seychelles","SD":"Sudan","SE":"Sweden","SG":"Singapore","SH":"Saint Helena, Ascension and Tristan da Cunha","SI":"Slovenia","SK":"Slovakia","SL":"Sierra Leone","SM":"San Marino","SN":"Senegal","SO":"Somalia","SR":"Suriname","SS":"South Sudan","ST":"Sao Tome and Principe","SV":"El Salvador","SX":"Sint Maarten (Dutch part)","SY":"Syria","SZ":"Eswatini","TC":"Turks and Caicos Islands","TD":"Chad","TF":"French Southern Territories","TG":"Togo","TH":"Thailand","TJ":"Tajikistan","TK":"Tokelau","TL":"Timor-Leste","TM":"Turkmenistan","TN":"Tunisia","TO":"Tonga","TR":"Turkey","TT":"Trinidad and Tobago","TV":"Tuvalu","TZ":"Tanzania","UA":"Ukraine","UG":"Uganda","US":"United States","UY":"Uruguay","UZ":"Uzbekistan","VC":"Saint Vincent and the Grenadines","VE":"Venezuela","VG":"Virgin Islands, British","VN":"Vietnam","VU":"Vanuatu","WF":"Wallis and Futuna","WS":"Samoa","YE":"Yemen","YT":"Mayotte","ZA":"South Africa","ZM":"Zambia","ZW":"Zimbabwe"};
+const iso2num={"AD":"20","AE":"784","AF":"4","AG":"28","AI":"660","AL":"8","AM":"51","AO":"24","AR":"32","AS":"16","AT":"40","AU":"36","AW":"533","AZ":"31","BA":"70","BB":"52","BD":"50","BE":"56","BF":"854","BG":"100","BH":"48","BI":"108","BJ":"204","BL":"652","BM":"60","BN":"96","BO":"68","BQ":"535","BR":"76","BS":"44","BT":"64","BW":"72","BY":"112","BZ":"84","CA":"124","CC":"166","CD":"180","CF":"140","CG":"178","CH":"756","CI":"384","CK":"184","CL":"152","CM":"120","CN":"156","CO":"170","CR":"188","CU":"192","CV":"132","CW":"531","CX":"162","CY":"196","CZ":"203","DE":"276","DJ":"262","DK":"208","DM":"212","DO":"214","DZ":"12","EC":"218","EE":"233","EG":"818","ER":"232","ES":"724","ET":"231","FI":"246","FJ":"242","FK":"238","FM":"583","FR":"250","GA":"266","GB":"826","GD":"308","GE":"268","GH":"288","GI":"292","GL":"304","GM":"270","GN":"324","GQ":"226","GR":"300","GT":"320","GU":"316","GW":"624","GY":"328","HK":"344","HN":"340","HR":"191","HT":"332","HU":"348","ID":"360","IE":"372","IL":"376","IN":"356","IO":"86","IQ":"368","IR":"364","IS":"352","IT":"380","JM":"388","JO":"400","JP":"392","KE":"404","KG":"417","KH":"116","KI":"296","KM":"174","KN":"659","KP":"408","KR":"410","KW":"414","KY":"136","KZ":"398","LA":"418","LB":"422","LC":"662","LK":"144","LR":"430","LS":"426","LT":"440","LU":"442","LV":"428","LY":"434","MA":"504","MD":"498","ME":"499","MG":"450","MH":"584","MK":"807","ML":"466","MM":"104","MN":"496","MO":"446","MP":"580","MR":"478","MS":"500","MT":"470","MU":"480","MV":"462","MW":"454","MX":"484","MY":"458","MZ":"508","NC":"540","NE":"562","NF":"574","NG":"566","NI":"558","NL":"528","NO":"578","NP":"524","NR":"520","NU":"570","NZ":"554","OM":"512","PA":"591","PE":"604","PF":"258","PG":"598","PH":"608","PK":"586","PL":"616","PM":"666","PN":"612","PS":"275","PT":"620","PW":"585","PY":"600","QA":"634","RO":"642","RS":"688","RU":"643","RW":"646","SA":"682","SB":"90","SC":"690","SD":"729","SE":"752","SG":"702","SH":"654","SI":"705","SK":"703","SL":"694","SM":"674","SN":"686","SO":"706","SR":"740","SS":"728","ST":"678","SV":"222","SX":"534","SY":"760","SZ":"748","TC":"796","TD":"148","TF":"260","TG":"768","TH":"764","TJ":"762","TK":"772","TL":"626","TM":"795","TN":"788","TO":"776","TR":"792","TT":"780","TV":"798","TZ":"834","UA":"804","UG":"800","US":"840","UY":"858","UZ":"860","VC":"670","VE":"862","VG":"92","VN":"704","VU":"548","WF":"876","WS":"882","YE":"887","YT":"175","ZA":"710","ZM":"894","ZW":"716"};
+const num2iso={};Object.entries(iso2num).forEach(([a,b])=>{num2iso[b]=a;num2iso[String(Number(b))]=a;num2iso[b.padStart(3,'0')]=a;});
+
+let summaryPre={},summaryPost={},summaryData={},dir='import',list='ec',metric='dbs',period='pre';
+let feats=null,svgEl=null,projFit=null;
+
+function median(arr){const s=arr.filter(x=>x!=null&&!isNaN(x)&&isFinite(x)).sort((a,b)=>a-b);if(!s.length)return null;const m=Math.floor(s.length/2);return s.length%2?s[m]:(s[m-1]+s[m])/2;}
+
+Promise.all([
+  fetch('data/indicators/summary.json').then(r=>r.json()).catch(()=>[]),
+  fetch('data/indicators/summary_post.json').then(r=>r.json()).catch(()=>[]),
+  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json')
+]).then(([sumPre,sumPost,topo])=>{
+  sumPre.forEach(d=>{summaryPre[d.country]=d;});
+  sumPost.forEach(d=>{summaryPost[d.country]=d;});
+  summaryData=summaryPre;
+  updateStats();
+  updateListEnabled();
+  feats=topojson.feature(topo,topo.objects.countries).features;
+  drawMap();
+});
+
+function setPeriod(p){
+  period=p;
+  summaryData=(p==='pre')?summaryPre:summaryPost;
+  document.querySelectorAll('#period-grp .ctrl-btn').forEach((b,i)=>b.classList.toggle('active',i===(p==='pre'?0:1)));
+  document.getElementById('foot-period').textContent=p==='pre'
+    ?'Data: BACI CEPII HS17 V202601 · Pool 2015–2019 · EUR constant 2019'
+    :'Data: BACI CEPII HS17 V202601 · Pool 2021–2024 · EUR constant 2019';
+  updateStats();updateMap();
+}
+function setDir(d){dir=d;document.querySelectorAll('#dir-grp .ctrl-btn').forEach((b,i)=>b.classList.toggle('active',i===(d==='import'?0:1)));updateListEnabled();updateMap();}
+function setList(l){if(!(metric==='n'&&dir==='import'))return;list=l;document.querySelectorAll('#list-grp .ctrl-btn').forEach((b,i)=>b.classList.toggle('active',['ec','abs','stick'][i]===l));updateMap();}
+function setMetric(m){metric=m;document.querySelectorAll('#metric-grp .ctrl-btn').forEach((b,i)=>b.classList.toggle('active',['dbs','vi','li','n'][i]===m));updateListEnabled();updateMap();}
+function updateListEnabled(){
+  const enabled=(metric==='n'&&dir==='import');
+  document.querySelectorAll('#list-grp .ctrl-btn').forEach(b=>{
+    b.disabled=!enabled;
+    b.classList.toggle('ctrl-btn-disabled',!enabled);
+    b.title=enabled?'':"List filters only change the map when 'Nb products' + 'Import' are both selected.";
+  });
+  const note=document.getElementById('list-note');
+  if(note) note.textContent=enabled?'':"(only affects 'Nb products', on Import)";
+}
+
+function popText(id,val){
+  const el=document.getElementById(id);
+  el.textContent=val;
+  el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');
+}
+function updateStats(){
+  const v=Object.values(summaryData);
+  popText('hs-n',v.length);
+  popText('hs-dbs',(median(v.map(d=>d.dbs))||0).toFixed(2));
+  popText('hs-vi',((median(v.map(d=>d.vi_index))||0)*100).toFixed(1)+'%');
+  popText('hs-ec',Math.round(median(v.map(d=>d.n_ec))||0));
+  document.getElementById('k-n').textContent=v.length;
+  document.getElementById('k-dbs').textContent=(median(v.map(d=>d.dbs))||0).toFixed(2);
+  document.getElementById('k-vi').textContent=((median(v.map(d=>d.vi_index))||0)*100).toFixed(1)+'%';
+  document.getElementById('k-li').textContent=((median(v.map(d=>d.li_index))||0)*100).toFixed(1)+'%';
+  document.getElementById('k-ec').textContent=Math.round(median(v.map(d=>d.n_ec))||0);
+  document.getElementById('k-abs').textContent=Math.round(median(v.map(d=>d.n_abs))||0);
+  document.getElementById('k-st').textContent=Math.round(median(v.map(d=>d.n_stick))||0);
+}
+
+function getVal(d){
+  if(!d)return null;
+  if(metric==='dbs')return d.dbs;
+  if(metric==='vi')return d.vi_index;
+  if(metric==='li')return d.li_index;
+  if(metric==='n')return dir==='import'?(list==='ec'?d.n_ec:list==='abs'?d.n_abs:d.n_stick):d.n_prod_exp;
+  return null;
+}
+
+function updateMapNotice(){
+  const el=document.getElementById('map-notice');
+  const p=period==='post'?'2021–2024':'2015–2019';
+  if(metric==='n'&&dir==='import'&&list==='abs'){
+    el.style.display='block';
+    el.textContent=`ℹ Absorption data (Prodcom) is only available for EU27 + UK. Other economies show "no data" (grey) for this criterion, in both periods.`;
+  } else if(period==='post'){
+    el.style.display='block';
+    el.textContent=`ℹ Period 2021–2024: some indicators (e.g. Absorption / Stickiness refresh) may be partial for the most recent year — see country pages for year-by-year detail.`;
+  } else {
+    el.style.display='none';
+  }
+}
+
+function buildColorScale(){
+  const vals=Object.values(summaryData).map(d=>getVal(d)).filter(v=>v!=null&&!isNaN(v)&&isFinite(v));
+  if(!vals.length)return()=>'#e3e3de';
+  if(metric==='dbs'){
+    const ext=d3.extent(vals);
+    const hi=Math.max(2.2,ext[1]);
+    return v=>{if(v==null)return'#e3e3de';const t=Math.max(0,Math.min(1,(v-0)/hi));
+      if(t<.42)return d3.interpolateRgb('#0b3fae','#8fb0e8')(t/.42);
+      if(t<.5)return d3.interpolateRgb('#8fb0e8','#d8d8d2')((t-.42)/.08);
+      if(t<.58)return d3.interpolateRgb('#d8d8d2','#f0b0a8')((t-.5)/.08);
+      return d3.interpolateRgb('#f0b0a8','#b0180a')(Math.min(1,(t-.58)/.42));};
+  }
+  const ext=d3.extent(vals);
+  const scale=d3.scaleSequential([ext[0],ext[1]],metric==='li'?d3.interpolate('#eef3ff','#0b3fae'):metric==='n'?d3.interpolate('#fdeee0','#c2410c'):d3.interpolate('#fdeaea','#b0180a')).clamp(true);
+  return v=>v==null?'#e3e3de':scale(v);
+}
+
+function buildLegend(colorFn){
+  const leg=document.getElementById('map-legend');
+  if(metric==='dbs'){
+    leg.innerHTML=`<div class="leg-row"><div class="grad-bar" style="background:linear-gradient(to right,#0b3fae,#8fb0e8,#d8d8d2,#f0b0a8,#b0180a)"></div></div><div class="leg-row" style="justify-content:space-between;gap:8px"><span>Powerful (DBS&lt;1)</span><span>Vulnerable (DBS&gt;1)</span></div><div class="leg-row"><span style="background:#e3e3de;width:12px;height:12px;border-radius:2px;display:inline-block;margin-right:4px"></span>No data</div>`;
+  } else {
+    const col=metric==='li'?'#0b3fae':metric==='n'?'#c2410c':'#b0180a';
+    const label=metric==='vi'?'VI/GDP':metric==='li'?'LI/GDP':'Nb products';
+    leg.innerHTML=`<div class="leg-row"><div class="grad-bar" style="background:linear-gradient(to right,#f2f2ee,${col})"></div></div><div class="leg-row" style="justify-content:space-between;gap:8px"><span>Low</span><span>${label} high</span></div><div class="leg-row"><span style="background:#e3e3de;width:12px;height:12px;border-radius:2px;display:inline-block;margin-right:4px"></span>No data</div>`;
+  }
+}
+
+function computeFit(W){
+  // Fit projection to actual land extent so the map fills its box with no dead space.
+  const proj=d3.geoNaturalEarth1();
+  const sphere={type:'Sphere'};
+  proj.fitWidth(W,sphere);
+  const path=d3.geoPath(proj);
+  const b=path.bounds(sphere);
+  const H=Math.ceil(b[1][1]-b[0][1]);
+  proj.translate([proj.translate()[0],proj.translate()[1]-b[0][1]]);
+  return {proj,H};
+}
+
+function drawMap(){
+  const wrap=document.getElementById('map-wrap');
+  const W=wrap.clientWidth||window.innerWidth;
+  const {proj,H}=computeFit(W);
+  projFit=proj;
+  wrap.style.height=H+'px';
+  const path=d3.geoPath(proj);
+  svgEl=d3.select('#map-wrap').append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').style('display','block');
+  svgEl.append('path').datum(d3.geoGraticule()()).attr('d',path).attr('fill','none').attr('stroke','rgba(0,0,0,.045)').attr('stroke-width',.3);
+  const colorFn=buildColorScale(); buildLegend(colorFn); updateMapNotice();
+  const tt=document.getElementById('tooltip');
+  svgEl.selectAll('path.c').data(feats).join('path').attr('class','c')
+    .attr('d',path)
+    .attr('fill',d=>{const iso=num2iso[String(d.id)];return colorFn(getVal(summaryData[iso]));})
+    .attr('stroke','rgba(255,255,255,.65)').attr('stroke-width',.35)
+    .style('cursor',d=>summaryData[num2iso[String(d.id)]]?'pointer':'default')
+    .style('opacity',0)
+    .call(sel=>sel.transition().duration(500).delay((d,i)=>Math.min(i*1.2,300)).style('opacity',1))
+    .on('mousemove',function(event,d){
+      const iso=num2iso[String(d.id)];const dat=summaryData[iso];if(!dat){tt.style.display='none';return;}
+      const rect=wrap.getBoundingClientRect();
+      let x=event.clientX-rect.left+14,y=event.clientY-rect.top+14;
+      if(x+270>W)x-=285;if(y+230>H)y-=240;
+      const name=COUNTRY_NAMES[iso]||iso;
+      document.getElementById('tt-name').innerHTML=`${name}<span class="tt-iso">${iso}</span>`;
+      const fmt=(v,pct)=>v!=null&&!isNaN(v)&&isFinite(v)?(pct?(v*100).toFixed(1)+'%':v.toFixed(2)):'—';
+      const dbs=dat.dbs,dc=dbs==null?'inherit':dbs<.85?'var(--blue)':dbs>1.15?'var(--red)':'inherit';
+      document.getElementById('tt-body').innerHTML=`
+        <div class="tt-row"><span>DBS</span><span class="tt-val" style="color:${dc}">${fmt(dbs,false)}</span></div>
+        <div class="tt-row"><span>VI / GDP</span><span class="tt-val">${fmt(dat.vi_index,true)}</span></div>
+        <div class="tt-row"><span>LI / GDP</span><span class="tt-val">${fmt(dat.li_index,true)}</span></div>
+        <div class="tt-div"></div>
+        <div class="tt-row"><span>EC products (import)</span><span class="tt-val">${dat.n_ec??'—'}</span></div>
+        <div class="tt-row"><span>+ Absorption</span><span class="tt-val">${dat.n_abs??'—'}</span></div>
+        <div class="tt-row"><span>+ Stickiness</span><span class="tt-val">${dat.n_stick??'—'}</span></div>
+        <div class="tt-div"></div>
+        <div class="tt-row"><span>Reverse dep. products</span><span class="tt-val">${dat.n_prod_exp??'—'}</span></div>
+        <div class="tt-row"><span>Exposed countries</span><span class="tt-val">${dat.n_cty_exp??'—'}</span></div>
+        <div class="tt-hint">→ Click for full detail</div>`;
+      tt.style.display='block';tt.style.left=x+'px';tt.style.top=y+'px';
+    })
+    .on('mouseleave',()=>{tt.style.display='none';})
+    .on('click',(event,d)=>{const iso=num2iso[String(d.id)];if(summaryData[iso])window.location.href=`country.html?iso=${iso}&dir=${dir}&list=${list}&period=${period}`;});
+}
+function updateMap(){
+  if(!svgEl||!feats)return;
+  const colorFn=buildColorScale();buildLegend(colorFn);updateMapNotice();
+  svgEl.selectAll('path.c').attr('fill',d=>{const iso=num2iso[String(d.id)];return colorFn(getVal(summaryData[iso]));});
+}
+window.addEventListener('resize',()=>{if(feats){document.getElementById('map-wrap').querySelectorAll('svg').forEach(s=>s.remove());drawMap();}});
+</script>
+</body>
+</html>
