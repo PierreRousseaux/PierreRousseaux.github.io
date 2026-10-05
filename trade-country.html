@@ -16,7 +16,14 @@
 </div></nav>
 
 <main class="trade-wrap">
-<div class="forthcoming-banner"><strong>Full interactive atlas — coming soon.</strong> The link will be added here once the public version is live; the method below is already running on the full dataset internally.</div>
+<div style="background:linear-gradient(135deg,#0b5394,#1a56db);border-radius:12px;padding:28px 32px;margin:24px 0;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+  <div style="flex:1;min-width:260px;">
+    <div style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#bcd6ef;font-weight:700;margin-bottom:6px;">Now live</div>
+    <div style="font-size:20px;font-weight:800;margin-bottom:6px;">The full interactive atlas is public</div>
+    <div style="font-size:14px;color:#e3edf7;line-height:1.5;max-width:520px;">232 economies, import vulnerabilities and export leverage, reverse dependencies — explore the complete dataset behind this page.</div>
+  </div>
+  <a href="https://tradedependencyatlas.com" target="_blank" style="background:#fff;color:#0b5394;text-decoration:none;padding:12px 22px;border-radius:6px;font-size:14px;font-weight:700;white-space:nowrap;">Explore the Atlas →</a>
+</div>
 <h2>What the Atlas does</h2>
 <p>For every economy present in the underlying trade data, the same import-dependency logic as the EU and French pages is run independently: statistically vulnerable products are identified, then weighted by each country's GDP so that a dependency matters more for a small economy than for a large one, with extra weight given to products that sit further upstream in the value chain (a disruption there has more room to cascade). The mirror calculation is run on the export side — how much leverage a country holds over others through its own exports, again GDP-weighted. Dividing the two gives a single openness/vulnerability ratio per country (the <strong>DBS</strong>: Dependency Balance Score) — a high DBS means a country is structurally more import-dependent than it is export-powerful, a low DBS the reverse.</p>
 <div class="stat-grid" id="atlasStats" style="margin:22px 0 8px"></div>
